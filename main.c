@@ -1,0 +1,29 @@
+#include "cube.h"
+
+int	main(int ac, char **av)
+{
+	t_data	data;
+	t_vars	vars;
+
+	if (ac == 2)
+	{
+		if (ft_strncmp(".cub", av[1] + (ft_strlen(av[1]) - 4), 4) != 0)
+		{
+			ft_putstr_fd("Error!\ncheck the extension of your map", 2);
+			exit(1);
+		}
+		parser(av[1], &vars);
+   		signal(SIGINT, ft_end);
+   		ft_textures(&data, &vars);
+		data.mlx = mlx_init();
+		data.window = mlx_new_window(data.mlx, data.width, data.height, "cub3d");
+    	ft_draw(&data);
+		draw_player(&data);
+		mlx_hook(data.window, 2, 0, ft_event, &data);
+   		mlx_hook(data.window, 17, 0, ft_destroy, &data);
+		mlx_loop(data.mlx);
+		return (0);
+	}
+	else
+		ft_putstr_fd("This program only accept .cub file as an argument", 2);
+}
