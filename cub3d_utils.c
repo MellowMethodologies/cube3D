@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/06/10 19:22:58 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/06/11 17:42:27 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,37 +59,45 @@ void draw_player(t_data	*data)
 
 int		ft_event(int keycode, t_data *data)
 {
+	double dx;
+	double dy;
+
+	dx = data->dis_bt_a_p * cos(data->p_rad);
+	dy = data->dis_bt_a_p * sin(data->p_rad);
 	if (keycode == 53)
 		exit (0);
-	if (keycode == 13 || keycode == 126)
+	if (!is_there_a_wall(data->p_x + 2 * cos(data->p_rad), data->p_y + 2 * sin(data->p_rad), data) && (keycode == 13 || keycode == 126))
 	{
 		//up arrow
-		data->p_y -= 5;
-		data->a_y -= 5;
+		data->p_y += 2 * sin(data->p_rad);
+		data->p_x += 2 * cos(data->p_rad);
+		data->a_x = data->p_x + dx;
+		data->a_y = data->p_y + dy;
 	}
-	if (keycode == 1 || keycode == 125)
+	if (!is_there_a_wall(data->p_x - 2 * cos(data->p_rad), data->p_y - 2 * sin(data->p_rad), data) && (keycode == 1 || keycode == 125))
 	{
 		//down arrow
-		data->p_y += 5;
-		data->a_y += 5;
+		data->p_y -= 2 * sin(data->p_rad);
+		data->p_x -= 2 * cos(data->p_rad);
+		data->a_x = data->p_x + dx;
+		data->a_y = data->p_y + dy;
 	}
 	if (keycode == 0 || keycode == 123)
 	{
-	   double dx = data->dis_bt_a_p * cos(data->p_rad);
-	   double dy = data->dis_bt_a_p * sin(data->p_rad);
-	
-	   data->a_x = data->p_x - dx;
-	   data->a_y = data->p_y - dy;
+		//right arrow
+		data->p_rad -= M_PI / 12;
+		//rotation angle 15degree to the left
+		data->a_x = data->p_x + dx;
+		data->a_y = data->p_y + dy;
 	}
 	
 	if (keycode == 2 || keycode == 124)
 	{
 	   // left arrow
-	   double dx = data->dis_bt_a_p * cos(data->p_rad);
-	   double dy = data->dis_bt_a_p * sin(data->p_rad);
-	
-	   data->a_x = data->p_x + dx;
-	   data->a_y = data->p_y + dy;
+		data->p_rad += M_PI / 12;
+
+		data->a_x = data->p_x + dx;
+		data->a_y = data->p_y + dy;
 	}
    	ft_draw(data);
    	draw_player(data);

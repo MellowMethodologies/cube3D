@@ -2,6 +2,7 @@
 # define CUBE_H
 
 # include <mlx.h>
+// # include "/Users/sbadr/Desktop/MLX42/include/MLX42/MLX42.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -30,17 +31,17 @@ typedef struct collections{
 typedef struct s_data
 {
 
-	int		height;
-	int		width;
-	int		p_x;
-	int		p_y;
-	int		a_x;
-	int		a_y;
-	int		p_rad;
-	int		dis_bt_a_p;
-	char	**str;
-	void	*mlx;
-	void	*window;
+	int			height;
+	int			width;
+	float			p_x;
+	float			p_y;
+	float			a_x;
+	float			a_y;
+	float			p_rad;
+	float		dis_bt_a_p;
+	char		**str;
+	void		*mlx;
+	void		*window;
 }   t_data;
 
 void	ft_textures(t_data *data, t_vars *vars);
@@ -67,6 +68,7 @@ char	**ft_split(char const *s, char c);
 void	ft_putstr_fd(char *s, int fd);
 char	*ft_strdup(const char *s1);
 void	parser(char *par, t_vars *vars);
+int		is_there_a_wall(int x, int y, t_data *data);
 void	map_check(t_vars *vars);
 
 #endif

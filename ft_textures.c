@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:01:49 by idabligi          #+#    #+#             */
-/*   Updated: 2023/06/10 19:24:43 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/06/11 13:52:05 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ void	ft_textures(t_data *data, t_vars *vars)
 	}
 	data->height = (i - 6) * 50;
 	data->str = vars->map + 6;
-	data->p_rad = M_PI * 20 / 180;
+	data->p_rad = M_PI/2;
 	data->p_x = data->width / 2;
 	data->p_y = data->height / 2;
 	data->a_x = data->width / 2;
-	data->a_y = data->height / 2 - 10;
-	data->dis_bt_a_p = sqrt((data->p_x - data->a_x) * (data->p_x - data->a_x) + (data->p_y - data->a_y) * (data->p_y - data->a_y));
+	data->a_y = data->height / 2 + 22;
+	data->dis_bt_a_p = 22;
 }
 
 //----------------------------------------------------------------------------//
