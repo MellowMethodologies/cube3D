@@ -1,8 +1,8 @@
 #ifndef CUBE_H
 # define CUBE_H
 
-# include <mlx.h>
-// # include "/Users/sbadr/Desktop/MLX42/include/MLX42/MLX42.h"
+// # include <mlx.h>
+# include "/Users/sbadr/Desktop/MLX42/include/MLX42/MLX42.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -33,6 +33,7 @@ typedef struct s_data
 
 	int			height;
 	int			width;
+	mlx_image_t		*image;
 	float			p_x;
 	float			p_y;
 	float			a_x;
@@ -46,7 +47,7 @@ typedef struct s_data
 
 void	ft_textures(t_data *data, t_vars *vars);
 int		ft_destroy(t_data *data);
-int		ft_event(int keycode, t_data *data);
+void	ft_event(void *dat);
 void	ft_end(int sig);
 void	ft_draw(t_data *data);
 void	ft_abort(int id);
@@ -70,5 +71,6 @@ char	*ft_strdup(const char *s1);
 void	parser(char *par, t_vars *vars);
 int		is_there_a_wall(int x, int y, t_data *data);
 void	map_check(t_vars *vars);
+int		check_player(int c);
 
 #endif

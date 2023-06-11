@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:01:49 by idabligi          #+#    #+#             */
-/*   Updated: 2023/06/11 13:52:05 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/06/11 23:20:22 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ void	ft_textures(t_data *data, t_vars *vars)
 	
 	i = 6;
 	j = 0;
+	j = ft_strlen(vars->map[i]);
+	data->width = j * 50;
 	while(vars->map[i])
 	{
-		j = ft_strlen(vars->map[i]);
-		if (j > ft_strlen(vars->map[i + 1]))
-			data->width = j * 50;
+		if (j < ft_strlen(vars->map[i]))
+			data->width = ft_strlen(vars->map[i]) * 50;
 		i++;
 	}
 	data->height = (i - 6) * 50;
@@ -53,7 +54,7 @@ void    ft_color(t_data *data, int x, int y)
 		x = s;
 		while (i < 49)
 		{
-			mlx_pixel_put(data->mlx, data->window, x, y, 0x00FFFFFF);
+			mlx_put_pixel(data->image, x, y, 0x00FFFFFF);
 			x++;
 			i++;
 		}
@@ -71,13 +72,12 @@ void	ft_draw(t_data *data)
 
 	x = 0;
 	y = 0;
-	mlx_clear_window(data->mlx, data->window);
 	while (data->str[y])
 	{
 		x = 0;
 		while (data->str[y][x])
 		{
-			if (data->str[y][x] == '0')
+			if (check_player(data->str[y][x]) || data->str[y][x] == '0')
 				ft_color(data, x * 50, y * 50);
 			x++;
 		}

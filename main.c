@@ -25,12 +25,12 @@ int	main(int ac, char **av)
 		parser(av[1], &vars);
    		signal(SIGINT, ft_end);
    		ft_textures(&data, &vars);
-		data.mlx = mlx_init();
-		data.window = mlx_new_window(data.mlx, data.width, data.height, "cub3d");
+		mlx_set_setting(MLX_MAXIMIZED, true);
+		data.mlx = mlx_init(data.width, data.height, "cub3D", false);
+		data.image = mlx_new_image(data.mlx, data.width,data.height);
     	ft_draw(&data);
 		draw_player(&data);
-		mlx_hook(data.window, 2, 0, ft_event, &data);
-   		mlx_hook(data.window, 17, 0, ft_destroy, &data);
+		mlx_loop_hook(data.mlx,ft_event, &data);
 		mlx_loop(data.mlx);
 		return (0);
 	}

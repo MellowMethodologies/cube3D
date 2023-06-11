@@ -17,7 +17,7 @@ NAME = cube
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	cc $(CFLAGS) -lmlx -framework OpenGL -framework AppKit $^ -o $@
+	cc $(CFLAGS) libmlx42.a -Iinclude -lglfw -L"/Users/sbadr/.brew/opt/glfw/lib/" $^ -o $@
 
 %.o: %.c libft.h cube.h
 	$(CC) $(CFLAGS) -c $<
