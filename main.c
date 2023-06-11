@@ -5,8 +5,6 @@ int		is_there_a_wall(int x, int y, t_data *data)
 	(void)data;
 	int map_grip_index_x = floor(x / 50);
 	int map_grip_index_y = floor(y / 50);
-	printf("->%d\n",map_grip_index_x);
-	printf("->%d\n",map_grip_index_y);
 	if(data->str[map_grip_index_y][map_grip_index_x] == '1')
 		return 1;
 	return 0;
