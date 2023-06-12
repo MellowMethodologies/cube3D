@@ -10,6 +10,8 @@
 # include <math.h>
 # include <stdlib.h>
 
+# define FOV 60 * (M_PI / 180)
+
 typedef struct vars
 {
 	int		i;
@@ -31,20 +33,21 @@ typedef struct collections{
 typedef struct s_data
 {
 
-	int			height;
-	int			width;
+	int				height;
+	int				width;
 	mlx_image_t		*image;
-	float			p_x;
-	float			p_y;
-	float			a_x;
-	float			a_y;
-	float			p_rad;
-	float		dis_bt_a_p;
-	char		**str;
-	void		*mlx;
-	void		*window;
+	double			p_x;
+	double			p_y;
+	double			a_x;
+	double			a_y;
+	double			p_rad;
+	double			dis_bt_a_p;
+	char			**str;
+	void			*mlx;
+	void			*window;
 }   t_data;
 
+int		ft_isspace(int i);
 void	ft_textures(t_data *data, t_vars *vars);
 int		ft_destroy(t_data *data);
 void	ft_event(void *dat);
@@ -69,7 +72,7 @@ char	**ft_split(char const *s, char c);
 void	ft_putstr_fd(char *s, int fd);
 char	*ft_strdup(const char *s1);
 void	parser(char *par, t_vars *vars);
-int		is_there_a_wall(int x, int y, t_data *data);
+int		is_there_a_wall(double x, double y, t_data *data);
 void	map_check(t_vars *vars);
 int		check_player(int c);
 

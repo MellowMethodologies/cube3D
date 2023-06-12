@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/06/11 23:23:22 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/06/12 15:11:06 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ void	ft_end(int sig)
 
 //----------------------------------------------------------------------------//
 
-// int check_wall_collision(t_data *data, t_vars *vars)
+// int check_pl(float x, float y)
 // {
+// 	if (){}
 // }
 
 void draw_player(t_data	*data)
@@ -51,11 +52,20 @@ void draw_player(t_data	*data)
 	mlx_put_pixel(data->image , data->p_x , data->p_y - 1, 0x00FF0000);
 	mlx_put_pixel(data->image , data->p_x, data->p_y + 1, 0x00FF0000);
 	mlx_put_pixel(data->image , data->p_x + 1, data->p_y, 0x00FF0000);
+	
 	mlx_put_pixel(data->image , data->a_x - 1, data->a_y, 0x003300FF);
 	mlx_put_pixel(data->image , data->a_x , data->a_y - 1, 0x003300FF);
 	mlx_put_pixel(data->image , data->a_x, data->a_y + 1, 0x003300FF);
 	mlx_put_pixel(data->image , data->a_x + 1, data->a_y, 0x003300FF);
 }
+
+// void draw_rays(t_data	*data)
+// {
+// 	while(data->p_rad)
+// 	{
+		
+// 	}
+// }
 
 void		ft_event(void *dat)
 {
@@ -104,6 +114,7 @@ void		ft_event(void *dat)
 	data->image = mlx_new_image(data->mlx, data->width,data->height);
    	ft_draw(data);
    	draw_player(data);
+   	// draw_rays(data);
 	mlx_image_to_window(data->mlx, data->image, 0, 0);
 	// return 1;
 }
