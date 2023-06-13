@@ -4,8 +4,12 @@ int		is_there_a_wall(double x, double y, t_data *data)
 {
 	(void)data;
 	int map_grip_index_x = x / 50;
+	int map_grip_index_x1 = (x + 1) / 50;
 	int map_grip_index_y = y / 50;
-	if(data->str[map_grip_index_y][map_grip_index_x] == '1')
+	int map_grip_index_y1 = (y + 1) / 50;
+	int map_grip_index_y2 = (y - 1) / 50;
+	if(data->str[map_grip_index_y][map_grip_index_x] == '1' || data->str[map_grip_index_y][map_grip_index_x1] == '1' \
+	|| data->str[map_grip_index_y1][map_grip_index_x] == '1' || data->str[map_grip_index_y2][map_grip_index_x] == '1')
 		return 1;
 	return 0;
 }
@@ -28,8 +32,6 @@ int	main(int ac, char **av)
 		mlx_set_setting(MLX_MAXIMIZED, true);
 		data.mlx = mlx_init(data.width, data.height, "cub3D", false);
 		data.image = mlx_new_image(data.mlx, data.width,data.height);
-    	ft_draw(&data);
-		draw_player(&data);
 		mlx_loop_hook(data.mlx,ft_event, &data);
 		mlx_loop(data.mlx);
 		return (0);

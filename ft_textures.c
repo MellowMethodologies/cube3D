@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:01:49 by idabligi          #+#    #+#             */
-/*   Updated: 2023/06/12 15:24:08 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/06/13 15:01:20 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int		*find_player(char **map)
 			{
 				pl[0] = i;
 				pl[1] = j;
-				printf("%c\n",map[i][j]);
 				pl[2] = map[i][j];
 			}
 			j++;
@@ -79,6 +78,7 @@ void	ft_textures(t_data *data, t_vars *vars)
 	data->p_y = pl[0] * 50 + 25;
 	data->a_x = data->p_x + 22 * cos(data->p_rad);
 	data->a_y = data->p_y + 22 * sin(data->p_rad);
+	data->num_rays = data->width / WALL_THICKNESS /50;
 	data->dis_bt_a_p = 22;
 }
 

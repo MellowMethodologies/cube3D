@@ -1,9 +1,9 @@
-SRCS_LIBFT = ./libft/ft_itoa.c ./libft/ft_split.c ./libft/ft_strmapi.c ./libft/ft_putchar_fd.c ./libft/ft_putstr_fd.c ./libft/ft_striteri.c\
-			./libft/ft_putendl_fd.c ./libft/ft_putnbr_fd.c ./libft/ft_strtrim.c ./libft/ft_strjoin.c ./libft/ft_atoi.c ./libft/ft_bzero.c\
-			./libft/ft_calloc.c ./libft/ft_isalnum.c ./libft/ft_isalpha.c ./libft/ft_isascii.c ./libft/ft_isdigit.c ./libft/ft_isprint.c\
-			./libft/ft_memchr.c ./libft/ft_memcmp.c ./libft/ft_memcpy.c ./libft/ft_memmove.c ./libft/ft_memset.c ./libft/ft_strchr.c\
-			./libft/ft_strdup.c ./libft/ft_strlcat.c ./libft/ft_strlcpy.c ./libft/ft_strlen.c ./libft/ft_strncmp.c ./libft/ft_strnstr.c\
-			./libft/ft_strrchr.c ./libft/ft_tolower.c ./libft/ft_toupper.c ./libft/ft_substr.c
+SRCS_LIBFT = ./Libft/ft_itoa.c ./Libft/ft_split.c ./Libft/ft_strmapi.c ./Libft/ft_putchar_fd.c ./Libft/ft_putstr_fd.c ./Libft/ft_striteri.c\
+			./Libft/ft_putendl_fd.c ./Libft/ft_putnbr_fd.c ./Libft/ft_strtrim.c ./Libft/ft_strjoin.c ./Libft/ft_atoi.c ./Libft/ft_bzero.c\
+			./Libft/ft_calloc.c ./Libft/ft_isalnum.c ./Libft/ft_isalpha.c ./Libft/ft_isascii.c ./Libft/ft_isdigit.c ./Libft/ft_isprint.c\
+			./Libft/ft_memchr.c ./Libft/ft_memcmp.c ./Libft/ft_memcpy.c ./Libft/ft_memmove.c ./Libft/ft_memset.c ./Libft/ft_strchr.c\
+			./Libft/ft_strdup.c ./Libft/ft_strlcat.c ./Libft/ft_strlcpy.c ./Libft/ft_strlen.c ./Libft/ft_strncmp.c ./Libft/ft_strnstr.c\
+			./Libft/ft_strrchr.c ./Libft/ft_tolower.c ./Libft/ft_toupper.c ./Libft/ft_substr.c
 
 SRCS_CUB = get_next_line_utils.c parsing_1.c main.c ft_textures.c cub3d_utils.c
 
@@ -18,9 +18,10 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	cc $(CFLAGS) libmlx42.a -Iinclude -lglfw -L"/Users/sbadr/.brew/opt/glfw/lib/" $^ -o $@
+	# @./$(NAME) ./maps/map.cub
 
-%.o: %.c libft.h cube.h
-	$(CC) $(CFLAGS) -c $<
+%.o: %.c ./Libft/libft.h cube.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJS)

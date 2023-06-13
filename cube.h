@@ -10,7 +10,8 @@
 # include <math.h>
 # include <stdlib.h>
 
-# define FOV 60 * (M_PI / 180)
+# define FOV 70 * (M_PI / 180)
+# define WALL_THICKNESS 4
 
 typedef struct vars
 {
@@ -21,6 +22,14 @@ typedef struct vars
 	char	*s;
 	char	**map;
 }	t_vars;
+
+typedef struct s_ray
+{
+	float angle;
+	float xwall;
+	float ywall;
+	float distance;
+}t_ray;
 
 typedef struct collections{
 	int	j;
@@ -39,6 +48,7 @@ typedef struct s_data
 	double			p_x;
 	double			p_y;
 	double			a_x;
+	int				num_rays;
 	double			a_y;
 	double			p_rad;
 	double			dis_bt_a_p;
@@ -47,6 +57,7 @@ typedef struct s_data
 	void			*window;
 }   t_data;
 
+void	draw_player(t_data	*data);
 int		ft_isspace(int i);
 void	ft_textures(t_data *data, t_vars *vars);
 int		ft_destroy(t_data *data);
@@ -62,7 +73,6 @@ size_t	ft_strlen_b(char *str);
 char	*ft_strdup_b(char *src);
 char	*ft_strjoin_b(char *s1, char *s2);
 void	ft_putchar_fd(char c, int fd);
-void 	draw_player(t_data	*data);
 void	ft_putnbr_fd(int nb, int fd);
 void	p_fill(t_vars *vars);
 char	*get_next_line(int fd);
