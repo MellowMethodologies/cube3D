@@ -3,13 +3,15 @@
 int		is_there_a_wall(double x, double y, t_data *data)
 {
 	(void)data;
+	if (x > data->width || y > data->height || x < 0 || y < 0)
+		return 1;
 	int map_grip_index_x = x / 50;
 	int map_grip_index_x1 = (x + 1) / 50;
 	int map_grip_index_y = y / 50;
 	int map_grip_index_y1 = (y + 1) / 50;
 	int map_grip_index_y2 = (y - 1) / 50;
-	if(data->str[map_grip_index_y][map_grip_index_x] == '1' || data->str[map_grip_index_y][map_grip_index_x1] == '1' \
-	|| data->str[map_grip_index_y1][map_grip_index_x] == '1' || data->str[map_grip_index_y2][map_grip_index_x] == '1')
+	if (data->str[map_grip_index_y][map_grip_index_x] && (data->str[map_grip_index_y][map_grip_index_x] == '1' || data->str[map_grip_index_y][map_grip_index_x1] == '1' \
+	|| data->str[map_grip_index_y1][map_grip_index_x] == '1' || data->str[map_grip_index_y2][map_grip_index_x] == '1'))
 		return 1;
 	return 0;
 }

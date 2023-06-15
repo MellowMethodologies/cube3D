@@ -11,7 +11,7 @@ SRCS = $(SRCS_LIBFT) $(SRCS_CUB)
 
 OBJS = $(SRCS:.c=.o)
 CC  = cc -g
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 NAME = cube
 
 all: $(NAME)

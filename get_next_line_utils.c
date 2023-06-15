@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:21:37 by sbadr             #+#    #+#             */
-/*   Updated: 2023/06/09 16:46:33 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/06/14 14:25:09 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (!res)
 		res = ft_strdup_b("");
-	buff = malloc(2);
+	buff = calloc(3, 1);
 	if (!buff)
 		return (NULL);
 	i = 1;
@@ -88,7 +88,7 @@ char	*get_next_line(int fd)
 		i = read(fd, buff, 2);
 		if (i < 0)
 			return (free(res), free(buff), res = NULL, NULL);
-		buff[i] = '\0';
+
 		res = ft_strjoin_b(res, buff);
 	}
 	free(buff);

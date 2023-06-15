@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/06/13 17:14:30 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/06/14 20:58:38 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void draw_line(t_data *data, double dis, double rotation)
 
 double ds_between_two_points(double x, double y, double x1, double y1)
 {
-	return(sqrt(((x-x1) * (x-x1)) + ((y-y1) * (y - y1))));
+	return(sqrt(((x1-x) * (x1-x)) + ((y1-y) * (y1 - y))));
 }
 
 void draw_player(t_data	*data)
@@ -95,46 +95,62 @@ void draw_player(t_data	*data)
 	double y;
 	double x1;
 	double y1;
-	double dist;
-	double dist1;
-	double dist2;
+	// double x2;
+	// double y2;
+	// double dist;
+	double dist1 = 0;
+	// double dist2;
 	int i;
 	
 	x = data->p_rad - (FOV / 2);
 	y = data->p_rad + (FOV / 2);
 	i = 0;
-	x1= 0;
 	//       draw a line
-	while(x <= y)
-	{
+			
+			
+	// while(x <= y)
+	// {
+		// x1 = (data->p_x + ((data->p_y - y1) / tan(data->p_rad)));
+		// y1 = fabs(data->p_y / 50) * 50;
+		// 	x2 = 0;
+		if (data->p_rad < -M_PI || data->p_rad > M_PI)
+			i = 50;
+		y1 = ((floor(data->p_y / 50)) * 50) + i;
+		x1 = (data->p_x + ((data->p_y - y1) / tan(data->p_rad)) );
+		// y1 = floor(data->p_y / 50) * 50 + i;
+		// x1 = (data->p_x + ((data->p_y - y1) / tan(data->p_rad))) / 50 ;
+		if(data->p_rad == 0 || data->p_rad == M_PI)
+		{
+			x1 = data->p_x;
+			y1 = data->p_y;
+		}
+		printf("playerx = %f playery = %f x1  = %f y1=%f\n",data->p_x/50, data->p_y/50, x1/50,  y1/50);
+		// y2 = (int)(data->p_y / 50) * 50;
+		// x2 = (int)(data->p_x + ((data->p_y) / tan(data->p_rad))) / 50 * 50;
 		while (1)
 		{
-		    x1 = data->p_x + i;
-		    if (is_there_a_wall((x1) * cos(x), (data->p_y) * sin(data->p_rad), data))
+		    if (is_there_a_wall(fabs(x1), fabs(y1), data))
 		    {
-		    	dist1 = ds_between_two_points(x1 , y1, data->p_x, data->p_y);
+		        dist1 = ds_between_two_points(fabs(x1), fabs(y1), data->p_x, data->p_y);
+				printf("dist 1 ==%f\n",dist1);
 		        break;
 		    }
-		    i++;
+		    // else if (is_there_a_wall(fabs(x2), fabs(y2), data))
+		    // {
+		    //     dist1 = ds_between_two_points(fabs(x2), fabs(y2), data->p_x, data->p_y);
+		    //     break;
+		    // }
+		    x1 += fabs(50 / tan(data->p_rad));
+		    y1 += 50;
+		    // x2 -= fabs(50 / tan(data->p_rad));
+		    // y2 += 50;
 		}
-		// i = 0;
-		// y1 = 0;
-		// while (1)
-		// {
-		// 	y1 = data->p_x + i;
-		// 	if (!is_there_a_wall((data->p_x) * cos(data->p_rad), (y1) * sin(x), data))
-		// 	{
-		// 		dist2 = ds_between_two_points(x1 , y1, data->p_x, data->p_y);
-		// 		break;
-		// 	}
-		// 	i++;
-		// }
-		dist = ds_between_two_points(dist1 * cos(data->p_rad), dist2 *sin (data->p_rad), data->p_x, data->p_y);
-		// printf("%f\n", dist);
-		draw_line(data, dist, x);
-		x += M_PI / 180;
-	}
+		mlx_put_pixel(data->image, x1, y1, 0x00FFFF00F);
+		// draw_line(data, dist1, data->p_rad);
+		// x += M_PI / 180;
+	// }
 }
+
 
 void		ft_event(void *dat)
 {
@@ -165,7 +181,9 @@ void		ft_event(void *dat)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 	{
 		//right arrow
-		data->p_rad += M_PI * 2/ 180;
+		data->p_rad += M_PI / 180;
+		if (data->p_rad == 2 * M_PI)
+			data->p_rad = 0;
 		//rotation angle 15degree to the left
 		data->a_x = data->p_x + dx;
 		data->a_y = data->p_y + dy;
@@ -174,8 +192,10 @@ void		ft_event(void *dat)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
 	{
 	   // left arrow
-		data->p_rad -= M_PI *2 / 180;
+		data->p_rad -= M_PI  / 180;
 
+		if (data->p_rad == 2 * M_PI)
+			data->p_rad = 0;
 		data->a_x = data->p_x + dx;
 		data->a_y = data->p_y + dy;
 	}
