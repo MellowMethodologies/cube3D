@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/06/16 23:39:41 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/06/17 12:59:10 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,61 +86,61 @@ double ds_between_two_points(double x, double y, double x1, double y1)
 }	
 
 
-float	ft_find_hr(t_data *data)
+float	ft_find_hr(t_data *data, float rotation)
 {
 	float	a_x = 0;
 	float	a_y = 0;
 	int c = 0;
 
-	if (data->p_rad > 0 && data->p_rad < M_PI)
+	if (rotation > 0 && rotation < M_PI)
 	{
 		a_y = floor(data->p_y / 50) * 50 + 50;
 		c = 1;
 	}
 	else
 		a_y = floor(data->p_y / 50) * 50;
-	a_x = data->p_x + ((a_y - data->p_y) / tan(data->p_rad));
+	a_x = data->p_x + ((a_y - data->p_y) / tan(rotation));
 	
 	while (!is_there_a_wall(a_x, a_y, data))
 	{
 		if(c)
 		{
 			a_y +=50;
-			a_x +=50 / tan(data->p_rad);	
+			a_x +=50 / tan(rotation);	
 		}
 		else
 		{
 			a_y -=50;
-			a_x -=50 / tan(data->p_rad);
+			a_x -=50 / tan(rotation);
 		}
 	}
 	return (ds_between_two_points(data->p_x, data->p_y , a_x, a_y));
 }
 
-float	ft_find_vr(t_data *data)
+float	ft_find_vr(t_data *data, float rotation)
 {
 	int c = 0;
 	float	a_x = 0;
 	float	a_y = 0;
 
-	if (data->p_rad >= 3*M_PI/2 || data->p_rad <= M_PI/2)
+	if (rotation >= 3*M_PI/2 || rotation <= M_PI/2)
 	{
 		a_x = floor(data->p_x / 50) * 50 + 50;
 		c = 1;
 	}
 	else
 		a_x = floor(data->p_x / 50) * 50;
-	a_y = data->p_y + ((a_x - data->p_x) * tan(data->p_rad));
+	a_y = data->p_y + ((a_x - data->p_x) * tan(rotation));
 	while (!is_there_a_wall(a_x -1, a_y, data))
 	{
 		if (c)
 		{
-			a_y +=	50 * tan(data->p_rad);
+			a_y +=	50 * tan(rotation);
 			a_x +=	50;
 		}
 		else
 		{
-			a_y -=	50 * tan(data->p_rad);
+			a_y -=	50 * tan(rotation);
 			a_x -=	50; 
 		}
 	}
@@ -149,17 +149,23 @@ float	ft_find_vr(t_data *data)
 void draw_player(t_data	*data)
 {
 	float dist;
+	float x;
 	mlx_put_pixel(data->image ,data->p_x - 1, data->p_y, 0x00FF0000);
 	mlx_put_pixel(data->image , data->p_x , data->p_y - 1, 0x00FF0000);
 	mlx_put_pixel(data->image , data->p_x, data->p_y + 1, 0x00FF0000);
 	mlx_put_pixel(data->image , data->p_x + 1, data->p_y, 0x00FF0000);
 
-	if (ft_find_hr(data) < ft_find_vr(data))
-		dist = ft_find_hr(data);
-	else 
-		dist = ft_find_vr(data);
-	// printf("dist : %f rad: %f\n", dist/50, data->p_rad);
-	draw_line(data, dist, data->p_rad);
+	x = data->p_rad - (FOV / 2);
+	while(x < data->p_rad + (FOV /2))
+	{
+		if (ft_find_hr(data, x) < ft_find_vr(data, x))
+			dist = ft_find_hr(data, x);
+		else 
+			dist = ft_find_vr(data, x);
+		// printf("dist : %f rad: %f\n", dist/50, data->p_rad);
+		draw_line(data, dist, x);
+		x+= FOV / data->width;
+	}
 }
 
 
