@@ -10,7 +10,7 @@
 # include <math.h>
 # include <stdlib.h>
 
-# define FOV 70 * (M_PI / 180)
+# define FOV 60 * (M_PI / 180)
 # define WALL_THICKNESS 4
 
 typedef struct vars

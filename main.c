@@ -7,13 +7,14 @@ int		is_there_a_wall(double x, double y, t_data *data)
 		return 1;
 	int map_grip_index_x = x / 50;
 	int map_grip_index_x1 = (x + 1) / 50;
+	int map_grip_index_x2 = (x - 1) / 50;
 	int map_grip_index_y = y / 50;
 	int map_grip_index_y1 = (y + 1) / 50;
 	int map_grip_index_y2 = (y - 1) / 50;
-	
-	if (map_grip_index_y > data->height / 50 || ft_strlen(data->str[map_grip_index_y]) < map_grip_index_x )
+	// printf("x = %f, y = %f\n", x, y);
+	if (map_grip_index_y > data->height / 50 || ft_strlen(data->str[map_grip_index_y]) <= map_grip_index_x )
 		return 1;
-	if (data->str[map_grip_index_y][map_grip_index_x] && (data->str[map_grip_index_y][map_grip_index_x] == '1' || data->str[map_grip_index_y][map_grip_index_x1] == '1' \
+	if (data->str[map_grip_index_y][map_grip_index_x] && (data->str[map_grip_index_y][map_grip_index_x] == '1' || data->str[map_grip_index_y][map_grip_index_x2] == '1' || data->str[map_grip_index_y][map_grip_index_x1] == '1' \
 	|| data->str[map_grip_index_y1][map_grip_index_x] == '1' || data->str[map_grip_index_y2][map_grip_index_x] == '1'))
 		return 1;
 	return 0;

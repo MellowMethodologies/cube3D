@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/06/17 12:59:10 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/06/17 18:02:40 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,15 @@ float	ft_find_hr(t_data *data, float rotation)
 		c = 1;
 	}
 	else
-		a_y = floor(data->p_y / 50) * 50;
+		a_y = floor(data->p_y / 50) * 50 - 1;
 	a_x = data->p_x + ((a_y - data->p_y) / tan(rotation));
 	
-	while (!is_there_a_wall(a_x, a_y, data))
+	while (1)
 	{
+		if (is_there_a_wall(a_x, a_y, data))
+		{
+			break;
+		}
 		if(c)
 		{
 			a_y +=50;
@@ -125,14 +129,16 @@ float	ft_find_vr(t_data *data, float rotation)
 
 	if (rotation >= 3*M_PI/2 || rotation <= M_PI/2)
 	{
-		a_x = floor(data->p_x / 50) * 50 + 50;
+		a_x = floor(data->p_x / 50) * 50 + 50 ;
 		c = 1;
 	}
 	else
-		a_x = floor(data->p_x / 50) * 50;
-	a_y = data->p_y + ((a_x - data->p_x) * tan(rotation));
-	while (!is_there_a_wall(a_x -1, a_y, data))
+		a_x = floor(data->p_x / 50) * 50 -1 ;
+	a_y = data->p_y + ((a_x - data->p_x) * tan(rotation)) - 1;
+	while (1)
 	{
+		if(is_there_a_wall(a_x, a_y, data))
+			break;
 		if (c)
 		{
 			a_y +=	50 * tan(rotation);
@@ -156,13 +162,15 @@ void draw_player(t_data	*data)
 	mlx_put_pixel(data->image , data->p_x + 1, data->p_y, 0x00FF0000);
 
 	x = data->p_rad - (FOV / 2);
+	// x = data->p_rad;
+	// if (x < 0)
+	// 	x += M_PI * 2;
 	while(x < data->p_rad + (FOV /2))
 	{
 		if (ft_find_hr(data, x) < ft_find_vr(data, x))
 			dist = ft_find_hr(data, x);
 		else 
 			dist = ft_find_vr(data, x);
-		// printf("dist : %f rad: %f\n", dist/50, data->p_rad);
 		draw_line(data, dist, x);
 		x+= FOV / data->width;
 	}
@@ -180,7 +188,7 @@ void		ft_event(void *dat)
 	dy = data->dis_bt_a_p * sin(data->p_rad);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		exit (0);
-	if (!is_there_a_wall(data->p_x + 2 * cos(data->p_rad), data->p_y + 2 * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_UP)))
+	if (!is_there_a_wall(data->p_x + 1 * cos(data->p_rad), data->p_y + 2 * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_UP)))
 	{
 		//up arrow
 		data->p_y += sin(data->p_rad);
@@ -188,7 +196,7 @@ void		ft_event(void *dat)
 		data->a_x = data->p_x + dx;
 		data->a_y = data->p_y + dy;
 	}
-	if (!is_there_a_wall(data->p_x - 2 * cos(data->p_rad), data->p_y - 2 * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_DOWN)))
+	if (!is_there_a_wall(data->p_x - 1 * cos(data->p_rad), data->p_y - 2 * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_DOWN)))
 	{
 		//down arrow
 		data->p_y -= sin(data->p_rad);
