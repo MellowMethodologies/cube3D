@@ -57,6 +57,7 @@ typedef struct s_data
 	void			*window;
 }   t_data;
 
+int		is_there_a_wall_1(double x, double y, t_data *data);
 void	draw_player(t_data	*data);
 int		ft_isspace(int i);
 void	ft_textures(t_data *data, t_vars *vars);

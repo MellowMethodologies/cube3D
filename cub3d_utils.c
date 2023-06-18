@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/06/17 18:02:40 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/06/18 21:42:43 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,37 +85,34 @@ double ds_between_two_points(double x, double y, double x1, double y1)
 	return(sqrt(((x1-x) * (x1-x)) + ((y1-y) * (y1 - y))));
 }	
 
-
 float	ft_find_hr(t_data *data, float rotation)
 {
 	float	a_x = 0;
 	float	a_y = 0;
 	int c = 0;
 
-	if (rotation > 0 && rotation < M_PI)
+	if (rotation >= 0 && rotation <= M_PI)
 	{
-		a_y = floor(data->p_y / 50) * 50 + 50;
+		a_y = floor(data->p_y / 50) * 50 + 50 ;
 		c = 1;
 	}
 	else
-		a_y = floor(data->p_y / 50) * 50 - 1;
+		a_y = floor(data->p_y / 50) * 50 - 0.01;
 	a_x = data->p_x + ((a_y - data->p_y) / tan(rotation));
 	
-	while (1)
+	while (a_x >= 0 && a_x < data->width && a_y >= 0 && a_y < data->height && !is_there_a_wall_1(a_x, a_y, data))
 	{
-		if (is_there_a_wall(a_x, a_y, data))
-		{
-			break;
-		}
+		if (rotation >= 0 && rotation <= M_PI)
+			a_y += 0.01;
 		if(c)
 		{
-			a_y +=50;
-			a_x +=50 / tan(rotation);	
+			a_y += 50;
+			a_x += 50 / tan(rotation);	
 		}
 		else
 		{
-			a_y -=50;
-			a_x -=50 / tan(rotation);
+			a_y -= 50;
+			a_x -= 50 / tan(rotation);
 		}
 	}
 	return (ds_between_two_points(data->p_x, data->p_y , a_x, a_y));
@@ -127,18 +124,16 @@ float	ft_find_vr(t_data *data, float rotation)
 	float	a_x = 0;
 	float	a_y = 0;
 
-	if (rotation >= 3*M_PI/2 || rotation <= M_PI/2)
+	if (rotation > 3*M_PI/2 || rotation < M_PI/2)
 	{
 		a_x = floor(data->p_x / 50) * 50 + 50 ;
 		c = 1;
 	}
 	else
-		a_x = floor(data->p_x / 50) * 50 -1 ;
-	a_y = data->p_y + ((a_x - data->p_x) * tan(rotation)) - 1;
-	while (1)
+		a_x = floor(data->p_x / 50) * 50 - 0.01;
+	a_y = data->p_y + ((a_x - data->p_x) * tan(rotation));
+	while (a_x >= 0 && a_x < data->width && a_y >= 0 && a_y < data->height && !is_there_a_wall_1(a_x, a_y, data))
 	{
-		if(is_there_a_wall(a_x, a_y, data))
-			break;
 		if (c)
 		{
 			a_y +=	50 * tan(rotation);
@@ -163,16 +158,30 @@ void draw_player(t_data	*data)
 
 	x = data->p_rad - (FOV / 2);
 	// x = data->p_rad;
-	// if (x < 0)
-	// 	x += M_PI * 2;
-	while(x < data->p_rad + (FOV /2))
+	int i = 0;
+	while(i < data->width)
 	{
+		if (x < 0)
+			x += M_PI * 2;
+		if (x > 2 * M_PI)
+			x -= M_PI * 2 + x;
 		if (ft_find_hr(data, x) < ft_find_vr(data, x))
-			dist = ft_find_hr(data, x);
-		else 
-			dist = ft_find_vr(data, x);
-		draw_line(data, dist, x);
+		{
+			dist = ft_find_hr(data, x) - 1;
+		}
+		else{
+			dist = ft_find_vr(data, x) - 1;
+		}
+		// draw_line(data, dist, x);
+		float wall_hight = 50000 / dist;
+		float wall_top = (data->height - wall_hight) / 2;
+		wall_top = (wall_top < 0) ? 0 : wall_top;
+		float wall_bottom = (data->height + wall_hight) / 2;
+		wall_bottom = (wall_bottom > data->height) ? data->height : wall_bottom;
+		for (int y = wall_top; y < wall_bottom; y++)
+			mlx_put_pixel(data->image, i , y, 0x00FF00FF);
 		x+= FOV / data->width;
+		i++;
 	}
 }
 
@@ -219,8 +228,8 @@ void		ft_event(void *dat)
 	   // left arrow
 		data->p_rad -= M_PI / 180;
 
-		if (data->p_rad < 0)
-			data->p_rad += 2 * M_PI;
+		// if (data->p_rad < 0)
+		// 	data->p_rad += 2 * M_PI;
 		data->a_x = data->p_x + dx;
 		data->a_y = data->p_y + dy;
 	}

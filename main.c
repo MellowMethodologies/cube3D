@@ -20,6 +20,23 @@ int		is_there_a_wall(double x, double y, t_data *data)
 	return 0;
 }
 
+int		is_there_a_wall_1(double x, double y, t_data *data)
+{
+	(void)data;
+	if (x > data->width || y > data->height || x < 0 || y < 0)
+		return 1;
+	int map_grip_index_x = x / 50;
+	int map_grip_index_y = y / 50;
+
+	if (map_grip_index_y > data->height / 50)
+		return 1;
+	if (ft_strlen(data->str[map_grip_index_y]) <= map_grip_index_x)
+		return 1;
+	if (data->str[map_grip_index_y][map_grip_index_x] == '1' || data->str[map_grip_index_y][map_grip_index_x] == ' ')
+		return 1;
+	return 0;
+}
+
 int	main(int ac, char **av)
 {
 	t_data	data;

@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:01:49 by idabligi          #+#    #+#             */
-/*   Updated: 2023/06/13 15:01:20 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/06/18 21:10:25 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void	ft_draw(t_data *data)
 		x = 0;
 		while (data->str[y][x])
 		{
-			if (check_player(data->str[y][x]) || data->str[y][x] == '0')
+			if (!check_player(data->str[y][x]) && data->str[y][x] == '1')
 				ft_color(data, x * 50, y * 50);
 			x++;
 		}
