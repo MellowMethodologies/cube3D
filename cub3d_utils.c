@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/06/18 21:42:43 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/06/19 11:23:22 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,7 @@ void draw_player(t_data	*data)
 		float wall_bottom = (data->height + wall_hight) / 2;
 		wall_bottom = (wall_bottom > data->height) ? data->height : wall_bottom;
 		for (int y = wall_top; y < wall_bottom; y++)
-			mlx_put_pixel(data->image, i , y, 0x00FF00FF);
+			mlx_put_pixel(data->image, i , y, 0x00FFFFFFFF);
 		x+= FOV / data->width;
 		i++;
 	}
@@ -197,19 +197,19 @@ void		ft_event(void *dat)
 	dy = data->dis_bt_a_p * sin(data->p_rad);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		exit (0);
-	if (!is_there_a_wall(data->p_x + 1 * cos(data->p_rad), data->p_y + 2 * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_UP)))
+	if (!is_there_a_wall(data->p_x + 3 * cos(data->p_rad), data->p_y + 3 * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_UP)))
 	{
 		//up arrow
-		data->p_y += sin(data->p_rad);
-		data->p_x += cos(data->p_rad);
+		data->p_y += 3* sin(data->p_rad);
+		data->p_x += 3* cos(data->p_rad);
 		data->a_x = data->p_x + dx;
 		data->a_y = data->p_y + dy;
 	}
 	if (!is_there_a_wall(data->p_x - 1 * cos(data->p_rad), data->p_y - 2 * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_DOWN)))
 	{
 		//down arrow
-		data->p_y -= sin(data->p_rad);
-		data->p_x -= cos(data->p_rad);
+		data->p_y -= 3* sin(data->p_rad);
+		data->p_x -= 3* cos(data->p_rad);
 		data->a_x = data->p_x + dx;
 		data->a_y = data->p_y + dy;
 	}
