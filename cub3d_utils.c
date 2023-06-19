@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/06/19 11:40:16 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/06/19 11:49:35 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ float	ft_find_vr(t_data *data, float rotation)
 	float	a_x = 0;
 	float	a_y = 0;
 
-	if (rotation > 3*M_PI/2 || rotation < M_PI/2)
+	if (rotation >= 3*M_PI/2 || rotation <= M_PI/2)
 	{
 		a_x = floor(data->p_x / 50) * 50 + 50 ;
 		c = 1;
@@ -164,7 +164,7 @@ void draw_player(t_data	*data)
 		if (x < 0)
 			x += M_PI * 2;
 		if (x > 2 * M_PI)
-			x -= M_PI * 2 + x;
+			x -= M_PI * 2;
 		if (ft_find_hr(data, x) < ft_find_vr(data, x))
 		{
 			dist = ft_find_hr(data, x) - 1;
@@ -172,14 +172,15 @@ void draw_player(t_data	*data)
 		else{
 			dist = ft_find_vr(data, x) - 1;
 		}
-		// draw_line(data, dist, x);
-		float wall_hight = 50000 / dist;
-		float wall_top = (data->height - wall_hight) / 2;
-		wall_top = (wall_top < 0) ? 0 : wall_top;
-		float wall_bottom = (data->height + wall_hight) / 2;
-		wall_bottom = (wall_bottom > data->height) ? data->height : wall_bottom;
-		for (int y = wall_top; y < wall_bottom; y++)
-			mlx_put_pixel(data->image, i , y, 0x00FFFFFFFF);
+		draw_line(data, dist, x);
+		// float wall_hight = 50000 / dist;
+		// float wall_top = (data->height - wall_hight) / 2;
+		// wall_top = (wall_top < 0) ? 0 : wall_top;
+		// float wall_bottom = (data->height + wall_hight) / 2;
+		// wall_bottom = (wall_bottom > data->height) ? data->height : wall_bottom;
+		// int y = wall_top;
+		// while (y < wall_bottom)
+		// 	mlx_put_pixel(data->image, i , y++, 0x00FFFFFFFF);
 		x+= FOV / data->width;
 		i++;
 	}
@@ -205,7 +206,7 @@ void		ft_event(void *dat)
 		data->a_x = data->p_x + dx;
 		data->a_y = data->p_y + dy;
 	}
-	if (!is_there_a_wall(data->p_x - 1 * cos(data->p_rad), data->p_y - 2 * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_DOWN) || mlx_is_key_down(data->mlx, MLX_KEY_S)))
+	if (!is_there_a_wall(data->p_x - 3 * cos(data->p_rad), data->p_y - 3 * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_DOWN) || mlx_is_key_down(data->mlx, MLX_KEY_S)))
 	{
 		//down arrow
 		data->p_y -= 3* sin(data->p_rad);
