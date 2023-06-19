@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/06/19 11:31:24 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/06/19 11:40:16 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,7 @@ void		ft_event(void *dat)
 	dy = data->dis_bt_a_p * sin(data->p_rad);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		exit (0);
-	if (!is_there_a_wall(data->p_x + 3 * cos(data->p_rad), data->p_y + 3 * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_UP)))
+	if (!is_there_a_wall(data->p_x + 3 * cos(data->p_rad), data->p_y + 3 * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_UP) || mlx_is_key_down(data->mlx, MLX_KEY_W)))
 	{
 		//up arrow
 		data->p_y += 3* sin(data->p_rad);
@@ -205,11 +205,27 @@ void		ft_event(void *dat)
 		data->a_x = data->p_x + dx;
 		data->a_y = data->p_y + dy;
 	}
-	if (!is_there_a_wall(data->p_x - 1 * cos(data->p_rad), data->p_y - 2 * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_DOWN)))
+	if (!is_there_a_wall(data->p_x - 1 * cos(data->p_rad), data->p_y - 2 * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_DOWN) || mlx_is_key_down(data->mlx, MLX_KEY_S)))
 	{
 		//down arrow
 		data->p_y -= 3* sin(data->p_rad);
 		data->p_x -= 3* cos(data->p_rad);
+		data->a_x = data->p_x + dx;
+		data->a_y = data->p_y + dy;
+	}
+	if (!is_there_a_wall(data->p_x + 3 * cos(data->p_rad - M_PI /2), data->p_y + 3 * sin(data->p_rad - M_PI /2), data) && (mlx_is_key_down(data->mlx, MLX_KEY_A)))
+	{
+		//up arrow
+		data->p_y += 3* sin(data->p_rad - M_PI /2);
+		data->p_x += 3* cos(data->p_rad - M_PI /2);
+		data->a_x = data->p_x + dx;
+		data->a_y = data->p_y + dy;
+	}
+	if (!is_there_a_wall(data->p_x + 3 * cos(data->p_rad + M_PI /2), data->p_y + 3 * sin(data->p_rad + M_PI /2), data) && (mlx_is_key_down(data->mlx, MLX_KEY_D)))
+	{
+		//down arrow
+		data->p_y += 3 * sin(data->p_rad + M_PI / 2);
+		data->p_x += 3 * cos(data->p_rad + M_PI / 2);
 		data->a_x = data->p_x + dx;
 		data->a_y = data->p_y + dy;
 	}
