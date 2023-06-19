@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/06/19 11:23:22 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/06/19 11:31:24 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,8 +228,6 @@ void		ft_event(void *dat)
 	   // left arrow
 		data->p_rad -= M_PI / 180;
 
-		// if (data->p_rad < 0)
-		// 	data->p_rad += 2 * M_PI;
 		data->a_x = data->p_x + dx;
 		data->a_y = data->p_y + dy;
 	}

@@ -2,7 +2,7 @@
 # define CUBE_H
 
 // # include <mlx.h>
-# include "/Users/sbadr/Desktop/MLX42/include/MLX42/MLX42.h"
+# include "MLX42.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
