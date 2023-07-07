@@ -17,7 +17,7 @@ NAME = cube
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	cc $(CFLAGS) libmlx42.a -Iinclude -lglfw -L"/Users/sbadr/.brew/opt/glfw/lib/" $^ -o $@
+	cc $(CFLAGS) libmlx42.a -Iinclude -lglfw -L"/Users/idabligi/.brew/opt/glfw/lib/" $^ -o $@
 	# @./$(NAME) ./maps/map.cub
 
 %.o: %.c ./Libft/libft.h cube.h

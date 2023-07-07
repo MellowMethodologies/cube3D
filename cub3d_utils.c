@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/06/19 11:49:35 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/07 12:42:35 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,7 @@ float	ft_find_vr(t_data *data, float rotation)
 	}
 	return (ds_between_two_points(data->p_x, data->p_y , a_x, a_y));
 }
+
 void draw_player(t_data	*data)
 {
 	float dist;
@@ -157,6 +158,7 @@ void draw_player(t_data	*data)
 	mlx_put_pixel(data->image , data->p_x + 1, data->p_y, 0x00FF0000);
 
 	x = data->p_rad - (FOV / 2);
+        // printf("DEGREE : %f\n", x);
 	// x = data->p_rad;
 	int i = 0;
 	while(i < data->width)
@@ -174,9 +176,9 @@ void draw_player(t_data	*data)
 		}
 		draw_line(data, dist, x);
 		// float wall_hight = 50000 / dist;
-		// float wall_top = (data->height - wall_hight) / 2;
+		// float wall_top = data->height / 2 - wall_hight / 2;
 		// wall_top = (wall_top < 0) ? 0 : wall_top;
-		// float wall_bottom = (data->height + wall_hight) / 2;
+		// float wall_bottom = data->height / 2 + wall_hight / 2;
 		// wall_bottom = (wall_bottom > data->height) ? data->height : wall_bottom;
 		// int y = wall_top;
 		// while (y < wall_bottom)
@@ -185,8 +187,6 @@ void draw_player(t_data	*data)
 		i++;
 	}
 }
-
-
 
 void		ft_event(void *dat)
 {
