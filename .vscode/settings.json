@@ -4,6 +4,7 @@
         "iterator": "c",
         "algorithm": "c",
         "istream": "c",
-        "sstream": "c"
+        "sstream": "c",
+        "mlx42.h": "c"
     }
 }
