@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/08 20:36:30 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/09 10:49:26 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,23 @@ float	ft_find_vr(t_data *data, float rotation)
 // 	}
 // }
 
+void	draw_wall(t_data *data, int i, float dist)
+{
+	float wall_hight = 50000 / dist;
+	float wall_top = data->height / 2 - wall_hight / 2;
+	wall_top = (wall_top < 0) ? 0 : wall_top;
+	float wall_bottom = data->height / 2 + wall_hight / 2;
+	wall_bottom = (wall_bottom > data->height) ? data->height : wall_bottom;
+	int y = wall_top;
+	while (y < wall_bottom)
+	{
+	// 	if (y % 10 && i % 10)
+	// 		mlx_put_pixel(data->image, i , y++, 0x000099FFFF);
+	// 	else
+			mlx_put_pixel(data->image, i , y++, 0x00FFFFFFFF);
+	}
+}
+
 void draw_player(t_data	*data)
 {
 	float dist;
@@ -188,20 +205,8 @@ void draw_player(t_data	*data)
 		else{
 			dist = ft_find_vr(data, x) - 1;
 		}
-		// draw_line(data, dist, x);
-		float wall_hight = 50000 / dist;
-		float wall_top = data->height / 2 - wall_hight / 2;
-		wall_top = (wall_top < 0) ? 0 : wall_top;
-		float wall_bottom = data->height / 2 + wall_hight / 2;
-		wall_bottom = (wall_bottom > data->height) ? data->height : wall_bottom;
-		int y = wall_top;
-		while (y < wall_bottom)
-		// {
-		// 	if (y % 10 && i % 10)
-		// 		mlx_put_pixel(data->image, i , y++, 0x000099FFFF);
-		// 	else	
-				mlx_put_pixel(data->image, i , y++, 0x00FFFFFFFF);
-		// }
+		draw_line(data, dist, x);
+		// draw_wall(data, i, dist);
 		x+= FOV / data->width;
 		i++;
 	}
