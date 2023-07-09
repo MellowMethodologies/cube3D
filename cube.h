@@ -45,6 +45,7 @@ typedef struct s_data
 	int				height;
 	int				width;
 	mlx_image_t		*image;
+	unsigned int 	*img;
 	double			p_x;
 	double			p_y;
 	double			a_x;

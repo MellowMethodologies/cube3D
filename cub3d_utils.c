@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/09 19:49:25 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/09 21:09:58 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	ft_abort(int id)
 		printf("\e[1;31mError in malloc!\n\e[0m");
 	else if (id == 2)
 		printf("\e[1;31mArgument please!\n\e[0m");
+	else if (id == 3)
+		printf("\e[1;31mError in texture!\n\e[0m");
 	exit(1);
 }
 
@@ -162,29 +164,41 @@ float	ft_find_vr(t_data *data, float rotation)
 // 	}
 // }
 
-void	draw_wall(t_data *data, int i, float dist)
+void	draw_wall(t_data *data, int i, float dist, char c)
 {
-	
+	int offsetx;
+	int offsety;
+	unsigned int color;
+
+		
 	float wall_hight = 50000 / dist;
 	float wall_top = data->height / 2 - wall_hight / 2;
 	wall_top = (wall_top < 0) ? 0 : wall_top;
 	float wall_bottom = data->height / 2 + wall_hight / 2;
 	wall_bottom = (wall_bottom > data->height) ? data->height : wall_bottom;
 	int y = wall_top;
+
+	if (c == 'V')
+		offsetx = y % 50;
+	else
+		offsetx = i % 50;
+
 	while (y < wall_bottom)
 	{
-	// 	if (y % 10 && i % 10)
-	// 		mlx_put_pixel(data->image, i , y++, 0x000099FFFF);
-	// 	else
-			mlx_put_pixel(data->image, i , y++, 0x00FFFFFFFF);
+		wall_top = (wall_top < 0) ? 0 : wall_top;
+		offsety = (y - wall_top) * ((float)(50 / wall_hight));
+		// printf("%d\n", offsety);
+		color = data->img[(50 * offsety) + offsetx];
+		mlx_put_pixel(data->image, i , y++, color);
 	}
-	// printf("%d\n", xpm->bytes_per_pixel++);
+	// exit (0);
 }
 
 void draw_player(t_data	*data)
 {
 	float dist;
 	float x;
+	char c;
 	mlx_put_pixel(data->image ,data->p_x - 1, data->p_y, 0x00FF0000);
 	mlx_put_pixel(data->image , data->p_x , data->p_y - 1, 0x00FF0000);
 	mlx_put_pixel(data->image , data->p_x, data->p_y + 1, 0x00FF0000);
@@ -203,12 +217,15 @@ void draw_player(t_data	*data)
 		if (ft_find_hr(data, x) < ft_find_vr(data, x))
 		{
 			dist = ft_find_hr(data, x) - 1;
+			c = 'H';
 		}
-		else{
+		else
+		{
 			dist = ft_find_vr(data, x) - 1;
+			c = 'V';
 		}
 		// draw_line(data, dist, x);
-		draw_wall(data, i, dist);
+		draw_wall(data, i, dist, c);
 		x+= FOV / data->width;
 		i++;
 	}

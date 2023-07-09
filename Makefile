@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/07/09 19:51:25 by idabligi          #+#    #+#              #
+#    Updated: 2023/07/09 19:51:26 by idabligi         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 SRCS_LIBFT = ./Libft/ft_itoa.c ./Libft/ft_split.c ./Libft/ft_strmapi.c ./Libft/ft_putchar_fd.c ./Libft/ft_putstr_fd.c ./Libft/ft_striteri.c\
 			./Libft/ft_putendl_fd.c ./Libft/ft_putnbr_fd.c ./Libft/ft_strtrim.c ./Libft/ft_strjoin.c ./Libft/ft_atoi.c ./Libft/ft_bzero.c\
 			./Libft/ft_calloc.c ./Libft/ft_isalnum.c ./Libft/ft_isalpha.c ./Libft/ft_isascii.c ./Libft/ft_isdigit.c ./Libft/ft_isprint.c\

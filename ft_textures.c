@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:01:49 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/09 19:47:20 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/09 19:52:12 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ft_textures(t_data *data, t_vars *vars)
 	data->a_y = data->p_y + 22 * sin(data->p_rad);
 	data->num_rays = data->width / WALL_THICKNESS /50;
 	data->dis_bt_a_p = 22;
-	// ft_get_image(data);
+	ft_get_image(data);
 }
 
 //----------------------------------------------------------------------------//
