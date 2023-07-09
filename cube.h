@@ -86,5 +86,6 @@ void	parser(char *par, t_vars *vars);
 int		is_there_a_wall(double x, double y, t_data *data);
 void	map_check(t_vars *vars);
 int		check_player(int c);
+void	ft_get_image(t_data *data);
 
 #endif

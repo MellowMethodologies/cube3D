@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:01:49 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/09 14:27:47 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/09 19:47:20 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,24 +51,6 @@ double	check_rotation(int c)
 		return (M_PI / 2);
 }
 
-int get_rgba(int r, int g, int b, int a)
-{
-    return (r << 24 | g << 16 | b << 8 | a);
-}
-
-void	ft_get_image(t_data *data)
-{
-	mlx_texture_t*	xpm;
-
-	xpm = mlx_load_png("./textures/Background.png");
-	printf("%hhu\n", *xpm->pixels);
-	printf("%hhu\n", *(xpm->pixels + 1));
-	printf("%hhu\n", *(xpm->pixels + 2));
-	printf("%hhu\n", *(xpm->pixels + 3));
-	printf("%u\n", get_rgba(*xpm->pixels, (*(xpm->pixels + 1)), (*(xpm->pixels + 2)), (*(xpm->pixels + 3))));
-	
-}
-
 void	ft_textures(t_data *data, t_vars *vars)
 {
 	int	i;
@@ -98,7 +80,7 @@ void	ft_textures(t_data *data, t_vars *vars)
 	data->a_y = data->p_y + 22 * sin(data->p_rad);
 	data->num_rays = data->width / WALL_THICKNESS /50;
 	data->dis_bt_a_p = 22;
-	ft_get_image(data);
+	// ft_get_image(data);
 }
 
 //----------------------------------------------------------------------------//
