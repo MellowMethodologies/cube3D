@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 15:33:04 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/09 20:18:05 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/09 21:13:39 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ void	ft_get_image(t_data *data)
 		tmp2++;
 		tmp += 4;
 	}
-	*tmp2 = 0;	
-	write(1, "ENDE\n", 5);
+	*tmp2 = 0;
 	// exit (0);
 	// printf("%hhu\n", *(png->pixels + 1));
 	// printf("%hhu\n", *(png->pixels + 2));

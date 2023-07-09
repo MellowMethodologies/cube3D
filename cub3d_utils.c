@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/09 21:09:58 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/09 21:13:26 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,8 +185,8 @@ void	draw_wall(t_data *data, int i, float dist, char c)
 
 	while (y < wall_bottom)
 	{
-		wall_top = (wall_top < 0) ? 0 : wall_top;
 		offsety = (y - wall_top) * ((float)(50 / wall_hight));
+		wall_top = (wall_top < 0) ? 0 : wall_top;
 		// printf("%d\n", offsety);
 		color = data->img[(50 * offsety) + offsetx];
 		mlx_put_pixel(data->image, i , y++, color);
