@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/09 10:49:26 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/09 14:27:42 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ float	ft_find_vr(t_data *data, float rotation)
 
 void	draw_wall(t_data *data, int i, float dist)
 {
+	
 	float wall_hight = 50000 / dist;
 	float wall_top = data->height / 2 - wall_hight / 2;
 	wall_top = (wall_top < 0) ? 0 : wall_top;
@@ -177,6 +178,7 @@ void	draw_wall(t_data *data, int i, float dist)
 	// 	else
 			mlx_put_pixel(data->image, i , y++, 0x00FFFFFFFF);
 	}
+	// printf("%d\n", xpm->bytes_per_pixel++);
 }
 
 void draw_player(t_data	*data)
@@ -205,8 +207,8 @@ void draw_player(t_data	*data)
 		else{
 			dist = ft_find_vr(data, x) - 1;
 		}
-		draw_line(data, dist, x);
-		// draw_wall(data, i, dist);
+		// draw_line(data, dist, x);
+		draw_wall(data, i, dist);
 		x+= FOV / data->width;
 		i++;
 	}
@@ -274,7 +276,7 @@ void		ft_event(void *dat)
 	}
 	mlx_delete_image(data->mlx, data->image);
 	data->image = mlx_new_image(data->mlx, data->width,data->height);
-   	ft_draw(data);
+   	// ft_draw(data);
    	draw_player(data);
    	// draw_rays(data);
 	mlx_image_to_window(data->mlx, data->image, 0, 0);
