@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/10 13:04:12 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/10 13:11:35 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,7 @@ void	draw_wall(t_data *data, int i, double dist, char c)
 	else if (c == 'H')
 		offsetx = (int)data->hit_x % 50;
 
+	//DRAWING WALLS
 	while (y < wall_bottom)
 	{
 		j = (y + (wall_hight / 2) - (data->height / 2));
