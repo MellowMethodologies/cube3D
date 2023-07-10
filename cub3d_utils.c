@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/10 11:47:03 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/10 13:04:12 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,19 +150,6 @@ float	ft_find_vr(t_data *data, float rotation)
 	return (ds_between_two_points(data->p_x, data->p_y , a_x, a_y));
 }
 
-// void	ft_draw_intersection(t_data *data, float distance, float x)
-// {
-// 	float	ax;
-// 	float	ay;
-	
-// 	while (distance > 0)
-// 	{
-// 		ax = data->p_x + cos(x) * floor(distance);
-// 		ay = data->p_y + sin(x) * floor(distance);
-// 		mlx_put_pixel(data->image, ax, ay, 0x0000FF00FF);
-// 		distance--;
-// 	}
-// }
 
 void	draw_wall(t_data *data, int i, double dist, char c)
 {
@@ -177,7 +164,13 @@ void	draw_wall(t_data *data, int i, double dist, char c)
 	float wall_bottom = data->height / 2 + wall_hight / 2;
 	wall_bottom = (wall_bottom > data->height) ? data->height : wall_bottom;
 	int y = wall_top;
-
+	
+	//DRAWING CEILINGS
+	if (wall_top > 0)
+	{
+		while (j < wall_top)
+			mlx_put_pixel(data->image, i , j++, 0x000099FFFF);
+	}
 
 	if (c == 'V')
 		offsetx = (int)data->hit_y % 50;
@@ -191,6 +184,12 @@ void	draw_wall(t_data *data, int i, double dist, char c)
 		offsety = j * ((double)(50 / wall_hight));
 		color = data->img[(50 * offsety) + (offsetx)];
 		mlx_put_pixel(data->image, i , y++, color);
+	}
+	//DRAWING FLOORS
+	if (wall_bottom < data->height)
+	{
+		while (y < data->height)
+			mlx_put_pixel(data->image, i , y++, 0x404040FF);
 	}
 }
 
