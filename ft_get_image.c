@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_image.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 15:33:04 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/09 21:13:39 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/10 10:50:53 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "./includes/cube.h"
 
 int get_rgba(int r, int g, int b, int a)
 {

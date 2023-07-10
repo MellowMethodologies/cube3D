@@ -1,4 +1,4 @@
-#include "cube.h"
+#include "./includes/cube.h"
 
 int		is_there_a_wall(double x, double y, t_data *data)
 {

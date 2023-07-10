@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_textures.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:01:49 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/09 19:52:12 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/10 10:56:48 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "./includes/cube.h"
 	
 int		*find_player(char **map)
 {
@@ -76,8 +76,7 @@ void	ft_textures(t_data *data, t_vars *vars)
 	data->p_rad = check_rotation(pl[2]);
 	data->p_x = pl[1] * 50 + 25;
 	data->p_y = pl[0] * 50 + 25;
-	data->a_x = data->p_x + 22 * cos(data->p_rad);
-	data->a_y = data->p_y + 22 * sin(data->p_rad);
+	data->mouse_x_old = data->width / 2;
 	data->num_rays = data->width / WALL_THICKNESS /50;
 	data->dis_bt_a_p = 22;
 	ft_get_image(data);

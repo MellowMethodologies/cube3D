@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/09 21:13:26 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/10 10:56:14 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "./includes/cube.h"
 
 //----------------------------------------------------------------------------//
 
@@ -241,37 +241,36 @@ void		ft_event(void *dat)
 	dy = data->dis_bt_a_p * sin(data->p_rad);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		exit (0);
+	mlx_get_mouse_pos(data->mlx, &data->mouse_x, &data->mouse_y);
+	if (data->mouse_x == data->mouse_x_old)
+		data->p_rad = data->p_rad;
+	else if (data->mouse_x > data->mouse_x_old)
+		data->p_rad += 0.05;
+	else
+		data->p_rad -= 0.05;
 	if (!is_there_a_wall(data->p_x + 3 * cos(data->p_rad), data->p_y + 3 * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_UP) || mlx_is_key_down(data->mlx, MLX_KEY_W)))
 	{
 		//up arrow
 		data->p_y += 3* sin(data->p_rad);
 		data->p_x += 3* cos(data->p_rad);
-		data->a_x = data->p_x + dx;
-		data->a_y = data->p_y + dy;
 	}
 	if (!is_there_a_wall(data->p_x - 3 * cos(data->p_rad), data->p_y - 3 * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_DOWN) || mlx_is_key_down(data->mlx, MLX_KEY_S)))
 	{
 		//down arrow
 		data->p_y -= 3* sin(data->p_rad);
 		data->p_x -= 3* cos(data->p_rad);
-		data->a_x = data->p_x + dx;
-		data->a_y = data->p_y + dy;
 	}
 	if (!is_there_a_wall(data->p_x + 3 * cos(data->p_rad - M_PI /2), data->p_y + 3 * sin(data->p_rad - M_PI /2), data) && (mlx_is_key_down(data->mlx, MLX_KEY_A)))
 	{
 		//up arrow
 		data->p_y += 3* sin(data->p_rad - M_PI /2);
 		data->p_x += 3* cos(data->p_rad - M_PI /2);
-		data->a_x = data->p_x + dx;
-		data->a_y = data->p_y + dy;
 	}
 	if (!is_there_a_wall(data->p_x + 3 * cos(data->p_rad + M_PI /2), data->p_y + 3 * sin(data->p_rad + M_PI /2), data) && (mlx_is_key_down(data->mlx, MLX_KEY_D)))
 	{
 		//down arrow
 		data->p_y += 3 * sin(data->p_rad + M_PI / 2);
 		data->p_x += 3 * cos(data->p_rad + M_PI / 2);
-		data->a_x = data->p_x + dx;
-		data->a_y = data->p_y + dy;
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 	{
@@ -280,19 +279,15 @@ void		ft_event(void *dat)
 		
 		if (data->p_rad >= 2 * M_PI)
 			data->p_rad = 0;
-		data->a_x = data->p_x + dx;
-		data->a_y = data->p_y + dy;
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
 	{
 	   // left arrow
 		data->p_rad -= M_PI / 180;
-
-		data->a_x = data->p_x + dx;
-		data->a_y = data->p_y + dy;
 	}
 	mlx_delete_image(data->mlx, data->image);
 	data->image = mlx_new_image(data->mlx, data->width,data->height);
+	mlx_set_mouse_pos(data->mlx, data->width / 2, data->height / 2);
    	// ft_draw(data);
    	draw_player(data);
    	// draw_rays(data);

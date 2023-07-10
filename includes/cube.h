@@ -12,6 +12,10 @@
 
 # define FOV 60 * (M_PI / 180)
 # define WALL_THICKNESS 4
+# define HEIGHT 1080
+# define WIDTH 1920
+# define TILE_SIZE 50
+
 
 typedef struct vars
 {
@@ -41,16 +45,18 @@ typedef struct collections{
 
 typedef struct s_data
 {
-
+	mlx_texture_t	*texture;
+	mlx_image_t		*image;
+	int32_t			mouse_x;
+	int32_t			mouse_y;
+	int32_t			mouse_x_old;
+	int32_t			mouse_y_old;
 	int				height;
 	int				width;
-	mlx_image_t		*image;
 	unsigned int 	*img;
+	int				num_rays;
 	double			p_x;
 	double			p_y;
-	double			a_x;
-	int				num_rays;
-	double			a_y;
 	double			p_rad;
 	double			dis_bt_a_p;
 	char			**str;

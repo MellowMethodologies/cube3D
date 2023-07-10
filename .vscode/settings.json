@@ -1,6 +1,6 @@
 {
     "files.associations": {
-        "cube.h": "c",
+        "./includes/cube.h": "c",
         "iterator": "c",
         "algorithm": "c",
         "istream": "c",

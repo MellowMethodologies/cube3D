@@ -6,11 +6,11 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 00:37:29 by sbadr             #+#    #+#             */
-/*   Updated: 2023/06/10 16:48:11 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/10 10:50:53 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "./includes/cube.h"
 
 void	remplisage(char **str, t_collectives *col)
 {
