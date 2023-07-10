@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/10 13:11:35 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/10 13:29:15 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,6 @@ void	ft_end(int sig)
 
 //----------------------------------------------------------------------------//
 
-// int check_pl(float x, float y)
-// {
-// 	if (){}
-// }
 
 void draw_line(t_data *data, double dis, double rotation)
 {
