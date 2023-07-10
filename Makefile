@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+         #
+#    By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 19:51:25 by idabligi          #+#    #+#              #
-#    Updated: 2023/07/10 10:55:35 by sbadr            ###   ########.fr        #
+#    Updated: 2023/07/10 11:39:12 by idabligi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ NAME = cube
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	cc libmlx42.a -Iinclude -lglfw -L"/Users/sbadr/.brew/opt/glfw/lib/" $^ -o $@
+	cc libmlx42.a -Iinclude -lglfw -L"/Users/idabligi/.brew/opt/glfw/lib/" $^ -o $@
 	# @./$(NAME) ./maps/map.cub
 
 %.o: %.c ./Libft/libft.h ./includes/cube.h

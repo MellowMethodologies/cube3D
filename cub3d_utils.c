@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/10 10:56:14 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/10 11:47:03 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,35 +164,36 @@ float	ft_find_vr(t_data *data, float rotation)
 // 	}
 // }
 
-void	draw_wall(t_data *data, int i, float dist, char c)
+void	draw_wall(t_data *data, int i, double dist, char c)
 {
 	int offsetx;
 	int offsety;
 	unsigned int color;
-
+	int j = 0;
 		
-	float wall_hight = 50000 / dist;
-	float wall_top = data->height / 2 - wall_hight / 2;
+	double wall_hight = 50000 / dist;
+	double wall_top = data->height / 2 - wall_hight / 2;
 	wall_top = (wall_top < 0) ? 0 : wall_top;
 	float wall_bottom = data->height / 2 + wall_hight / 2;
 	wall_bottom = (wall_bottom > data->height) ? data->height : wall_bottom;
 	int y = wall_top;
 
+
 	if (c == 'V')
-		offsetx = y % 50;
-	else
-		offsetx = i % 50;
+		offsetx = (int)data->hit_y % 50;
+	
+	else if (c == 'H')
+		offsetx = (int)data->hit_x % 50;
 
 	while (y < wall_bottom)
 	{
-		offsety = (y - wall_top) * ((float)(50 / wall_hight));
-		wall_top = (wall_top < 0) ? 0 : wall_top;
-		// printf("%d\n", offsety);
-		color = data->img[(50 * offsety) + offsetx];
+		j = (y + (wall_hight / 2) - (data->height / 2));
+		offsety = j * ((double)(50 / wall_hight));
+		color = data->img[(50 * offsety) + (offsetx)];
 		mlx_put_pixel(data->image, i , y++, color);
 	}
-	// exit (0);
 }
+
 
 void draw_player(t_data	*data)
 {
@@ -225,6 +226,8 @@ void draw_player(t_data	*data)
 			c = 'V';
 		}
 		// draw_line(data, dist, x);
+		data->hit_x = data->p_x + dist * cos(x);
+		data->hit_y = data->p_y + dist * sin(x);
 		draw_wall(data, i, dist, c);
 		x+= FOV / data->width;
 		i++;

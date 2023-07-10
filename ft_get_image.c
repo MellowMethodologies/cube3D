@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_image.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 15:33:04 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/10 10:50:53 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/10 11:40:43 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,22 @@ int get_rgba(int r, int g, int b, int a)
 
 void	ft_get_image(t_data *data)
 {
-	mlx_texture_t*	png;
 	uint8_t *tmp;
 	int count = 0;
 	unsigned int *tmp2;
 
-	png = mlx_load_png("./textures/Background.png");
-	if (!png)
+	data->png = mlx_load_png("./textures/Background.png");
+	if (!data->png)
 		ft_abort(3);
-	tmp = png->pixels;
-	while (*png->pixels)
+	// 	printf("%d\n", data->png->bytes_per_pixel);
+	// exit (0);
+	tmp = data->png->pixels;
+	while (*data->png->pixels)
 	{
 		count ++;
-		png->pixels += 4;
+		data->png->pixels += 4;
 	}
-	data->img = malloc(sizeof(unsigned int) * count + 1);
+	data->img = (unsigned int *)malloc(sizeof(unsigned int) * count + 1);
 	tmp2 = data->img;
 	while(*tmp)
 	{
