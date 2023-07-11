@@ -1,6 +1,6 @@
 NO ./textures/Background.png
 SO ./textures/Background1.png
-WE ./textures/Background1.png
+WE ./textures/Background.png
 EA ./textures/Background1.png
 
 F 220,100,0

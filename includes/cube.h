@@ -56,6 +56,8 @@ typedef struct s_data
 	unsigned int	*so;
 	unsigned int	*ea;
 	unsigned int	*we;
+	float			ongle;
+	char			hit;
 
 	mlx_texture_t	*texture;
 	mlx_image_t		*image;
@@ -108,5 +110,6 @@ int		is_there_a_wall(double x, double y, t_data *data);
 void	map_check(t_vars *vars);
 int		check_player(int c);
 void	ft_get_image(t_data *data, t_vars *vars);
+unsigned int	*ft_get_dir(t_data *data);
 
 #endif

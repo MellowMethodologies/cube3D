@@ -6,7 +6,7 @@
 #    By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 19:51:25 by idabligi          #+#    #+#              #
-#    Updated: 2023/07/11 14:22:36 by idabligi         ###   ########.fr        #
+#    Updated: 2023/07/11 15:20:24 by idabligi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,23 +17,23 @@ SRCS_LIBFT = ./Libft/ft_itoa.c ./Libft/ft_split.c ./Libft/ft_strmapi.c ./Libft/f
 			./Libft/ft_strdup.c ./Libft/ft_strlcat.c ./Libft/ft_strlcpy.c ./Libft/ft_strlen.c ./Libft/ft_strncmp.c ./Libft/ft_strnstr.c\
 			./Libft/ft_strrchr.c ./Libft/ft_tolower.c ./Libft/ft_toupper.c ./Libft/ft_substr.c
 
-SRCS_CUB = get_next_line_utils.c parsing_1.c main.c ft_textures.c cub3d_utils.c ft_get_image.c
+SRCS_CUB = get_next_line_utils.c parsing_1.c main.c ft_textures.c cub3d_utils.c ft_get_image.c ft_draw_wall.c
 
 SRCS = $(SRCS_LIBFT) $(SRCS_CUB)
 
 OBJS = $(SRCS:.c=.o)
 CC  = cc -g
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -fsanitize=address
 NAME = cube
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	cc libmlx42.a -Iinclude -lglfw -L"/Users/idabligi/.brew/opt/glfw/lib/" $^ -o $@
+	$(CC) $(CFLAGS) libmlx42.a -Iinclude -lglfw -L"/Users/idabligi/.brew/opt/glfw/lib/" $^ -o $@
 	./$(NAME) ./maps/map.cub
 
 %.o: %.c ./Libft/libft.h ./includes/cude.h
-	$(CC) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 	
 clean:

@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/11 14:22:17 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/11 15:15:47 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,12 +145,13 @@ float	ft_find_vr(t_data *data, float rotation)
 }
 
 
-void	draw_wall(t_data *data, int i, double dist, char c)
+void	draw_wall(t_data *data, int i, double dist)
 {
 	int offsetx;
 	int offsety;
 	unsigned int color;
 	size_t j = 0;
+	unsigned int	*buffer;
 		
 	double wall_hight = 50000 / dist;
 	double wall_top = data->height / 2 - wall_hight / 2;
@@ -160,32 +161,33 @@ void	draw_wall(t_data *data, int i, double dist, char c)
 	size_t y = wall_top;
 	
 	//DRAWING CEILINGS
-	// if (wall_top > 0)
-	// {
-	// 	while (j < wall_top)
-	// 		mlx_put_pixel(data->image, i , j++, 0x000099FFFF);
-	// }
+	if (wall_top > 0)
+	{
+		while (j < wall_top)
+			mlx_put_pixel(data->image, i , j++, 0x000099FFFF);
+	}
 
-	if (c == 'V')
+	if (data->hit == 'V')
 		offsetx = (int)data->hit_y % 50;
 	
-	else if (c == 'H')
+	else if (data->hit == 'H')
 		offsetx = (int)data->hit_x % 50;
 
+	buffer = ft_get_dir(data);
 	//DRAWING WALLS
 	while (y < wall_bottom)
 	{
 		j = (y + (wall_hight / 2) - (data->height / 2));
 		offsety = j * ((double)(50 / wall_hight));
-		color = data->no[(50 * offsety) + (offsetx)];
+		color = buffer[(50 * offsety) + (offsetx)];
 		mlx_put_pixel(data->image, i , y++, color);
 	}
-	//DRAWING FLOORS
-	// if (wall_bottom < data->height)
-	// {
-	// 	while (y < data->height)
-	// 		mlx_put_pixel(data->image, i , y++, 0x404040FF);
-	// }
+	// DRAWING FLOORS
+	if (wall_bottom < data->height)
+	{
+		while (y < data->height)
+			mlx_put_pixel(data->image, i , y++, 0x606060FF);
+	}
 }
 
 
@@ -193,7 +195,6 @@ void draw_player(t_data	*data)
 {
 	float dist;
 	float x;
-	char c;
 	mlx_put_pixel(data->image ,data->p_x - 1, data->p_y, 0x00FF0000);
 	mlx_put_pixel(data->image , data->p_x , data->p_y - 1, 0x00FF0000);
 	mlx_put_pixel(data->image , data->p_x, data->p_y + 1, 0x00FF0000);
@@ -210,17 +211,18 @@ void draw_player(t_data	*data)
 		if (ft_find_hr(data, x) < ft_find_vr(data, x))
 		{
 			dist = ft_find_hr(data, x) - 1;
-			c = 'H';
+			data->hit = 'H';
 		}
 		else
 		{
 			dist = ft_find_vr(data, x) - 1;
-			c = 'V';
+			data->hit = 'V';
 		}
 		// draw_line(data, dist, x);
 		data->hit_x = data->p_x + dist * cos(x);
 		data->hit_y = data->p_y + dist * sin(x);
-		draw_wall(data, i, dist, c);
+		data->ongle = x;
+		draw_wall(data, i, dist);
 		x+= FOV / data->width;
 		i++;
 	}

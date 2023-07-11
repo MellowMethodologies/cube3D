@@ -5,6 +5,7 @@
         "algorithm": "c",
         "istream": "c",
         "sstream": "c",
-        "mlx42.h": "c"
+        "mlx42.h": "c",
+        "cube.h": "c"
     }
 }
