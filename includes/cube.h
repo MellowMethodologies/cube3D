@@ -52,6 +52,11 @@ typedef struct collections{
 
 typedef struct s_data
 {
+	unsigned int	*no;
+	unsigned int	*so;
+	unsigned int	*ea;
+	unsigned int	*we;
+
 	mlx_texture_t	*texture;
 	mlx_image_t		*image;
 	mlx_texture_t*	png;
@@ -63,7 +68,6 @@ typedef struct s_data
 	int32_t			mouse_y_old;
 	size_t				height;
 	size_t				width;
-	unsigned int 	*img;
 	int				num_rays;
 	double			p_x;
 	double			p_y;
@@ -103,6 +107,6 @@ void	parser(char *par, t_vars *vars);
 int		is_there_a_wall(double x, double y, t_data *data);
 void	map_check(t_vars *vars);
 int		check_player(int c);
-void	ft_get_image(t_data *data);
+void	ft_get_image(t_data *data, t_vars *vars);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/11 12:36:51 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/11 13:15:58 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,11 +162,11 @@ void	draw_wall(t_data *data, int i, double dist, char c)
 	size_t y = wall_top;
 	
 	//DRAWING CEILINGS
-	if (wall_top > 0)
-	{
-		while (j < wall_top)
-			mlx_put_pixel(data->image, i , j++, 0x000099FFFF);
-	}
+	// if (wall_top > 0)
+	// {
+	// 	while (j < wall_top)
+	// 		mlx_put_pixel(data->image, i , j++, 0x000099FFFF);
+	// }
 
 	if (c == 'V')
 		offsetx = (int)data->hit_y % 50;
@@ -179,15 +179,15 @@ void	draw_wall(t_data *data, int i, double dist, char c)
 	{
 		j = (y + (wall_hight / 2) - (data->height / 2));
 		offsety = j * ((double)(50 / wall_hight));
-		color = data->img[(50 * offsety) + (offsetx)];
+		color = data->no[(50 * offsety) + (offsetx)];
 		mlx_put_pixel(data->image, i , y++, color);
 	}
 	//DRAWING FLOORS
-	if (wall_bottom < data->height)
-	{
-		while (y < data->height)
-			mlx_put_pixel(data->image, i , y++, 0x404040FF);
-	}
+	// if (wall_bottom < data->height)
+	// {
+	// 	while (y < data->height)
+	// 		mlx_put_pixel(data->image, i , y++, 0x404040FF);
+	// }
 }
 
 
