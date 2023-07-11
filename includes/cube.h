@@ -47,6 +47,9 @@ typedef struct s_data
 {
 	mlx_texture_t	*texture;
 	mlx_image_t		*image;
+	mlx_texture_t*	png;
+	double			hit_x;
+	double			hit_y;
 	int32_t			mouse_x;
 	int32_t			mouse_y;
 	int32_t			mouse_x_old;
