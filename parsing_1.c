@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 00:37:29 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/11 11:33:49 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/11 11:53:57 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ void	map_check(t_vars *vars)
 
 void check_path(t_vars *vars)
 {
-	printf("NO = %d\nSO = %d\nWE = %d\nEA = %d \nF = %d \nC = %d\n", vars->NO, vars->SO, vars->WE, vars->EA, vars->F, vars->C);
+	if (vars->EA == NULL || vars->NO == NULL || vars->SO == NULL || vars->WE == NULL)
+        error();
 	if (vars->EA < 0 || vars->NO < 0 || vars->SO < 0 || vars->WE < 0 || vars->F < 0 || vars->C < 0)
 	{
 		ft_putstr_fd("Error!\nimage path invalid\n", 2);
@@ -107,18 +108,17 @@ void check_path(t_vars *vars)
 void check_files(t_vars *vars)
 {
 	int i = 0;
-	char **tmp;
 
 	while (vars->map[i])
 	{
 		if (!ft_strncmp(vars->map[i], "NO", 2))
-			vars->NO = open(vars->map[i] + 3, O_RDONLY);
+			vars->NO = mlx_load_png(vars->map[i] + 3);
 		else if (!ft_strncmp(vars->map[i],  "SO", 2))
-			vars->SO = open(vars->map[i] + 3, O_RDONLY);
+			vars->SO = mlx_load_png(vars->map[i] + 3);
 		else if (!ft_strncmp(vars->map[i],  "WE", 2))
-			vars->WE = open(vars->map[i] + 3, O_RDONLY);
+			vars->WE = mlx_load_png(vars->map[i] + 3);
 		else if (!ft_strncmp(vars->map[i],  "EA", 2))
-			vars->EA = open(vars->map[i] + 3, O_RDONLY);
+			vars->EA = mlx_load_png(vars->map[i] + 3);
 		i++;
 	}
 }
@@ -156,10 +156,6 @@ void	parser(char *par, t_vars *vars)
 		ft_putstr_fd("Error!\ncan't open file", 2);
 		exit(1);
 	}
-	vars->NO = -1;
-	vars->EA = -1;
-	vars->SO = -1;
-	vars->WE = -1;
 	vars->F = -1;
 	vars->C = -1;
 	vars->s = get_next_line(vars->fd);
