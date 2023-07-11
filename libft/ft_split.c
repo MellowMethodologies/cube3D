@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 11:42:07 by sbadr             #+#    #+#             */
-/*   Updated: 2023/06/09 17:07:53 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/11 09:40:56 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,16 @@ int	ft_count(char const *s, char c)
 	return (n);
 }
 
-static void	*ft_freeall(char **str, int i)
+void	*ft_freeall(char **str, int i)
 {
 	while (i >= 0)
 	{
 		free(str[i]);
+		str[i] = NULL;
 		i--;
 	}
 	free(str);
+	str = NULL;
 	return (NULL);
 }
 

@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/11 12:33:18 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/11 12:36:51 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,14 +152,14 @@ void	draw_wall(t_data *data, int i, double dist, char c)
 	int offsetx;
 	int offsety;
 	unsigned int color;
-	int j = 0;
+	size_t j = 0;
 		
 	double wall_hight = 50000 / dist;
 	double wall_top = data->height / 2 - wall_hight / 2;
 	wall_top = (wall_top < 0) ? 0 : wall_top;
 	float wall_bottom = data->height / 2 + wall_hight / 2;
 	wall_bottom = (wall_bottom > data->height) ? data->height : wall_bottom;
-	int y = wall_top;
+	size_t y = wall_top;
 	
 	//DRAWING CEILINGS
 	if (wall_top > 0)
@@ -204,7 +204,7 @@ void draw_player(t_data	*data)
 	x = data->p_rad - (FOV / 2);
 		// printf("DEGREE : %f\n", x);
 	// x = data->p_rad;
-	int i = 0;
+	size_t i = 0;
 	while(i < data->width)
 	{
 		if (x < 0)

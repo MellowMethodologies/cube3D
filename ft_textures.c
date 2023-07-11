@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:01:49 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/10 10:56:48 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/11 11:58:34 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ double	check_rotation(int c)
 
 void	ft_textures(t_data *data, t_vars *vars)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 	int *pl;
 
 	i = 6;

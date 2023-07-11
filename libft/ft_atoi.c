@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 15:05:04 by sbadr             #+#    #+#             */
-/*   Updated: 2022/10/31 15:16:10 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/11 09:28:47 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int static	ft_return(char *str, int num, int sign)
 	return (num * sign);
 }
 
-int	ft_atoi(const char *str)
+int	ft_atoi(char *str)
 {
 	int	i;
 	int	sign;

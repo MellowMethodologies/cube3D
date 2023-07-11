@@ -9,6 +9,7 @@
 # include <unistd.h>
 # include <math.h>
 # include <stdlib.h>
+#include "../libft/libft.h"
 
 # define FOV 60 * (M_PI / 180)
 # define WALL_THICKNESS 4
@@ -21,6 +22,12 @@ typedef struct vars
 {
 	int		i;
 	int		j;
+	mlx_texture_t 	*NO;
+	mlx_texture_t	*SO;
+	mlx_texture_t 	*WE;
+	mlx_texture_t	*EA;
+	int 	F;
+	int		C;
 	int		len;	
 	int		fd;
 	char	*s;
@@ -54,8 +61,8 @@ typedef struct s_data
 	int32_t			mouse_y;
 	int32_t			mouse_x_old;
 	int32_t			mouse_y_old;
-	int				height;
-	int				width;
+	size_t				height;
+	size_t				width;
 	unsigned int 	*img;
 	int				num_rays;
 	double			p_x;
@@ -67,6 +74,8 @@ typedef struct s_data
 	void			*window;
 }   t_data;
 
+void	 error(void);
+int 	get_rgba(int r, int g, int b, int a);
 int		is_there_a_wall_1(double x, double y, t_data *data);
 void	draw_player(t_data	*data);
 int		ft_isspace(int i);
@@ -87,9 +96,7 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putnbr_fd(int nb, int fd);
 void	p_fill(t_vars *vars);
 char	*get_next_line(int fd);
-int		ft_strlen(const char *str);
-int		ft_count(char const *s, char c);
-char	**ft_split(char const *s, char c);
+
 void	ft_putstr_fd(char *s, int fd);
 char	*ft_strdup(const char *s1);
 void	parser(char *par, t_vars *vars);

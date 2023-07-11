@@ -5,12 +5,12 @@ int		is_there_a_wall(double x, double y, t_data *data)
 	(void)data;
 	if (x > data->width || y > data->height || x < 0 || y < 0)
 		return 1;
-	int map_grip_index_x = x / 50;
-	int map_grip_index_x1 = (x + 1) / 50;
-	int map_grip_index_x2 = (x - 1) / 50;
-	int map_grip_index_y = y / 50;
-	int map_grip_index_y1 = (y + 1) / 50;
-	int map_grip_index_y2 = (y - 1) / 50;
+	size_t map_grip_index_x = x / 50;
+	size_t map_grip_index_x1 = (x + 1) / 50;
+	size_t map_grip_index_x2 = (x - 1) / 50;
+	size_t map_grip_index_y = y / 50;
+	size_t map_grip_index_y1 = (y + 1) / 50;
+	size_t map_grip_index_y2 = (y - 1) / 50;
 	// printf("x = %f, y = %f\n", x, y);
 	if (map_grip_index_y > data->height / 50 || ft_strlen(data->str[map_grip_index_y]) <= map_grip_index_x )
 		return 1;
@@ -25,8 +25,8 @@ int		is_there_a_wall_1(double x, double y, t_data *data)
 	(void)data;
 	if (x > data->width || y > data->height || x < 0 || y < 0)
 		return 1;
-	int map_grip_index_x = x / 50;
-	int map_grip_index_y = y / 50;
+	size_t map_grip_index_x = x / 50;
+	size_t map_grip_index_y = y / 50;
 
 	if (map_grip_index_y > data->height / 50)
 		return 1;
@@ -36,6 +36,13 @@ int		is_there_a_wall_1(double x, double y, t_data *data)
 		return 1;
 	return 0;
 }
+
+void error(void)
+{
+	puts(mlx_strerror(mlx_errno));
+	exit(EXIT_FAILURE);
+}
+
 
 int	main(int ac, char **av)
 {
