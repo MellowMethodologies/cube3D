@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/11 11:59:06 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/11 12:58:50 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ void	ft_end(int sig)
 }
 
 //----------------------------------------------------------------------------//
-
-
 void draw_line(t_data *data, double dis, double rotation)
 {
 	double end_x = data->p_x + dis * cos(rotation);
@@ -202,8 +200,6 @@ void draw_player(t_data	*data)
 	mlx_put_pixel(data->image , data->p_x + 1, data->p_y, 0x00FF0000);
 
 	x = data->p_rad - (FOV / 2);
-		// printf("DEGREE : %f\n", x);
-	// x = data->p_rad;
 	size_t i = 0;
 	while(i < data->width)
 	{
@@ -250,26 +246,26 @@ void		ft_event(void *dat)
 	if (!is_there_a_wall(data->p_x + 3 * cos(data->p_rad), data->p_y + 3 * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_UP) || mlx_is_key_down(data->mlx, MLX_KEY_W)))
 	{
 		//up arrow
-		data->p_y += 3* sin(data->p_rad);
-		data->p_x += 3* cos(data->p_rad);
+		data->p_y += 1.5 * sin(data->p_rad);
+		data->p_x += 1.5 * cos(data->p_rad);
 	}
 	if (!is_there_a_wall(data->p_x - 3 * cos(data->p_rad), data->p_y - 3 * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_DOWN) || mlx_is_key_down(data->mlx, MLX_KEY_S)))
 	{
 		//down arrow
-		data->p_y -= 3* sin(data->p_rad);
-		data->p_x -= 3* cos(data->p_rad);
+		data->p_y -= 1.5 * sin(data->p_rad);
+		data->p_x -= 1.5 * cos(data->p_rad);
 	}
 	if (!is_there_a_wall(data->p_x + 3 * cos(data->p_rad - M_PI /2), data->p_y + 3 * sin(data->p_rad - M_PI /2), data) && (mlx_is_key_down(data->mlx, MLX_KEY_A)))
 	{
 		//up arrow
-		data->p_y += 3* sin(data->p_rad - M_PI /2);
-		data->p_x += 3* cos(data->p_rad - M_PI /2);
+		data->p_y += 1.5 * sin(data->p_rad - M_PI /2);
+		data->p_x += 1.5 * cos(data->p_rad - M_PI /2);
 	}
 	if (!is_there_a_wall(data->p_x + 3 * cos(data->p_rad + M_PI /2), data->p_y + 3 * sin(data->p_rad + M_PI /2), data) && (mlx_is_key_down(data->mlx, MLX_KEY_D)))
 	{
 		//down arrow
-		data->p_y += 3 * sin(data->p_rad + M_PI / 2);
-		data->p_x += 3 * cos(data->p_rad + M_PI / 2);
+		data->p_y += 1.5 * sin(data->p_rad + M_PI / 2);
+		data->p_x += 1.5 * cos(data->p_rad + M_PI / 2);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 	{
