@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 00:37:29 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/11 13:29:24 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/11 14:22:40 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	all_in(char **str, t_collectives *col)
 int		check_help(int c)
 {
 	if (c == '1' || c == '0' || c == 'W' || c == 'N' || c == 'E' || c == 'S')
-		return 1;
+		return 1; 
 	return 0;
 }
 
