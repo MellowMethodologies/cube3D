@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:01:49 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/12 12:16:01 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/12 21:16:20 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	ft_textures(t_data *data, t_vars *vars)
 	data->p_x = pl[1] * TILE_SIZE + TILE_SIZE /2;
 	data->p_y = pl[0] * TILE_SIZE + TILE_SIZE /2;
 	data->mouse_x_old = data->width / 2;
-	data->num_rays = data->width / WALL_THICKNESS /TILE_SIZE;
 	data->dis_bt_a_p = 22;
 	ft_get_image(data, vars);
 }

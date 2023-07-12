@@ -13,8 +13,8 @@
 
 # define FOV 60 * (M_PI / 180)
 # define WALL_THICKNESS 4
-# define HEIGHT 800
-# define WIDTH 800
+# define HEIGHT 1080
+# define WIDTH 1920
 # define TILE_SIZE 64
 
 
@@ -50,6 +50,16 @@ typedef struct collections{
 	int	p;	
 }	t_collectives;
 
+typedef struct coordinates{
+	int 		offsetx;
+	int 		offsety;
+	double 		wall_hight;
+	double	 	wall_top;
+	float 		wall_bottom;
+	size_t		y;
+
+}	t_coordinates;
+
 typedef struct s_data
 {
 	unsigned int	*no;
@@ -58,9 +68,10 @@ typedef struct s_data
 	unsigned int	*we;
 	float			ongle;
 	char			hit;
-	int 			count;
+	size_t 			count;
 	mlx_texture_t	*texture;
 	mlx_image_t		*image;
+	mlx_image_t		*map;
 	mlx_texture_t*	png;
 	t_vars			*vars;
 	double			hit_x;
@@ -79,6 +90,7 @@ typedef struct s_data
 	char			**str;
 	void			*mlx;
 	void			*window;
+	t_coordinates	cord;
 }   t_data;
 
 void	 error(void);
@@ -101,9 +113,7 @@ char	*ft_strdup_b(char *src);
 char	*ft_strjoin_b(char *s1, char *s2);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putnbr_fd(int nb, int fd);
-void	p_fill(t_vars *vars);
 char	*get_next_line(int fd);
-
 void	ft_putstr_fd(char *s, int fd);
 char	*ft_strdup(const char *s1);
 void	parser(char *par, t_vars *vars);
@@ -112,5 +122,6 @@ void	map_check(t_vars *vars);
 int		check_player(int c);
 void	ft_get_image(t_data *data, t_vars *vars);
 unsigned int	*ft_get_dir(t_data *data);
+void	draw_wall(t_data *data, int i, double dist);
 
 #endif

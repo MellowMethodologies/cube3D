@@ -59,6 +59,7 @@ int	main(int ac, char **av)
 		mlx_set_setting(MLX_MAXIMIZED, true);
 		data.mlx = mlx_init(data.width, data.height, "cub3D", false);
 		data.image = mlx_new_image(data.mlx, data.width,data.height);
+		data.map = mlx_new_image(data.mlx, 250, 250);
 		mlx_loop_hook(data.mlx,ft_event, &data);
 		mlx_loop(data.mlx);
 		return (0);

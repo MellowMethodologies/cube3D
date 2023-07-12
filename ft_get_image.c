@@ -6,36 +6,43 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 15:33:04 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/12 11:11:00 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/12 21:59:47 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/cube.h"
 
-int get_rgba(int r, int g, int b, int a)
+int	get_rgba(int r, int g, int b, int a)
 {
-    return (r << 24 | g << 16 | b << 8 | a);
+	return (r << 24 | g << 16 | b << 8 | a);
 }
 
-unsigned int	*ft_get_pixels(uint8_t *pixels)
+unsigned int	*ft_get_pixels(uint8_t *pxl)
 {
-	unsigned int *texture;
-	uint8_t *tmp;
-	unsigned int *tmp2;
-	int count = 0;
+	unsigned int	*texture;
+	unsigned int	*tmp2;
+	uint8_t			*tmp;
+	int				count;
+	int				i;
 
-	tmp = pixels;
-	texture = (unsigned int *)malloc(sizeof(unsigned int) * TILE_SIZE * TILE_SIZE + 1);
+	i = 0;
+	count = 0;
+	tmp = pxl;
+	while (*tmp)
+	{
+		count++;
+		tmp += 4;
+	}
+	texture = (unsigned int *)malloc(sizeof(unsigned int) * count + 1);
 	if (!texture)
 		ft_abort(1);
 	tmp2 = texture;
-	while (count < TILE_SIZE * TILE_SIZE)
+	while (i < count)
 	{
-		*tmp2 = get_rgba(*tmp, *(tmp + 1), *(tmp + 2), *(tmp + 3));
-		tmp2++;
-		tmp += 4;
-		count++;
+		tmp2[i++] = get_rgba(*pxl, *(pxl + 1), *(pxl + 2), *(pxl + 3));
+		pxl += 4;
 	}
+	tmp2[i] = 0;
 	return (texture);
 }
 

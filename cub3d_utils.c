@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/12 15:30:37 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/12 21:56:34 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,61 +144,15 @@ float	ft_find_vr(t_data *data, float rotation)
 	return (ds_between_two_points(data->p_x, data->p_y , a_x, a_y));
 }
 
-
-void	draw_wall(t_data *data, int i, double dist)
-{
-	int offsetx;
-	int offsety;
-	unsigned int color;
-	size_t j = 0;
-	unsigned int	*buffer;
-		
-	double wall_hight = 50000 / (dist);
-	double wall_top = data->height / 2 - wall_hight / 2;
-	wall_top = (wall_top < 0) ? 0 : wall_top;
-	float wall_bottom = data->height / 2 + wall_hight / 2;
-	wall_bottom = (wall_bottom > data->height) ? data->height : wall_bottom;
-	size_t y = wall_top;
-	
-	//DRAWING CEILINGS
-	if (wall_top > 0)
-	{
-		while (j < wall_top)
-			mlx_put_pixel(data->image, i , j++, 0x000099FFFF);
-	}
-
-	if (data->hit == 'V')
-		offsetx = (int)(data->hit_y * (data->vars->EA->width / TILE_SIZE)) % data->vars->EA->width;
-	else if (data->hit == 'H')
-		offsetx =  (int)(data->hit_x * (data->vars->EA->width / TILE_SIZE)) % data->vars->EA->width;
-
-	buffer = ft_get_dir(data);
-	//DRAWING WALLS
-	while (y < wall_bottom)
-	{
-		//https://www.geogebra.org/m/VWN3g9rE
-		// j = (y + (wall_hight / 2) - (data->height / 2));
-		// offsety = j * ((double)(data->vars->EA->width / wall_hight));
-		offsety = data->vars->EA->height * (y - ) / wall_hight;
-		if (offsety < 0)
-			offsety = 0;
-		color = buffer[(data->vars->EA->height * offsety) + (offsetx)];
-		mlx_put_pixel(data->image, i , y++, color);
-	}
-	// DRAWING FLOORS
-	if (wall_bottom < data->height)
-	{
-		while (y < data->height)
-			mlx_put_pixel(data->image, i , y++, 0x606060FF);
-	}
-}
-
-
 void draw_player(t_data	*data)
 {
 	float dist;
 	float x;
-	
+	mlx_put_pixel(data->image ,data->p_x - 1, data->p_y, 0x00FF0000);
+	mlx_put_pixel(data->image , data->p_x , data->p_y - 1, 0x00FF0000);
+	mlx_put_pixel(data->image , data->p_x, data->p_y + 1, 0x00FF0000);
+	mlx_put_pixel(data->image , data->p_x + 1, data->p_y, 0x00FF0000);
+
 	x = data->p_rad - (FOV / 2);
 	size_t i = 0;
 	while(i < data->width)
@@ -282,12 +236,16 @@ void		ft_event(void *dat)
 	else if (data->p_rad < 0)
 		data->p_rad +=2 * M_PI;
 	mlx_delete_image(data->mlx, data->image);
+	mlx_delete_image(data->mlx, data->map);
 	data->image = mlx_new_image(data->mlx, data->width,data->height);
+	// data->image = mlx_new_image(data->mlx, 250,250);
+	// mlx_put_pixel(data->map , 25, 25, 0x00FF0000);
 	mlx_set_mouse_pos(data->mlx, data->width / 2, data->height / 2);
    	// ft_draw(data);
    	draw_player(data);
    	// draw_rays(data);
 	mlx_image_to_window(data->mlx, data->image, 0, 0);
+	// mlx_image_to_window(data->mlx, data->map, 0, 0);
 	// return 1;
 }
 

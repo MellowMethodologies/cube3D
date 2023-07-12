@@ -6,9 +6,10 @@
 #    By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 19:51:25 by idabligi          #+#    #+#              #
-#    Updated: 2023/07/12 14:40:03 by sbadr            ###   ########.fr        #
+#    Updated: 2023/07/12 21:52:45 by sbadr            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 SRCS_LIBFT = ./Libft/ft_itoa.c ./Libft/ft_split.c ./Libft/ft_strmapi.c ./Libft/ft_putchar_fd.c ./Libft/ft_putstr_fd.c ./Libft/ft_striteri.c\
 			./Libft/ft_putendl_fd.c ./Libft/ft_putnbr_fd.c ./Libft/ft_strtrim.c ./Libft/ft_strjoin.c ./Libft/ft_atoi.c ./Libft/ft_bzero.c\
@@ -22,20 +23,20 @@ SRCS_CUB = get_next_line_utils.c parsing_1.c main.c ft_textures.c cub3d_utils.c 
 SRCS = $(SRCS_LIBFT) $(SRCS_CUB)
 
 OBJS = $(SRCS:.c=.o)
-CC  = cc #-fsanitize=address -g
-CFLAGS =
+CC  = cc -g
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 NAME = cube
 
 all: $(NAME)
 
+%.o:%.c ./Libft/libft.h ./includes/cude.h
+	$(CC) $(CFLAGS) -c $< -o $@
+	
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) libmlx42.a -Iinclude -lglfw -L"/Users/sbadr/.brew/opt/glfw/lib/" $^ -o $@
 	./$(NAME) ./maps/map.cub
 
-%.o: %.c ./Libft/libft.h ./includes/cude.h
-	$(CC) $(CFLAGS) -c $< -o $@
-
-	
+		
 clean:
 	rm -rf $(OBJS)
 
