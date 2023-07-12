@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/11 15:15:47 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/12 09:02:38 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,6 +282,15 @@ void		ft_event(void *dat)
 	   // left arrow
 		data->p_rad -= M_PI / 180;
 	}
+	if (data->p_rad == 2 * M_PI)
+	{
+		data->p_rad = 0;
+	}
+	else if (data->p_rad < 0)
+	{
+		data->p_rad +=2 * M_PI;
+	}
+	// printf("prad = %f\n",data->p_rad*180 /M_PI);
 	mlx_delete_image(data->mlx, data->image);
 	data->image = mlx_new_image(data->mlx, data->width,data->height);
 	mlx_set_mouse_pos(data->mlx, data->width / 2, data->height / 2);

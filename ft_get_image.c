@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 15:33:04 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/11 15:22:10 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/11 16:31:43 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ unsigned int	*ft_get_pixels(uint8_t *pixels)
 		tmp += 4;
 		count++;
 	}
+	*tmp2 = 0;
 	return (texture);
 }
 

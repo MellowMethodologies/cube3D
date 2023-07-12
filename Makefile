@@ -6,7 +6,7 @@
 #    By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 19:51:25 by idabligi          #+#    #+#              #
-#    Updated: 2023/07/11 15:20:24 by idabligi         ###   ########.fr        #
+#    Updated: 2023/07/11 16:31:53 by idabligi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRCS = $(SRCS_LIBFT) $(SRCS_CUB)
 
 OBJS = $(SRCS:.c=.o)
 CC  = cc -g
-CFLAGS = -fsanitize=address
+CFLAGS =
 NAME = cube
 
 all: $(NAME)
