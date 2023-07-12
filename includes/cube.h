@@ -13,9 +13,9 @@
 
 # define FOV 60 * (M_PI / 180)
 # define WALL_THICKNESS 4
-# define HEIGHT 1080
-# define WIDTH 1920
-# define TILE_SIZE 50
+# define HEIGHT 800
+# define WIDTH 800
+# define TILE_SIZE 64
 
 
 typedef struct vars
@@ -58,10 +58,11 @@ typedef struct s_data
 	unsigned int	*we;
 	float			ongle;
 	char			hit;
-
+	int 			count;
 	mlx_texture_t	*texture;
 	mlx_image_t		*image;
 	mlx_texture_t*	png;
+	t_vars			*vars;
 	double			hit_x;
 	double			hit_y;
 	int32_t			mouse_x;

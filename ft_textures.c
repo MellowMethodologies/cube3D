@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_textures.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:01:49 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/11 12:37:47 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/12 12:16:01 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,31 +53,28 @@ double	check_rotation(int c)
 
 void	ft_textures(t_data *data, t_vars *vars)
 {
-	size_t	i;
-	size_t	j;
+	int i = 0;
+	int j;
 	int *pl;
-
-	i = 6;
-	j = 0;
-	j = ft_strlen(vars->map[i]);
 	pl = malloc(sizeof(int) * 3);
 	if (!pl)
 		return ;
-	data->width = j * 50;
-	while (vars->map[i])
+	data->width = WIDTH;
+	data->height = HEIGHT;
+	data->str = vars->map+6;
+	pl = find_player(data->str);
+	while (data->str[i])
 	{
-		if (j < ft_strlen(vars->map[i]))
-			data->width = ft_strlen(vars->map[i]) * 50;
+		j = 0;
+		while (data->str[i][j++]);
 		i++;
 	}
-	data->height = (i - 6) * 50;
-	data->str = vars->map + 6;
-	pl = find_player(data->str);
+	data->count = i;
 	data->p_rad = check_rotation(pl[2]);
-	data->p_x = pl[1] * 50 + 25;
-	data->p_y = pl[0] * 50 + 25;
+	data->p_x = pl[1] * TILE_SIZE + TILE_SIZE /2;
+	data->p_y = pl[0] * TILE_SIZE + TILE_SIZE /2;
 	data->mouse_x_old = data->width / 2;
-	data->num_rays = data->width / WALL_THICKNESS /50;
+	data->num_rays = data->width / WALL_THICKNESS /TILE_SIZE;
 	data->dis_bt_a_p = 22;
 	ft_get_image(data, vars);
 }
@@ -93,11 +90,11 @@ void    ft_color(t_data *data, int x, int y)
 	i = 0;
 	j = 0;
 	s = x;
-	while (j < 49)
+	while (j < TILE_SIZE - 1)
 	{
 		i = 0;
 		x = s;
-		while (i < 49)
+		while (i < TILE_SIZE - 1)
 		{
 			mlx_put_pixel(data->image, x, y, 0x00FFFFFF);
 			x++;
@@ -123,7 +120,7 @@ void	ft_draw(t_data *data)
 		while (data->str[y][x])
 		{
 			if (!check_player(data->str[y][x]) && data->str[y][x] == '1')
-				ft_color(data, x * 50, y * 50);
+				ft_color(data, x * TILE_SIZE, y * TILE_SIZE);
 			x++;
 		}
 		y++;
