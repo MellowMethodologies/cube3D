@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 15:33:04 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/11 16:31:43 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/12 11:07:42 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,24 @@ unsigned int	*ft_get_pixels(uint8_t *pixels)
 	uint8_t *tmp;
 	unsigned int *tmp2;
 	int count = 0;
+	int i = 0;
 
 	tmp = pixels;
-	texture = (unsigned int *)malloc(sizeof(unsigned int) * 2500 + 1);
+	while(*tmp)
+	{
+		count++;
+		tmp += 4;
+	}
+	texture = (unsigned int *)malloc(sizeof(unsigned int) * count + 1);
 	if (!texture)
 		ft_abort(1);
 	tmp2 = texture;
-	while (count < 2500)
+	while (i < count)
 	{
-		*tmp2 = get_rgba(*tmp, *(tmp + 1), *(tmp + 2), *(tmp + 3));
-		tmp2++;
-		tmp += 4;
-		count++;
+		tmp2[i++] = get_rgba(*pixels, *(pixels + 1), *(pixels + 2), *(pixels + 3));
+		pixels += 4;
 	}
-	*tmp2 = 0;
+	tmp2[i] = 0;
 	return (texture);
 }
 

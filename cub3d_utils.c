@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/12 09:02:38 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:38:11 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,53 +143,6 @@ float	ft_find_vr(t_data *data, float rotation)
 	}
 	return (ds_between_two_points(data->p_x, data->p_y , a_x, a_y));
 }
-
-
-void	draw_wall(t_data *data, int i, double dist)
-{
-	int offsetx;
-	int offsety;
-	unsigned int color;
-	size_t j = 0;
-	unsigned int	*buffer;
-		
-	double wall_hight = 50000 / dist;
-	double wall_top = data->height / 2 - wall_hight / 2;
-	wall_top = (wall_top < 0) ? 0 : wall_top;
-	float wall_bottom = data->height / 2 + wall_hight / 2;
-	wall_bottom = (wall_bottom > data->height) ? data->height : wall_bottom;
-	size_t y = wall_top;
-	
-	//DRAWING CEILINGS
-	if (wall_top > 0)
-	{
-		while (j < wall_top)
-			mlx_put_pixel(data->image, i , j++, 0x000099FFFF);
-	}
-
-	if (data->hit == 'V')
-		offsetx = (int)data->hit_y % 50;
-	
-	else if (data->hit == 'H')
-		offsetx = (int)data->hit_x % 50;
-
-	buffer = ft_get_dir(data);
-	//DRAWING WALLS
-	while (y < wall_bottom)
-	{
-		j = (y + (wall_hight / 2) - (data->height / 2));
-		offsety = j * ((double)(50 / wall_hight));
-		color = buffer[(50 * offsety) + (offsetx)];
-		mlx_put_pixel(data->image, i , y++, color);
-	}
-	// DRAWING FLOORS
-	if (wall_bottom < data->height)
-	{
-		while (y < data->height)
-			mlx_put_pixel(data->image, i , y++, 0x606060FF);
-	}
-}
-
 
 void draw_player(t_data	*data)
 {

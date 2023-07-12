@@ -50,6 +50,16 @@ typedef struct collections{
 	int	p;	
 }	t_collectives;
 
+typedef struct coordinates{
+	int 		offsetx;
+	int 		offsety;
+	double 		wall_hight;
+	double	 	wall_top;
+	float 		wall_bottom;
+	size_t		y;
+
+}	t_coordinates;
+
 typedef struct s_data
 {
 	unsigned int	*no;
@@ -78,6 +88,7 @@ typedef struct s_data
 	char			**str;
 	void			*mlx;
 	void			*window;
+	t_coordinates	cord;
 }   t_data;
 
 void	 error(void);
@@ -111,5 +122,6 @@ void	map_check(t_vars *vars);
 int		check_player(int c);
 void	ft_get_image(t_data *data, t_vars *vars);
 unsigned int	*ft_get_dir(t_data *data);
+void	draw_wall(t_data *data, int i, double dist);
 
 #endif
