@@ -57,7 +57,6 @@ int	main(int ac, char **av)
 			exit(1);
 		}
 		parser(av[1], &vars);
-   		signal(SIGINT, ft_end);
    		ft_textures(&data, &vars);
 		mlx_set_setting(MLX_MAXIMIZED, true);
 		data.mlx = mlx_init(data.width, data.height, "cub3D", false);

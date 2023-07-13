@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/12 13:38:11 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/13 10:22:10 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,6 @@ void	ft_abort(int id)
 	else if (id == 3)
 		printf("\e[1;31mError in texture!\n\e[0m");
 	exit(1);
-}
-
-//----------------------------------------------------------------------------//
-
-int	ft_destroy(t_data *data)
-{
-	data = NULL;
-	exit (0);
-}
-
-//----------------------------------------------------------------------------//
-
-void	ft_end(int sig)
-{
-	(void)sig;
-	exit (0);
 }
 
 //----------------------------------------------------------------------------//
@@ -148,10 +132,10 @@ void draw_player(t_data	*data)
 {
 	float dist;
 	float x;
-	mlx_put_pixel(data->image ,data->p_x - 1, data->p_y, 0x00FF0000);
-	mlx_put_pixel(data->image , data->p_x , data->p_y - 1, 0x00FF0000);
-	mlx_put_pixel(data->image , data->p_x, data->p_y + 1, 0x00FF0000);
-	mlx_put_pixel(data->image , data->p_x + 1, data->p_y, 0x00FF0000);
+	// mlx_put_pixel(data->image ,data->p_x - 1, data->p_y, 0x00FF0000);
+	// mlx_put_pixel(data->image , data->p_x , data->p_y - 1, 0x00FF0000);
+	// mlx_put_pixel(data->image , data->p_x, data->p_y + 1, 0x00FF0000);
+	// mlx_put_pixel(data->image , data->p_x + 1, data->p_y, 0x00FF0000);
 
 	x = data->p_rad - (FOV / 2);
 	size_t i = 0;

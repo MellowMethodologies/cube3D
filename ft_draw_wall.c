@@ -6,91 +6,104 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:40:19 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/12 13:26:52 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/13 10:19:39 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/cube.h"
+
+//----------------------------------------------------------------------------//
+
+unsigned int	*ft_get_dir2(t_data *data)
+{
+	if (data->ongle >= M_PI && data->ongle < ((3 * M_PI) / 2))
+	{
+		if (data->hit == 'V')
+			return (data->we);
+		else
+			return (data->no);
+	}
+	else if (data->ongle >= ((3 * M_PI) / 2) && data->ongle < (2 * M_PI))
+	{
+		if (data->hit == 'V')
+			return (data->ea);
+		else
+			return (data->no);
+	}
+	return (0);
+}
+
+//----------------------------------------------------------------------------//
 
 unsigned int	*ft_get_dir(t_data *data)
 {
 	if (data->ongle >= 0 && data->ongle < (M_PI / 2))
 	{
 		if (data->hit == 'V')
-			return data->ea;
+			return (data->ea);
 		else
-			return data->so;
+			return (data->so);
 	}
 	else if (data->ongle >= (M_PI / 2) && data->ongle < M_PI)
 	{
 		if (data->hit == 'V')
-			return data->we;
+			return (data->we);
 		else
-			return data->so;
+			return (data->so);
 	}
-	else if (data->ongle >= M_PI && data->ongle < ((3 * M_PI) / 2))
-	{
-		if (data->hit == 'V')
-			return data->we;
-		else
-			return data->no;
-	}
-	else if (data->ongle >= ((3 * M_PI) / 2) && data->ongle < (2 * M_PI))
-	{
-		if (data->hit == 'V')
-			return data->ea;
-		else
-			return data->no;
-	}
-	return 0;
+	else
+		return (ft_get_dir2(data));
 }
 
-void	ft_get_cor(t_data *data, int i, double dist)
+//----------------------------------------------------------------------------//
+
+void	ft_get_cord(t_data *data, int i, double dist)
 {
-	size_t j = 0;
+	size_t	j;
 
-	data->cord.wall_hight = 5000 / dist;
+	j = 0;
 	data->cord.wall_hight = 50000 / dist;
-	data->cord.wall_top = (data->height / 2 ) - (data->cord.wall_hight / 2);
-	data->cord.wall_top = (data->cord.wall_top < 0) ? 0 : data->cord.wall_top;
+	data->cord.wall_top = data->height / 2 - data->cord.wall_hight / 2;
+	if (data->cord.wall_top < 0)
+		data->cord.wall_top = 0;
 	data->cord.wall_bottom = data->height / 2 + data->cord.wall_hight / 2;
-	data->cord.wall_bottom = (data->cord.wall_bottom > data->height) ? data->height : data->cord.wall_bottom;
+	if (data->cord.wall_bottom > data->height)
+		data->cord.wall_bottom = data->height;
 	data->cord.y = data->cord.wall_top;
-
-	//DRAWING CEILINGS
 	if (data->cord.wall_top > 0)
 	{
 		while (j < data->cord.wall_top)
-			mlx_put_pixel(data->image, i , j++, 0x000099FFFF);
+			mlx_put_pixel(data->image, i, j++, 0x000099FFFF);
 	}
-
 	if (data->hit == 'V')
 		data->cord.offsetx = (int)data->hit_y % 50;
-	
 	else if (data->hit == 'H')
 		data->cord.offsetx = (int)data->hit_x % 50;
 }
 
-void	draw_wall(t_data *data, int i, double dist)
+//----------------------------------------------------------------------------//
+
+void	draw_wall(t_data *data, int x, double dist)
 {
-	unsigned int color;
-	size_t j = 0;
+	size_t			j;
+	unsigned int	color;
 	unsigned int	*buffer;
 
-	ft_get_cor(data, i, dist);
+	j = 0;
+	ft_get_cord(data, x, dist);
 	buffer = ft_get_dir(data);
-	//DRAWING WALLS
 	while (data->cord.y < data->cord.wall_bottom)
 	{
 		j = (data->cord.y + (data->cord.wall_hight / 2) - (data->height / 2));
 		data->cord.offsety = j * ((double)(50 / data->cord.wall_hight));
 		color = buffer[(50 * data->cord.offsety) + (data->cord.offsetx)];
-		mlx_put_pixel(data->image, i, data->cord.y++, color);
+		mlx_put_pixel(data->image, x, data->cord.y++, color);
 	}
-	// DRAWING FLOORS
 	if (data->cord.wall_bottom < data->height)
 	{
 		while (data->cord.y < data->height)
-			mlx_put_pixel(data->image, i, data->cord.y++, 0x606060FF);
+			mlx_put_pixel(data->image, x, data->cord.y++, 0x606060FF);
 	}
 }
+
+//----------------------------------------------------------------------------//
