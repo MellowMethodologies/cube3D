@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:40:19 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/13 15:10:01 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/13 16:20:57 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_get_cord(t_data *data, int i, double dist)
 	data->cord.y = data->cord.wall_top;
 	if (data->cord.wall_top > 0)
 	{
-		while (j <= data->cord.wall_top)
+		while (j < data->cord.wall_top)
 			mlx_put_pixel(data->image, i, j++, 0x00CCFFFFFF);
 	}
 	if (data->hit == 'V')
