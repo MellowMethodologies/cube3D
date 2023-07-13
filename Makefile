@@ -6,7 +6,7 @@
 #    By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 19:51:25 by idabligi          #+#    #+#              #
-#    Updated: 2023/07/12 21:52:45 by sbadr            ###   ########.fr        #
+#    Updated: 2023/07/13 11:58:49 by sbadr            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRCS = $(SRCS_LIBFT) $(SRCS_CUB)
 
 OBJS = $(SRCS:.c=.o)
 CC  = cc -g
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
 NAME = cube
 
 all: $(NAME)

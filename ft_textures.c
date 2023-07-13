@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:01:49 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/12 21:16:20 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/13 12:10:16 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,13 @@ void	ft_textures(t_data *data, t_vars *vars)
 	int i = 0;
 	int j;
 	int *pl;
+
 	pl = malloc(sizeof(int) * 3);
 	if (!pl)
 		return ;
 	data->width = WIDTH;
 	data->height = HEIGHT;
-	data->str = vars->map+6;
+	data->str = vars->map + 6;
 	pl = find_player(data->str);
 	while (data->str[i])
 	{
@@ -80,7 +81,7 @@ void	ft_textures(t_data *data, t_vars *vars)
 
 //----------------------------------------------------------------------------//
 
-void    ft_color(t_data *data, int x, int y)
+void    ft_color(t_data *data, int x, int y, unsigned int color)
 {
 	int i;
 	int j;
@@ -95,7 +96,8 @@ void    ft_color(t_data *data, int x, int y)
 		x = s;
 		while (i < TILE_SIZE - 1)
 		{
-			mlx_put_pixel(data->image, x, y, 0x00FFFFFF);
+			if (color)
+				mlx_put_pixel(data->image, x, y, color);
 			x++;
 			i++;
 		}
@@ -119,7 +121,7 @@ void	ft_draw(t_data *data)
 		while (data->str[y][x])
 		{
 			if (!check_player(data->str[y][x]) && data->str[y][x] == '1')
-				ft_color(data, x * TILE_SIZE, y * TILE_SIZE);
+				ft_color(data, x * TILE_SIZE, y * TILE_SIZE, 0x00FFFFFF);
 			x++;
 		}
 		y++;
