@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 15:33:04 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/13 16:08:03 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:16:13 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,12 @@ unsigned int	*ft_get_pixels(uint8_t *pxl, uint32_t count)
 
 void	ft_get_image(t_data *data, t_vars *vars)
 {
-	data->no = ft_get_pixels(vars->NO->pixels, (vars->NO->height * vars->NO->width));
-	data->so = ft_get_pixels(vars->SO->pixels, (vars->SO->height * vars->SO->width));
-	data->we = ft_get_pixels(vars->WE->pixels, (vars->WE->height * vars->WE->width));
-	data->ea = ft_get_pixels(vars->EA->pixels, (vars->EA->height * vars->EA->width));
-	
+	data->no = ft_get_pixels(vars->NO->pixels, vars->NO->height
+			* vars->NO->width);
+	data->so = ft_get_pixels(vars->SO->pixels, vars->SO->height
+			* vars->SO->width);
+	data->we = ft_get_pixels(vars->WE->pixels, vars->WE->height
+			* vars->WE->width);
+	data->ea = ft_get_pixels(vars->EA->pixels, vars->EA->height
+			* vars->EA->width);
 }
