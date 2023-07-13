@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 15:33:04 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/13 12:05:36 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:08:03 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,5 @@ void	ft_get_image(t_data *data, t_vars *vars)
 	data->so = ft_get_pixels(vars->SO->pixels, (vars->SO->height * vars->SO->width));
 	data->we = ft_get_pixels(vars->WE->pixels, (vars->WE->height * vars->WE->width));
 	data->ea = ft_get_pixels(vars->EA->pixels, (vars->EA->height * vars->EA->width));
+	
 }

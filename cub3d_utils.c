@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/13 12:46:05 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:11:02 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,23 +183,23 @@ void		ft_hooks(t_data *data)
 		data->p_rad += 0.05;
 	else
 		data->p_rad -= 0.05;
-	if (!is_there_a_wall(data->p_x + ACCELERATION * cos(data->p_rad), data->p_y + ACCELERATION * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_UP) || mlx_is_key_down(data->mlx, MLX_KEY_W)))
+	if (!is_there_a_wall(data->p_x + cos(data->p_rad), data->p_y + sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_UP) || mlx_is_key_down(data->mlx, MLX_KEY_W)))
 	{
 		//up arrow
-		data->p_y += ACCELERATION * sin(data->p_rad);
-		data->p_x += ACCELERATION * cos(data->p_rad);
+		data->p_y += sin(data->p_rad) * 1.9;
+		data->p_x += cos(data->p_rad) * 1.9;
 	}
-	if (!is_there_a_wall(data->p_x - ACCELERATION * cos(data->p_rad), data->p_y - ACCELERATION * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_DOWN) || mlx_is_key_down(data->mlx, MLX_KEY_S)))
+	if (!is_there_a_wall(data->p_x - cos(data->p_rad), data->p_y - sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_DOWN) || mlx_is_key_down(data->mlx, MLX_KEY_S)))
 	{
 		//down arrow
-		data->p_y -= ACCELERATION * sin(data->p_rad);
-		data->p_x -= ACCELERATION * cos(data->p_rad);
+		data->p_y -= sin(data->p_rad) * 1.9;
+		data->p_x -= cos(data->p_rad) * 1.9;
 	}
-	if (!is_there_a_wall(data->p_x + ACCELERATION * cos(data->p_rad - M_PI /2), data->p_y + ACCELERATION * sin(data->p_rad - M_PI /2), data) && (mlx_is_key_down(data->mlx, MLX_KEY_A)))
+	if (!is_there_a_wall(data->p_x + cos(data->p_rad - M_PI /2), data->p_y + sin(data->p_rad - M_PI /2), data) && (mlx_is_key_down(data->mlx, MLX_KEY_A)))
 	{
 		//up arrow
-		data->p_y += ACCELERATION * sin(data->p_rad - M_PI /2);
-		data->p_x += ACCELERATION * cos(data->p_rad - M_PI /2);
+		data->p_y += sin(data->p_rad - M_PI /2) * 1.9;
+		data->p_x += cos(data->p_rad - M_PI /2) * 1.9;
 	}
 }
 
@@ -210,8 +210,8 @@ void		ft_hooks_(t_data *data)
 	if (!is_there_a_wall(data->p_x + 3 * cos(data->p_rad + M_PI /2), data->p_y + 3 * sin(data->p_rad + M_PI /2), data) && (mlx_is_key_down(data->mlx, MLX_KEY_D)))
 	{
 		//down arrow
-		data->p_y += ACCELERATION * sin(data->p_rad + M_PI / 2);
-		data->p_x += ACCELERATION * cos(data->p_rad + M_PI / 2);
+		data->p_y += sin(data->p_rad + M_PI / 2) * 1.9;
+		data->p_x += cos(data->p_rad + M_PI / 2) * 1.9;
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 	{

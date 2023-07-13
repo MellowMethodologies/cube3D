@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw_wall.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:40:19 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/13 15:10:01 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/13 16:08:40 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ void	ft_get_cord(t_data *data, int i, double dist)
 	data->cord.y = data->cord.wall_top;
 	if (data->cord.wall_top > 0)
 	{
-		while (j <= data->cord.wall_top)
-			mlx_put_pixel(data->image, i, j++, 0x00CCFFFFFF);
+		while (j < data->cord.wall_top)
+			mlx_put_pixel(data->image, i, j++, data->vars->C);
 	}
 	if (data->hit == 'V')
 		data->cord.offsetx = (int)data->hit_y % data->vars->NO->width;
@@ -103,7 +103,7 @@ void	draw_wall(t_data *data, int x, double dist)
 	if (data->cord.wall_bottom < data->height)
 	{
 		while (data->cord.y < data->height)
-			mlx_put_pixel(data->image, x, data->cord.y++, 0x606060FF);
+			mlx_put_pixel(data->image, x, data->cord.y++, data->vars->F);
 	}
 }
 
