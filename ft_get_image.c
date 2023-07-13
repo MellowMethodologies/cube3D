@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_image.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 15:33:04 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/12 21:59:47 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/13 12:05:36 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,39 +17,31 @@ int	get_rgba(int r, int g, int b, int a)
 	return (r << 24 | g << 16 | b << 8 | a);
 }
 
-unsigned int	*ft_get_pixels(uint8_t *pxl)
+unsigned int	*ft_get_pixels(uint8_t *pxl, uint32_t count)
 {
 	unsigned int	*texture;
 	unsigned int	*tmp2;
 	uint8_t			*tmp;
-	int				count;
 	int				i;
 
 	i = 0;
-	count = 0;
 	tmp = pxl;
-	while (*tmp)
-	{
-		count++;
-		tmp += 4;
-	}
-	texture = (unsigned int *)malloc(sizeof(unsigned int) * count + 1);
+	texture = (unsigned int *)malloc(sizeof(unsigned int) * count);
 	if (!texture)
 		ft_abort(1);
 	tmp2 = texture;
-	while (i < count)
+	while (i < (int)count)
 	{
 		tmp2[i++] = get_rgba(*pxl, *(pxl + 1), *(pxl + 2), *(pxl + 3));
 		pxl += 4;
 	}
-	tmp2[i] = 0;
 	return (texture);
 }
 
 void	ft_get_image(t_data *data, t_vars *vars)
 {
-	data->no = ft_get_pixels(vars->NO->pixels);
-	data->so = ft_get_pixels(vars->SO->pixels);
-	data->we = ft_get_pixels(vars->WE->pixels);
-	data->ea = ft_get_pixels(vars->EA->pixels);
+	data->no = ft_get_pixels(vars->NO->pixels, (vars->NO->height * vars->NO->width));
+	data->so = ft_get_pixels(vars->SO->pixels, (vars->SO->height * vars->SO->width));
+	data->we = ft_get_pixels(vars->WE->pixels, (vars->WE->height * vars->WE->width));
+	data->ea = ft_get_pixels(vars->EA->pixels, (vars->EA->height * vars->EA->width));
 }

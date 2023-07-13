@@ -16,6 +16,8 @@
 # define HEIGHT 1080
 # define WIDTH 1920
 # define TILE_SIZE 64
+#define ROTATION_SPEED 6
+#define ACCELERATION 7
 
 
 typedef struct vars

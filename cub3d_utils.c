@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/13 10:26:36 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/13 11:48:42 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,14 @@ void draw_line(t_data *data, double dis, double rotation)
 	}	
 }
 
+//----------------------------------------------------------------------------//
+
 double ds_between_two_points(double x, double y, double x1, double y1)
 {
 	return(sqrt(((x1-x) * (x1-x)) + ((y1-y) * (y1 - y))));
-}	
+}
+
+//----------------------------------------------------------------------------//
 
 float	ft_find_hr(t_data *data, float rotation)
 {
@@ -98,6 +102,8 @@ float	ft_find_hr(t_data *data, float rotation)
 	return (ds_between_two_points(data->p_x, data->p_y , a_x, a_y));
 }
 
+//----------------------------------------------------------------------------//
+
 float	ft_find_vr(t_data *data, float rotation)
 {
 	int c = 0;
@@ -127,6 +133,8 @@ float	ft_find_vr(t_data *data, float rotation)
 	}
 	return (ds_between_two_points(data->p_x, data->p_y , a_x, a_y));
 }
+
+//----------------------------------------------------------------------------//
 
 void draw_player(t_data	*data)
 {
@@ -165,6 +173,8 @@ void draw_player(t_data	*data)
 	}
 }
 
+//----------------------------------------------------------------------------//
+
 void		ft_event(void *dat)
 {
 	double dx;
@@ -182,39 +192,39 @@ void		ft_event(void *dat)
 		data->p_rad += 0.05;
 	else
 		data->p_rad -= 0.05;
-	if (!is_there_a_wall(data->p_x + 3 * cos(data->p_rad), data->p_y + 3 * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_UP) || mlx_is_key_down(data->mlx, MLX_KEY_W)))
+	if (!is_there_a_wall(data->p_x + ACCELERATION * cos(data->p_rad), data->p_y + ACCELERATION * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_UP) || mlx_is_key_down(data->mlx, MLX_KEY_W)))
 	{
 		//up arrow
-		data->p_y += 3 * sin(data->p_rad);
-		data->p_x += 3 * cos(data->p_rad);
+		data->p_y += ACCELERATION * sin(data->p_rad);
+		data->p_x += ACCELERATION * cos(data->p_rad);
 	}
-	if (!is_there_a_wall(data->p_x - 3 * cos(data->p_rad), data->p_y - 3 * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_DOWN) || mlx_is_key_down(data->mlx, MLX_KEY_S)))
+	if (!is_there_a_wall(data->p_x - ACCELERATION * cos(data->p_rad), data->p_y - ACCELERATION * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_DOWN) || mlx_is_key_down(data->mlx, MLX_KEY_S)))
 	{
 		//down arrow
-		data->p_y -= 3 * sin(data->p_rad);
-		data->p_x -= 3 * cos(data->p_rad);
+		data->p_y -= ACCELERATION * sin(data->p_rad);
+		data->p_x -= ACCELERATION * cos(data->p_rad);
 	}
-	if (!is_there_a_wall(data->p_x + 3 * cos(data->p_rad - M_PI /2), data->p_y + 3 * sin(data->p_rad - M_PI /2), data) && (mlx_is_key_down(data->mlx, MLX_KEY_A)))
+	if (!is_there_a_wall(data->p_x + ACCELERATION * cos(data->p_rad - M_PI /2), data->p_y + ACCELERATION * sin(data->p_rad - M_PI /2), data) && (mlx_is_key_down(data->mlx, MLX_KEY_A)))
 	{
 		//up arrow
-		data->p_y += 3 * sin(data->p_rad - M_PI /2);
-		data->p_x += 3 * cos(data->p_rad - M_PI /2);
+		data->p_y += ACCELERATION * sin(data->p_rad - M_PI /2);
+		data->p_x += ACCELERATION * cos(data->p_rad - M_PI /2);
 	}
-	if (!is_there_a_wall(data->p_x + 3 * cos(data->p_rad + M_PI /2), data->p_y + 3 * sin(data->p_rad + M_PI /2), data) && (mlx_is_key_down(data->mlx, MLX_KEY_D)))
+	if (!is_there_a_wall(data->p_x + ACCELERATION * cos(data->p_rad + M_PI /2), data->p_y + ACCELERATION * sin(data->p_rad + M_PI /2), data) && (mlx_is_key_down(data->mlx, MLX_KEY_D)))
 	{
 		//down arrow
-		data->p_y += 3 * sin(data->p_rad + M_PI / 2);
-		data->p_x += 3 * cos(data->p_rad + M_PI / 2);
+		data->p_y += ACCELERATION * sin(data->p_rad + M_PI / 2);
+		data->p_x += ACCELERATION * cos(data->p_rad + M_PI / 2);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 	{
 		//right arrow
-		data->p_rad += M_PI / 180;
+		data->p_rad += M_PI * ROTATION_SPEED / 180;
 		if (data->p_rad >= 2 * M_PI)
 			data->p_rad = 0;
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
-		data->p_rad -= M_PI / 180;
+		data->p_rad -= M_PI * ROTATION_SPEED / 180;
 	if (data->p_rad == 2 * M_PI)
 		data->p_rad = 0;
 	else if (data->p_rad < 0)
