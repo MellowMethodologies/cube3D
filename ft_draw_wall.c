@@ -6,11 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:40:19 by idabligi          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/07/13 12:43:24 by idabligi         ###   ########.fr       */
-=======
-/*   Updated: 2023/07/13 11:55:30 by sbadr            ###   ########.fr       */
->>>>>>> fb8aab1777546ff8c4be983ba9105233056945ca
+/*   Updated: 2023/07/13 15:10:01 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +72,14 @@ void	ft_get_cord(t_data *data, int i, double dist)
 	data->cord.y = data->cord.wall_top;
 	if (data->cord.wall_top > 0)
 	{
-		while (j < data->cord.wall_top)
-			mlx_put_pixel(data->image, i, j++, 0x00CCFFFFFF);//0x000099FFFF
+		while (j <= data->cord.wall_top)
+			mlx_put_pixel(data->image, i, j++, 0x00CCFFFFFF);
 	}
 	if (data->hit == 'V')
-		data->cord.offsetx = (int)data->hit_y + 1 % data->vars->NO->width;
+		data->cord.offsetx = (int)data->hit_y % data->vars->NO->width;
 	
 	else if (data->hit == 'H')
-		data->cord.offsetx = (int)data->hit_x + 1 % data->vars->NO->width;
+		data->cord.offsetx = (int)data->hit_x % data->vars->NO->width;
 }
 
 //----------------------------------------------------------------------------//

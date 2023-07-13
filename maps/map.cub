@@ -1,13 +1,7 @@
-NO ./textures/Background.png
-<<<<<<< HEAD
-SO ./textures/Background2.png
-WE ./textures/Background3.png
-EA ./textures/Background2.png
-=======
-SO ./textures/Background.png
-WE ./textures/Background.png
-EA ./textures/Background.png
->>>>>>> fb8aab1777546ff8c4be983ba9105233056945ca
+NO ./textures/bbb.png
+SO ./textures/bbb.png
+WE ./textures/bbb.png
+EA ./textures/bbb.png
 
 F 220,100,0
 C 225,30,0

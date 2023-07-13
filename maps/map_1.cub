@@ -1,7 +1,7 @@
-NO ./textures/Background.png
-SO ./textures/Background1.png
-WE ./textures/Background1.png
-EA ./textures/Background1.png
+NO ./textures/bb.png
+SO ./textures/bb.png
+WE ./textures/bb.png
+EA ./textures/bb.png
 
 F 220,100,0
 C 225,30,0

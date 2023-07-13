@@ -3,16 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+         #
+#    By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 19:51:25 by idabligi          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2023/07/13 11:54:16 by idabligi         ###   ########.fr        #
-=======
-#    Updated: 2023/07/13 11:58:49 by sbadr            ###   ########.fr        #
->>>>>>> fb8aab1777546ff8c4be983ba9105233056945ca
+#    Updated: 2023/07/13 14:50:35 by sbadr            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 
 SRCS_LIBFT = ./Libft/ft_itoa.c ./Libft/ft_split.c ./Libft/ft_strmapi.c ./Libft/ft_putchar_fd.c ./Libft/ft_putstr_fd.c ./Libft/ft_striteri.c\
@@ -28,7 +25,7 @@ SRCS = $(SRCS_LIBFT) $(SRCS_CUB)
 
 OBJS = $(SRCS:.c=.o)
 CC  = cc -g
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 NAME = cube
 
 all: $(NAME)
@@ -37,7 +34,7 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 	
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) libmlx42.a -Iinclude -lglfw -L"/Users/idabligi/.brew/opt/glfw/lib/" $^ -o $@
+	$(CC) $(CFLAGS) libmlx42.a -Iinclude -lglfw -L"/Users/sbadr/.brew/opt/glfw/lib/" $^ -o $@
 	./$(NAME) ./maps/map.cub
 
 		
