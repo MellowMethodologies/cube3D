@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/13 11:48:42 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/13 12:46:05 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,19 +173,10 @@ void draw_player(t_data	*data)
 	}
 }
 
-//----------------------------------------------------------------------------//
-
-void		ft_event(void *dat)
+void		ft_hooks(t_data *data)
 {
-	double dx;
-	double dy;
-	t_data *data= dat;
-
-	dx = data->dis_bt_a_p * cos(data->p_rad);
-	dy = data->dis_bt_a_p * sin(data->p_rad);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		exit (0);
-	mlx_get_mouse_pos(data->mlx, &data->mouse_x, &data->mouse_y);
 	if (data->mouse_x == data->mouse_x_old)
 		data->p_rad = data->p_rad;
 	else if (data->mouse_x > data->mouse_x_old)
@@ -210,7 +201,13 @@ void		ft_event(void *dat)
 		data->p_y += ACCELERATION * sin(data->p_rad - M_PI /2);
 		data->p_x += ACCELERATION * cos(data->p_rad - M_PI /2);
 	}
-	if (!is_there_a_wall(data->p_x + ACCELERATION * cos(data->p_rad + M_PI /2), data->p_y + ACCELERATION * sin(data->p_rad + M_PI /2), data) && (mlx_is_key_down(data->mlx, MLX_KEY_D)))
+}
+
+void		ft_hooks_(t_data *data)
+{
+	mlx_get_mouse_pos(data->mlx, &data->mouse_x, &data->mouse_y);
+	
+	if (!is_there_a_wall(data->p_x + 3 * cos(data->p_rad + M_PI /2), data->p_y + 3 * sin(data->p_rad + M_PI /2), data) && (mlx_is_key_down(data->mlx, MLX_KEY_D)))
 	{
 		//down arrow
 		data->p_y += ACCELERATION * sin(data->p_rad + M_PI / 2);
@@ -229,12 +226,19 @@ void		ft_event(void *dat)
 		data->p_rad = 0;
 	else if (data->p_rad < 0)
 		data->p_rad +=2 * M_PI;
+}
+
+void		ft_event(void *dat)
+{
+	t_data *data= dat;
+
+	ft_hooks(data);
+	ft_hooks_(data);
 	mlx_delete_image(data->mlx, data->image);
-	mlx_delete_image(data->mlx, data->map);
 	data->image = mlx_new_image(data->mlx, data->width,data->height);
+	mlx_set_mouse_pos(data->mlx, data->width / 2, data->height / 2);
 	// data->image = mlx_new_image(data->mlx, 250,250);
 	// mlx_put_pixel(data->map , 25, 25, 0x00FF0000);
-	mlx_set_mouse_pos(data->mlx, data->width / 2, data->height / 2);
    	// ft_draw(data);
    	draw_player(data);
    	// draw_rays(data);
