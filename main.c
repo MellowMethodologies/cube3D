@@ -5,16 +5,16 @@ int		is_there_a_wall(double x, double y, t_data *data)
 	(void)data;
 	if (x > data->width || y > data->height || x < 0 || y < 0)
 		return 1;
-	size_t map_grip_index_x = x / 50;
-	size_t map_grip_index_x1 = (x + 1) / 50;
-	size_t map_grip_index_x2 = (x - 1) / 50;
-	size_t map_grip_index_y = y / 50;
-	size_t map_grip_index_y1 = (y + 1) / 50;
-	size_t map_grip_index_y2 = (y - 1) / 50;
-	// printf("x = %f, y = %f\n", x, y);
-	if (map_grip_index_y > data->height / 50 || ft_strlen(data->str[map_grip_index_y]) <= map_grip_index_x )
+	size_t map_grip_index_x = x / TILE_SIZE;
+	size_t map_grip_index_x1 = (x + 1) / TILE_SIZE;
+	size_t map_grip_index_x2 = (x - 1) / TILE_SIZE;
+	size_t map_grip_index_y = y / TILE_SIZE;
+	size_t map_grip_index_y1 = (y + 1) / TILE_SIZE;
+	size_t map_grip_index_y2 = (y - 1) / TILE_SIZE;
+	if (map_grip_index_y > data->height / TILE_SIZE || ft_strlen(data->str[map_grip_index_y]) <= map_grip_index_x )
 		return 1;
-	if (data->str[map_grip_index_y][map_grip_index_x] && (data->str[map_grip_index_y][map_grip_index_x] == '1' || data->str[map_grip_index_y][map_grip_index_x2] == '1' || data->str[map_grip_index_y][map_grip_index_x1] == '1' \
+	if (data->str[map_grip_index_y][map_grip_index_x] && (data->str[map_grip_index_y][map_grip_index_x] == '1' 
+	|| data->str[map_grip_index_y][map_grip_index_x2] == '1' || data->str[map_grip_index_y][map_grip_index_x1] == '1' \
 	|| data->str[map_grip_index_y1][map_grip_index_x] == '1' || data->str[map_grip_index_y2][map_grip_index_x] == '1'))
 		return 1;
 	return 0;
@@ -25,12 +25,9 @@ int		is_there_a_wall_1(double x, double y, t_data *data)
 	(void)data;
 	if (x > data->width || y > data->height || x < 0 || y < 0)
 		return 1;
-	size_t map_grip_index_x = x / 50;
-	size_t map_grip_index_y = y / 50;
-
-	if (map_grip_index_y > data->height / 50)
-		return 1;
-	if (ft_strlen(data->str[map_grip_index_y]) <= map_grip_index_x)
+	size_t map_grip_index_x = x / TILE_SIZE;
+	size_t map_grip_index_y = y / TILE_SIZE;
+	if (map_grip_index_y >= data->count || ft_strlen(data->str[map_grip_index_y]) < map_grip_index_x)
 		return 1;
 	if (data->str[map_grip_index_y][map_grip_index_x] == '1' || data->str[map_grip_index_y][map_grip_index_x] == ' ')
 		return 1;
@@ -48,7 +45,7 @@ int	main(int ac, char **av)
 {
 	t_data	data;
 	t_vars	vars;
-
+	data.vars = &vars;
 	if (ac == 2)
 	{
 		if (ft_strncmp(".cub", av[1] + (ft_strlen(av[1]) - 4), 4) != 0)
@@ -61,6 +58,7 @@ int	main(int ac, char **av)
 		mlx_set_setting(MLX_MAXIMIZED, true);
 		data.mlx = mlx_init(data.width, data.height, "cub3D", false);
 		data.image = mlx_new_image(data.mlx, data.width,data.height);
+		data.map = mlx_new_image(data.mlx, 250, 250);
 		mlx_loop_hook(data.mlx,ft_event, &data);
 		mlx_loop(data.mlx);
 		return (0);

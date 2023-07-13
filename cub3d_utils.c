@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/13 10:22:10 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/13 10:26:36 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,11 @@ float	ft_find_hr(t_data *data, float rotation)
 
 	if (rotation >= 0 && rotation <= M_PI)
 	{
-		a_y = floor(data->p_y / 50) * 50 + 50 ;
+		a_y = floor(data->p_y / TILE_SIZE) * TILE_SIZE + TILE_SIZE ;
 		c = 1;
 	}
 	else
-		a_y = floor(data->p_y / 50) * 50 - 0.01;
+		a_y = floor(data->p_y / TILE_SIZE) * TILE_SIZE - 0.01;
 	a_x = data->p_x + ((a_y - data->p_y) / tan(rotation));
 	
 	while (a_x >= 0 && a_x < data->width && a_y >= 0 && a_y < data->height && !is_there_a_wall_1(a_x, a_y, data))
@@ -86,13 +86,13 @@ float	ft_find_hr(t_data *data, float rotation)
 			a_y += 0.01;
 		if(c)
 		{
-			a_y += 50;
-			a_x += 50 / tan(rotation);	
+			a_y += TILE_SIZE;
+			a_x += TILE_SIZE / tan(rotation);	
 		}
 		else
 		{
-			a_y -= 50;
-			a_x -= 50 / tan(rotation);
+			a_y -= TILE_SIZE;
+			a_x -= TILE_SIZE / tan(rotation);
 		}
 	}
 	return (ds_between_two_points(data->p_x, data->p_y , a_x, a_y));
@@ -106,23 +106,23 @@ float	ft_find_vr(t_data *data, float rotation)
 
 	if (rotation >= 3*M_PI/2 || rotation <= M_PI/2)
 	{
-		a_x = floor(data->p_x / 50) * 50 + 50 ;
+		a_x = floor(data->p_x / TILE_SIZE) * TILE_SIZE + TILE_SIZE ;
 		c = 1;
 	}
 	else
-		a_x = floor(data->p_x / 50) * 50 - 0.01;
+		a_x = floor(data->p_x / TILE_SIZE) * TILE_SIZE - 0.01;
 	a_y = data->p_y + ((a_x - data->p_x) * tan(rotation));
 	while (a_x >= 0 && a_x < data->width && a_y >= 0 && a_y < data->height && !is_there_a_wall_1(a_x, a_y, data))
 	{
 		if (c)
 		{
-			a_y +=	50 * tan(rotation);
-			a_x +=	50;
+			a_y +=	TILE_SIZE * tan(rotation);
+			a_x +=	TILE_SIZE;
 		}
 		else
 		{
-			a_y -=	50 * tan(rotation);
-			a_x -=	50; 
+			a_y -=	TILE_SIZE * tan(rotation);
+			a_x -=	TILE_SIZE; 
 		}
 	}
 	return (ds_between_two_points(data->p_x, data->p_y , a_x, a_y));
@@ -159,7 +159,7 @@ void draw_player(t_data	*data)
 		data->hit_x = data->p_x + dist * cos(x);
 		data->hit_y = data->p_y + dist * sin(x);
 		data->ongle = x;
-		draw_wall(data, i, dist);
+		draw_wall(data, i, dist * cos(x - data->p_rad));
 		x+= FOV / data->width;
 		i++;
 	}
@@ -185,56 +185,51 @@ void		ft_event(void *dat)
 	if (!is_there_a_wall(data->p_x + 3 * cos(data->p_rad), data->p_y + 3 * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_UP) || mlx_is_key_down(data->mlx, MLX_KEY_W)))
 	{
 		//up arrow
-		data->p_y += 1.5 * sin(data->p_rad);
-		data->p_x += 1.5 * cos(data->p_rad);
+		data->p_y += 3 * sin(data->p_rad);
+		data->p_x += 3 * cos(data->p_rad);
 	}
 	if (!is_there_a_wall(data->p_x - 3 * cos(data->p_rad), data->p_y - 3 * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_DOWN) || mlx_is_key_down(data->mlx, MLX_KEY_S)))
 	{
 		//down arrow
-		data->p_y -= 1.5 * sin(data->p_rad);
-		data->p_x -= 1.5 * cos(data->p_rad);
+		data->p_y -= 3 * sin(data->p_rad);
+		data->p_x -= 3 * cos(data->p_rad);
 	}
 	if (!is_there_a_wall(data->p_x + 3 * cos(data->p_rad - M_PI /2), data->p_y + 3 * sin(data->p_rad - M_PI /2), data) && (mlx_is_key_down(data->mlx, MLX_KEY_A)))
 	{
 		//up arrow
-		data->p_y += 1.5 * sin(data->p_rad - M_PI /2);
-		data->p_x += 1.5 * cos(data->p_rad - M_PI /2);
+		data->p_y += 3 * sin(data->p_rad - M_PI /2);
+		data->p_x += 3 * cos(data->p_rad - M_PI /2);
 	}
 	if (!is_there_a_wall(data->p_x + 3 * cos(data->p_rad + M_PI /2), data->p_y + 3 * sin(data->p_rad + M_PI /2), data) && (mlx_is_key_down(data->mlx, MLX_KEY_D)))
 	{
 		//down arrow
-		data->p_y += 1.5 * sin(data->p_rad + M_PI / 2);
-		data->p_x += 1.5 * cos(data->p_rad + M_PI / 2);
+		data->p_y += 3 * sin(data->p_rad + M_PI / 2);
+		data->p_x += 3 * cos(data->p_rad + M_PI / 2);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 	{
 		//right arrow
 		data->p_rad += M_PI / 180;
-		
 		if (data->p_rad >= 2 * M_PI)
 			data->p_rad = 0;
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
-	{
-	   // left arrow
 		data->p_rad -= M_PI / 180;
-	}
 	if (data->p_rad == 2 * M_PI)
-	{
 		data->p_rad = 0;
-	}
 	else if (data->p_rad < 0)
-	{
 		data->p_rad +=2 * M_PI;
-	}
-	// printf("prad = %f\n",data->p_rad*180 /M_PI);
 	mlx_delete_image(data->mlx, data->image);
+	mlx_delete_image(data->mlx, data->map);
 	data->image = mlx_new_image(data->mlx, data->width,data->height);
+	// data->image = mlx_new_image(data->mlx, 250,250);
+	// mlx_put_pixel(data->map , 25, 25, 0x00FF0000);
 	mlx_set_mouse_pos(data->mlx, data->width / 2, data->height / 2);
    	// ft_draw(data);
    	draw_player(data);
    	// draw_rays(data);
 	mlx_image_to_window(data->mlx, data->image, 0, 0);
+	// mlx_image_to_window(data->mlx, data->map, 0, 0);
 	// return 1;
 }
 

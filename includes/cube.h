@@ -15,7 +15,7 @@
 # define WALL_THICKNESS 4
 # define HEIGHT 1080
 # define WIDTH 1920
-# define TILE_SIZE 50
+# define TILE_SIZE 64
 
 
 typedef struct vars
@@ -68,10 +68,12 @@ typedef struct s_data
 	unsigned int	*we;
 	float			ongle;
 	char			hit;
-
+	size_t 			count;
 	mlx_texture_t	*texture;
 	mlx_image_t		*image;
+	mlx_image_t		*map;
 	mlx_texture_t*	png;
+	t_vars			*vars;
 	double			hit_x;
 	double			hit_y;
 	int32_t			mouse_x;
@@ -111,9 +113,7 @@ char	*ft_strdup_b(char *src);
 char	*ft_strjoin_b(char *s1, char *s2);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putnbr_fd(int nb, int fd);
-void	p_fill(t_vars *vars);
 char	*get_next_line(int fd);
-
 void	ft_putstr_fd(char *s, int fd);
 char	*ft_strdup(const char *s1);
 void	parser(char *par, t_vars *vars);
