@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/15 08:10:14 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/15 08:49:36 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ float	ft_find_hr(t_data *data, float rotation)
 	{
 		if (is_there_a_wall_1(a_x, a_y, data))
 		{
-			if (rotation >= 0 && rotation <= M_PI)
-				a_y += 0.01;
+			if (!c)
+				a_y += 1;
 			break;
 		}
 		if(c)
@@ -126,8 +126,8 @@ float	ft_find_vr(t_data *data, float rotation)
 	{
 		if (is_there_a_wall_1(a_x, a_y, data))
 		{
-			if (rotation >= 3*M_PI/2 && rotation <= M_PI/2)
-				a_x += 0.01;
+			if (c)
+				a_x += 1;
 			break;
 		}
 		if (c)
