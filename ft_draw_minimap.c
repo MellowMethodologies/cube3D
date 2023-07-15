@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:08:25 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/15 17:10:29 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/15 17:43:13 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_draw_mm_background(t_data *data, int x, int y, size_t i)
 		y = (i * TILE_SIZE) / 6;
 		while (y >= 0)
 		{
-			mlx_put_pixel(data->image, (int)x, y, 0x00000000);
+			mlx_put_pixel(data->image, x, y, 0x00000000);
 			y--;
 		}
 		x--;
@@ -73,7 +73,7 @@ void	ft_draw_mm_line(t_data *data)
 	float	x;
 	float	y;
 	int		count = 50;
-	while (count)
+	while (count > 2)
 	{
 		x = data->p_x + cos(data->p_rad) * count;
 		y = data->p_y + sin(data->p_rad) * count;
@@ -99,10 +99,10 @@ void draw_mini_map(t_data *data, int x, int y)
 		}
 		y++;
 	}
-	mlx_put_pixel(data->image ,data->p_x/6, data->p_y/6, 0x00CCFFFFFF);
-	mlx_put_pixel(data->image ,(data->p_x - 1)/6, data->p_y/6, 0x00CCFFFFFF);
-	mlx_put_pixel(data->image , data->p_x/6 , (data->p_y - 1/6), 0x00CCFFFFFF);
-	mlx_put_pixel(data->image , data->p_x/6, (data->p_y + 1)/6, 0x00CCFFFFFF);
-	mlx_put_pixel(data->image , (data->p_x + 1)/6, data->p_y/6, 0x00CCFFFFFF);
 	ft_draw_mm_line(data);
+	// mlx_put_pixel(data->image ,data->p_x/6, data->p_y/6, 0x00CCFFFFFF);
+	// mlx_put_pixel(data->image ,(data->p_x - 1)/6, data->p_y/6, 0x00CCFFFFFF);
+	// mlx_put_pixel(data->image , data->p_x/6 , (data->p_y - 1/6), 0x00CCFFFFFF);
+	// mlx_put_pixel(data->image , data->p_x/6, (data->p_y + 1)/6, 0x00CCFFFFFF);
+	// mlx_put_pixel(data->image , (data->p_x + 1)/6, data->p_y/6, 0x00CCFFFFFF);
 }

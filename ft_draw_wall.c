@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw_wall.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:40:19 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/13 18:13:48 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/15 17:37:07 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ void	ft_get_cord(t_data *data, int i, double dist)
 		data->cord.offsetx = (int)data->hit_x % data->vars->NO->width;
 }
 
-//----------------------------------------------------------------------------//
-
 void	draw_wall(t_data *data, int x, double dist)
 {
 	size_t			j;
@@ -108,5 +106,3 @@ void	draw_wall(t_data *data, int x, double dist)
 			mlx_put_pixel(data->image, x, data->cord.y++, data->vars->F);
 	}
 }
-
-//----------------------------------------------------------------------------//

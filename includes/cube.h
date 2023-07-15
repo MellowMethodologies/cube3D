@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cube.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/15 16:19:21 by sbadr             #+#    #+#             */
+/*   Updated: 2023/07/15 17:38:19 by idabligi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUBE_H
 # define CUBE_H
 
@@ -9,15 +21,14 @@
 # include <unistd.h>
 # include <math.h>
 # include <stdlib.h>
-#include "../libft/libft.h"
+# include "./libft.h"
 
-# define FOV 60 * (M_PI / 180)
-# define WALL_THICKNESS 4
+# define FOV 30 * (M_PI / 180)
 # define HEIGHT 1080
 # define WIDTH 1920
 # define TILE_SIZE 64
-#define ROTATION_SPEED 6
-#define ACCELERATION 7
+# define ROTATION_SPEED 6
+# define ACC 7
 
 
 typedef struct vars
@@ -68,6 +79,7 @@ typedef struct s_data
 	unsigned int	*so;
 	unsigned int	*ea;
 	unsigned int	*we;
+	float			dist;
 	float			ongle;
 	char			hit;
 	size_t 			count;
@@ -95,6 +107,7 @@ typedef struct s_data
 	t_coordinates	cord;
 }   t_data;
 
+int is_there_a_wall(double x, double y, t_data *data);
 void	 error(void);
 int 	get_rgba(int r, int g, int b, int a);
 int		is_there_a_wall_1(double x, double y, t_data *data);
@@ -126,5 +139,10 @@ void	ft_get_image(t_data *data, t_vars *vars);
 unsigned int	*ft_get_dir(t_data *data);
 void	draw_wall(t_data *data, int i, double dist);
 void	draw_mini_map(t_data *data, int x, int y);
+void	ft_hooks(t_data *data);
+void	ft_hooks_(t_data *data);
+void	norme_it(t_data *data);
+void	ft_event(void *dat);
+
 
 #endif
