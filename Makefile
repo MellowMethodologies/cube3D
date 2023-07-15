@@ -6,10 +6,9 @@
 #    By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 19:51:25 by idabligi          #+#    #+#              #
-#    Updated: 2023/07/13 18:14:18 by sbadr            ###   ########.fr        #
+#    Updated: 2023/07/15 15:48:07 by sbadr            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 
 SRCS_LIBFT = ./Libft/ft_itoa.c ./Libft/ft_split.c ./Libft/ft_strmapi.c ./Libft/ft_putchar_fd.c ./Libft/ft_putstr_fd.c ./Libft/ft_striteri.c\
@@ -19,7 +18,7 @@ SRCS_LIBFT = ./Libft/ft_itoa.c ./Libft/ft_split.c ./Libft/ft_strmapi.c ./Libft/f
 			./Libft/ft_strdup.c ./Libft/ft_strlcat.c ./Libft/ft_strlcpy.c ./Libft/ft_strlen.c ./Libft/ft_strncmp.c ./Libft/ft_strnstr.c\
 			./Libft/ft_strrchr.c ./Libft/ft_tolower.c ./Libft/ft_toupper.c ./Libft/ft_substr.c
 
-SRCS_CUB = get_next_line_utils.c parsing_1.c main.c ft_textures.c cub3d_utils.c ft_get_image.c ft_draw_wall.c
+SRCS_CUB = get_next_line_utils.c parsing_1.c main.c ft_textures.c cub3d_utils.c ft_get_image.c ft_hooks.c ft_draw_wall.c
 
 SRCS = $(SRCS_LIBFT) $(SRCS_CUB)
 
@@ -33,6 +32,7 @@ all: $(NAME)
 %.o:%.c ./Libft/libft.h ./includes/cude.h
 	$(CC) $(CFLAGS) -c $< -o $@
 	
+#relink
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) libmlx42.a -Iinclude -lglfw -L"/Users/sbadr/.brew/opt/glfw/lib/" $^ -o $@
 	./$(NAME) ./maps/map.cub

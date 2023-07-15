@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/15 11:13:31 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/15 15:28:44 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,15 @@ float	ft_find_hr(t_data *data, float rotation)
 	else
 		a_y = floor(data->p_y / TILE_SIZE) * TILE_SIZE - 0.01;
 	a_x = data->p_x + ((a_y - data->p_y) / tan(rotation));
-	
 	while (1)
 	{
 		if (is_there_a_wall_1(a_x, a_y, data))
 		{
 			if (c)
 				a_y += 0.01;
-			break;
+			break ;
 		}
-		if(c)
+		if (c)
 		{
 			a_y += TILE_SIZE;
 			a_x += TILE_SIZE / tan(rotation);	
@@ -128,7 +127,7 @@ float	ft_find_vr(t_data *data, float rotation)
 		{
 			if (c)
 				a_x += 0.01;
-			break;
+			break ;
 		}
 		if (c)
 		{
@@ -148,12 +147,11 @@ float	ft_find_vr(t_data *data, float rotation)
 
 void draw_player(t_data	*data)
 {
-	float dist;
 	float x;
 
 	x = data->p_rad - (FOV / 2);
 	size_t i = 0;
-	while(i < data->width )
+	while (i < data->width)
 	{
 		if (x < 0)
 			x += M_PI * 2;
@@ -161,77 +159,24 @@ void draw_player(t_data	*data)
 			x -= M_PI * 2;
 		if (ft_find_hr(data, x) < ft_find_vr(data, x))
 		{
-			dist = ft_find_hr(data, x);
+			data->dist = ft_find_hr(data, x);
 			data->hit = 'H';
 		}
 		else
 		{
-			dist = ft_find_vr(data, x);
+			data->dist = ft_find_vr(data, x);
 			data->hit = 'V';
 		}
-		data->hit_x = data->p_x + dist * cos(x);
-		data->hit_y = data->p_y + dist * sin(x);
+		data->hit_x = data->p_x + data->dist * cos(x);
+		data->hit_y = data->p_y + data->dist * sin(x);
 		data->ongle = x;
-		draw_wall(data, i, dist * cos(x - data->p_rad));
-		x+= FOV / data->width;
+		draw_wall(data, i, data->dist * cos(x - data->p_rad));
+		x += FOV / data->width;
 		i++;
 	}
 }
 
-void		ft_hooks(t_data *data)
-{
-	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
-		exit (0);
-	if (data->mouse_x == data->mouse_x_old)
-		data->p_rad = data->p_rad;
-	else if (data->mouse_x > data->mouse_x_old)
-		data->p_rad += 0.05;
-	else
-		data->p_rad -= 0.05;
-	if (!is_there_a_wall(data->p_x +  ACCELERATION *cos(data->p_rad), data->p_y + ACCELERATION * sin(data->p_rad), data) && mlx_is_key_down(data->mlx, MLX_KEY_W))
-	{
-		//up arrow
-		data->p_y += sin(data->p_rad) *ACCELERATION;
-		data->p_x += cos(data->p_rad) *ACCELERATION;
-	}
-	if (!is_there_a_wall(data->p_x -  ACCELERATION *cos(data->p_rad), data->p_y -  ACCELERATION *sin(data->p_rad), data) && mlx_is_key_down(data->mlx, MLX_KEY_S))
-	{
-		//down arrow
-		data->p_y -= sin(data->p_rad) *ACCELERATION;
-		data->p_x -= cos(data->p_rad) *ACCELERATION;
-	}
-	if (!is_there_a_wall(data->p_x + ACCELERATION * cos(data->p_rad - M_PI /2), data->p_y + ACCELERATION * sin(data->p_rad - M_PI /2), data) && (mlx_is_key_down(data->mlx, MLX_KEY_A)))
-	{
-		//up arrow
-		data->p_y += sin(data->p_rad - M_PI /2) * ACCELERATION;
-		data->p_x += cos(data->p_rad - M_PI /2) * ACCELERATION;
-	}
-}
 
-void		ft_hooks_(t_data *data)
-{
-	mlx_get_mouse_pos(data->mlx, &data->mouse_x, &data->mouse_y);
-	
-	if (!is_there_a_wall(data->p_x  +  ACCELERATION *cos(data->p_rad + M_PI /2), data->p_y +  ACCELERATION *sin(data->p_rad + M_PI /2), data) && (mlx_is_key_down(data->mlx, MLX_KEY_D)))
-	{
-		//down arrow
-		data->p_y += sin(data->p_rad + M_PI / 2) * ACCELERATION;
-		data->p_x += cos(data->p_rad + M_PI / 2) * ACCELERATION;
-	}
-	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
-	{
-		//right arrow
-		data->p_rad += M_PI * ROTATION_SPEED / 180;
-		if (data->p_rad >= 2 * M_PI)
-			data->p_rad = 0;
-	}
-	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
-		data->p_rad -= M_PI * ROTATION_SPEED / 180;
-	if (data->p_rad == 2 * M_PI)
-		data->p_rad = 0;
-	else if (data->p_rad < 0)
-		data->p_rad +=2 * M_PI;
-}
 
 void draw_mini_map(t_data *data)
 {
@@ -240,7 +185,7 @@ void draw_mini_map(t_data *data)
 	while (i)
 	{
 		j = 250;
-		while(j)
+		while (j)
 		{
 			mlx_put_pixel(data->image, i, j, 0x0000FF00);
 			--j;
@@ -249,18 +194,5 @@ void draw_mini_map(t_data *data)
 	}
 }
 
-void		ft_event(void *dat)
-{
-	t_data *data= dat;
-
-	ft_hooks(data);
-	ft_hooks_(data);
-	mlx_delete_image(data->mlx, data->image);
-	data->image = mlx_new_image(data->mlx, data->width,data->height);
-	mlx_set_mouse_pos(data->mlx, data->width / 2, data->height / 2);
-   	draw_player(data);
-	draw_mini_map(data);
-	mlx_image_to_window(data->mlx, data->image, 0, 0);
-}
 
 //----------------------------------------------------------------------------//

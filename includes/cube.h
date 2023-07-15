@@ -12,12 +12,11 @@
 #include "../libft/libft.h"
 
 # define FOV 60 * (M_PI / 180)
-# define WALL_THICKNESS 4
 # define HEIGHT 1080
 # define WIDTH 1920
 # define TILE_SIZE 64
 #define ROTATION_SPEED 6
-#define ACCELERATION 7
+#define ACC 1
 
 
 typedef struct vars
@@ -68,6 +67,7 @@ typedef struct s_data
 	unsigned int	*so;
 	unsigned int	*ea;
 	unsigned int	*we;
+	float			dist;
 	float			ongle;
 	char			hit;
 	size_t 			count;
@@ -95,6 +95,7 @@ typedef struct s_data
 	t_coordinates	cord;
 }   t_data;
 
+int is_there_a_wall(double x, double y, t_data *data);
 void	 error(void);
 int 	get_rgba(int r, int g, int b, int a);
 int		is_there_a_wall_1(double x, double y, t_data *data);
@@ -125,5 +126,10 @@ int		check_player(int c);
 void	ft_get_image(t_data *data, t_vars *vars);
 unsigned int	*ft_get_dir(t_data *data);
 void	draw_wall(t_data *data, int i, double dist);
+void	ft_hooks(t_data *data);
+void	ft_hooks_(t_data *data);
+void	norme_it(t_data *data);
+void	ft_event(void *dat);
+
 
 #endif
