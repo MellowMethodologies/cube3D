@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_textures.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:01:49 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/13 12:46:18 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/15 10:48:52 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		*find_player(char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] != '0' && !ft_isspace(map[i][j]) && map[i][j] != '1')
+			if (check_player(map[i][j]))
 			{
 				pl[0] = i;
 				pl[1] = j;
@@ -72,8 +72,8 @@ void	ft_textures(t_data *data, t_vars *vars)
 	}
 	data->count = i;
 	data->p_rad = check_rotation(pl[2]);
-	data->p_x = pl[1] * TILE_SIZE + TILE_SIZE /2;
-	data->p_y = pl[0] * TILE_SIZE + TILE_SIZE /2;
+	data->p_x = pl[1] * TILE_SIZE + TILE_SIZE / 2;
+	data->p_y = pl[0] * TILE_SIZE + TILE_SIZE / 2;
 	data->mouse_x_old = data->width / 2;
 	data->dis_bt_a_p = 22;
 	ft_get_image(data, vars);

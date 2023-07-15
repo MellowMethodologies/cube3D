@@ -3,7 +3,7 @@
 int		is_there_a_wall(double x, double y, t_data *data)
 {
 	(void)data;
-	if (x > data->width || y > data->height || x < 0 || y < 0)
+	if (x < 0 || y < 0)
 		return 1;
 	size_t map_grip_index_x = x / TILE_SIZE;
 	size_t map_grip_index_x1 = (x + 1) / TILE_SIZE;
@@ -23,7 +23,7 @@ int		is_there_a_wall(double x, double y, t_data *data)
 int		is_there_a_wall_1(double x, double y, t_data *data)
 {
 	(void)data;
-	if (x > data->width || y > data->height || x < 0 || y < 0)
+	if (x < 0 || y < 0)
 		return 1;
 	size_t map_grip_index_x = floor(x / TILE_SIZE);
 	size_t map_grip_index_y = floor(y / TILE_SIZE);
