@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cube.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/15 16:19:21 by sbadr             #+#    #+#             */
+/*   Updated: 2023/07/15 16:25:48 by sbadr            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUBE_H
 # define CUBE_H
 
@@ -9,14 +21,14 @@
 # include <unistd.h>
 # include <math.h>
 # include <stdlib.h>
-#include "./libft.h"
+# include "./libft.h"
 
 # define FOV 60 * (M_PI / 180)
 # define HEIGHT 1080
 # define WIDTH 1920
 # define TILE_SIZE 64
-#define ROTATION_SPEED 6
-#define ACC 1
+# define ROTATION_SPEED 6
+# define ACC 1
 
 
 typedef struct vars

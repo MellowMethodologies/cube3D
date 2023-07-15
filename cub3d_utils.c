@@ -6,13 +6,12 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/15 15:28:44 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/15 17:03:55 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/cube.h"
 
-//----------------------------------------------------------------------------//
 
 void	ft_abort(int id)
 {
@@ -25,55 +24,16 @@ void	ft_abort(int id)
 	exit(1);
 }
 
-//----------------------------------------------------------------------------//
-void draw_line(t_data *data, double dis, double rotation)
+double	ds_between_two_points(double x, double y, double x1, double y1)
 {
-	double end_x = data->p_x + dis * cos(rotation);
-	double end_y = data->p_y + dis * sin(rotation);
-
-	int x0 = data->p_x;
-	int y0 = data->p_y;
-	int x1 = (int)end_x;
-	int y1 = (int)end_y;
-	
-	int dx = abs(x1 - x0);
-	int dy = abs(y1 - y0);
-	int sx = (x0 < x1) ? 1 : -1;
-	int sy = (y0 < y1) ? 1 : -1;
-	int err = dx - dy;
-	
-	while (1) {
-		mlx_put_pixel(data->image, x0, y0, 0x00FF0099);
-		if ((x0 == x1) && (y0 == y1))
-			break;
-		int e2 = 2 * err;
-		if (e2 > -dy)
-		{
-			err -= dy;
-			x0 += sx;
-		}
-		if (e2 < dx) 
-		{
-			err += dx;
-			y0 += sy;
-		}
-	}	
+	return (sqrt(((x1 - x) * (x1 - x)) + ((y1 - y) * (y1 - y))));
 }
-
-//----------------------------------------------------------------------------//
-
-double ds_between_two_points(double x, double y, double x1, double y1)
-{
-	return(sqrt(((x1-x) * (x1-x)) + ((y1-y) * (y1 - y))));
-}
-
-//----------------------------------------------------------------------------//
 
 float	ft_find_hr(t_data *data, float rotation)
 {
 	float	a_x = 0;
 	float	a_y = 0;
-	int c = 0;
+	int		c = 0;
 
 	if (rotation >= 0 && rotation <= M_PI)
 	{
@@ -94,7 +54,7 @@ float	ft_find_hr(t_data *data, float rotation)
 		if (c)
 		{
 			a_y += TILE_SIZE;
-			a_x += TILE_SIZE / tan(rotation);	
+			a_x += TILE_SIZE / tan(rotation);
 		}
 		else
 		{
@@ -102,7 +62,7 @@ float	ft_find_hr(t_data *data, float rotation)
 			a_x -= TILE_SIZE / tan(rotation);
 		}
 	}
-	return (ds_between_two_points(data->p_x, data->p_y , a_x, a_y));
+	return (ds_between_two_points(data->p_x, data->p_y, a_x, a_y));
 }
 
 //----------------------------------------------------------------------------//

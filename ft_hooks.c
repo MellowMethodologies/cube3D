@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 15:27:17 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/15 15:36:11 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/15 17:04:54 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	ft_hooks(t_data *data)
 		data->p_rad += 0.05;
 	else
 		data->p_rad -= 0.05;
-	if (!is_there_a_wall_1(data->p_x + (ACC) * cos(data->p_rad),
-			data->p_y + (ACC) + 5 * sin(data->p_rad),
+	if (!is_there_a_wall_1(data->p_x + ACC * cos(data->p_rad),
+			data->p_y + ACC * sin(data->p_rad),
 			data) && mlx_is_key_down(data->mlx, MLX_KEY_W))
 	{
 		data->p_y += sin(data->p_rad) * ACC;
 		data->p_x += cos(data->p_rad) * ACC;
 	}
-	if (!is_there_a_wall_1(data->p_x - (ACC) * cos(data->p_rad),
+	if (!is_there_a_wall_1(data->p_x - ACC * cos(data->p_rad),
 			data->p_y - ACC * sin(data->p_rad),
 			data) && mlx_is_key_down(data->mlx, MLX_KEY_S))
 	{
@@ -56,7 +56,7 @@ void	ft_hooks_(t_data *data)
 	}
 	if (!is_there_a_wall_1(data->p_x + ACC * cos(data->p_rad - M_PI / 2),
 			data->p_y + ACC * sin(data->p_rad - M_PI / 2),
-			data) && (mlx_is_key_down(data->mlx, MLX_KEY_A)))
+			data) && mlx_is_key_down(data->mlx, MLX_KEY_A))
 	{
 		data->p_y += sin(data->p_rad - M_PI / 2) * ACC;
 		data->p_x += cos(data->p_rad - M_PI / 2) * ACC;
