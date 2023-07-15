@@ -9,7 +9,7 @@
 # include <unistd.h>
 # include <math.h>
 # include <stdlib.h>
-#include "../libft/libft.h"
+#include "./libft.h"
 
 # define FOV 60 * (M_PI / 180)
 # define HEIGHT 1080
