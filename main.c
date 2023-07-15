@@ -25,11 +25,11 @@ int		is_there_a_wall_1(double x, double y, t_data *data)
 	(void)data;
 	if (x > data->width || y > data->height || x < 0 || y < 0)
 		return 1;
-	size_t map_grip_index_x = x / TILE_SIZE;
-	size_t map_grip_index_y = y / TILE_SIZE;
-	if (map_grip_index_y >= data->count || ft_strlen(data->str[map_grip_index_y]) < map_grip_index_x)
+	size_t map_grip_index_x = floor(x / TILE_SIZE);
+	size_t map_grip_index_y = floor(y / TILE_SIZE);
+	if (map_grip_index_y >= data->count || ft_strlen(data->str[map_grip_index_y]) <= map_grip_index_x)
 		return 1;
-	if (data->str[map_grip_index_y][map_grip_index_x] == '1' || data->str[map_grip_index_y][map_grip_index_x] == ' ')
+	if (data->str[map_grip_index_y][map_grip_index_x] == '1')
 		return 1;
 	return 0;
 }

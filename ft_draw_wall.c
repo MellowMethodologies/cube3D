@@ -6,9 +6,10 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:40:19 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/13 16:20:57 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/13 18:13:48 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "./includes/cube.h"
 
@@ -73,11 +74,10 @@ void	ft_get_cord(t_data *data, int i, double dist)
 	if (data->cord.wall_top > 0)
 	{
 		while (j < data->cord.wall_top)
-			mlx_put_pixel(data->image, i, j++, 0x00CCFFFFFF);
+			mlx_put_pixel(data->image, i, j++, data->vars->C);
 	}
 	if (data->hit == 'V')
 		data->cord.offsetx = (int)data->hit_y % data->vars->NO->width;
-	
 	else if (data->hit == 'H')
 		data->cord.offsetx = (int)data->hit_x % data->vars->NO->width;
 }
@@ -96,14 +96,16 @@ void	draw_wall(t_data *data, int x, double dist)
 	while (data->cord.y < data->cord.wall_bottom)
 	{
 		j = (data->cord.y + (data->cord.wall_hight / 2) - (data->height / 2));
-		data->cord.offsety = j * ((double)(data->vars->NO->height / data->cord.wall_hight));
-		color = buffer[(data->vars->NO->height * data->cord.offsety) + (data->cord.offsetx)];
+		data->cord.offsety = j * ((double)(data->vars->NO->height
+					/ data->cord.wall_hight));
+		color = buffer[(data->vars->NO->height * data->cord.offsety)
+			+ (data->cord.offsetx)];
 		mlx_put_pixel(data->image, x, data->cord.y++, color);
 	}
 	if (data->cord.wall_bottom < data->height)
 	{
 		while (data->cord.y < data->height)
-			mlx_put_pixel(data->image, x, data->cord.y++, 0x606060FF);
+			mlx_put_pixel(data->image, x, data->cord.y++, data->vars->F);
 	}
 }
 

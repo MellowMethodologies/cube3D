@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/13 12:46:05 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/15 08:10:14 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,14 @@ float	ft_find_hr(t_data *data, float rotation)
 		a_y = floor(data->p_y / TILE_SIZE) * TILE_SIZE - 0.01;
 	a_x = data->p_x + ((a_y - data->p_y) / tan(rotation));
 	
-	while (a_x >= 0 && a_x < data->width && a_y >= 0 && a_y < data->height && !is_there_a_wall_1(a_x, a_y, data))
+	while (1)
 	{
-		if (rotation >= 0 && rotation <= M_PI)
-			a_y += 0.01;
+		if (is_there_a_wall_1(a_x, a_y, data))
+		{
+			if (rotation >= 0 && rotation <= M_PI)
+				a_y += 0.01;
+			break;
+		}
 		if(c)
 		{
 			a_y += TILE_SIZE;
@@ -118,8 +122,14 @@ float	ft_find_vr(t_data *data, float rotation)
 	else
 		a_x = floor(data->p_x / TILE_SIZE) * TILE_SIZE - 0.01;
 	a_y = data->p_y + ((a_x - data->p_x) * tan(rotation));
-	while (a_x >= 0 && a_x < data->width && a_y >= 0 && a_y < data->height && !is_there_a_wall_1(a_x, a_y, data))
+	while (1)
 	{
+		if (is_there_a_wall_1(a_x, a_y, data))
+		{
+			if (rotation >= 3*M_PI/2 && rotation <= M_PI/2)
+				a_x += 0.01;
+			break;
+		}
 		if (c)
 		{
 			a_y +=	TILE_SIZE * tan(rotation);
@@ -147,7 +157,7 @@ void draw_player(t_data	*data)
 
 	x = data->p_rad - (FOV / 2);
 	size_t i = 0;
-	while(i < data->width)
+	while(i < data->width )
 	{
 		if (x < 0)
 			x += M_PI * 2;
@@ -155,12 +165,12 @@ void draw_player(t_data	*data)
 			x -= M_PI * 2;
 		if (ft_find_hr(data, x) < ft_find_vr(data, x))
 		{
-			dist = ft_find_hr(data, x) - 1;
+			dist = ft_find_hr(data, x);
 			data->hit = 'H';
 		}
 		else
 		{
-			dist = ft_find_vr(data, x) - 1;
+			dist = ft_find_vr(data, x);
 			data->hit = 'V';
 		}
 		// draw_line(data, dist, x);
@@ -183,23 +193,23 @@ void		ft_hooks(t_data *data)
 		data->p_rad += 0.05;
 	else
 		data->p_rad -= 0.05;
-	if (!is_there_a_wall(data->p_x + ACCELERATION * cos(data->p_rad), data->p_y + ACCELERATION * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_UP) || mlx_is_key_down(data->mlx, MLX_KEY_W)))
+	if (!is_there_a_wall(data->p_x + cos(data->p_rad), data->p_y + sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_UP) || mlx_is_key_down(data->mlx, MLX_KEY_W)))
 	{
 		//up arrow
-		data->p_y += ACCELERATION * sin(data->p_rad);
-		data->p_x += ACCELERATION * cos(data->p_rad);
+		data->p_y += sin(data->p_rad) *1;
+		data->p_x += cos(data->p_rad) *1;
 	}
-	if (!is_there_a_wall(data->p_x - ACCELERATION * cos(data->p_rad), data->p_y - ACCELERATION * sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_DOWN) || mlx_is_key_down(data->mlx, MLX_KEY_S)))
+	if (!is_there_a_wall(data->p_x - cos(data->p_rad), data->p_y - sin(data->p_rad), data) && (mlx_is_key_down(data->mlx, MLX_KEY_DOWN) || mlx_is_key_down(data->mlx, MLX_KEY_S)))
 	{
 		//down arrow
-		data->p_y -= ACCELERATION * sin(data->p_rad);
-		data->p_x -= ACCELERATION * cos(data->p_rad);
+		data->p_y -= sin(data->p_rad) *1;
+		data->p_x -= cos(data->p_rad) *1;
 	}
-	if (!is_there_a_wall(data->p_x + ACCELERATION * cos(data->p_rad - M_PI /2), data->p_y + ACCELERATION * sin(data->p_rad - M_PI /2), data) && (mlx_is_key_down(data->mlx, MLX_KEY_A)))
+	if (!is_there_a_wall(data->p_x + cos(data->p_rad - M_PI /2), data->p_y + sin(data->p_rad - M_PI /2), data) && (mlx_is_key_down(data->mlx, MLX_KEY_A)))
 	{
 		//up arrow
-		data->p_y += ACCELERATION * sin(data->p_rad - M_PI /2);
-		data->p_x += ACCELERATION * cos(data->p_rad - M_PI /2);
+		data->p_y += sin(data->p_rad - M_PI /2) *1;
+		data->p_x += cos(data->p_rad - M_PI /2) *1;
 	}
 }
 
@@ -207,11 +217,11 @@ void		ft_hooks_(t_data *data)
 {
 	mlx_get_mouse_pos(data->mlx, &data->mouse_x, &data->mouse_y);
 	
-	if (!is_there_a_wall(data->p_x + 3 * cos(data->p_rad + M_PI /2), data->p_y + 3 * sin(data->p_rad + M_PI /2), data) && (mlx_is_key_down(data->mlx, MLX_KEY_D)))
+	if (!is_there_a_wall(data->p_x  * cos(data->p_rad + M_PI /2), data->p_y * sin(data->p_rad + M_PI /2), data) && (mlx_is_key_down(data->mlx, MLX_KEY_D)))
 	{
 		//down arrow
-		data->p_y += ACCELERATION * sin(data->p_rad + M_PI / 2);
-		data->p_x += ACCELERATION * cos(data->p_rad + M_PI / 2);
+		data->p_y += sin(data->p_rad + M_PI / 2) *1;
+		data->p_x += cos(data->p_rad + M_PI / 2) *1;
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 	{
@@ -228,6 +238,22 @@ void		ft_hooks_(t_data *data)
 		data->p_rad +=2 * M_PI;
 }
 
+void draw_mini_map(t_data *data)
+{
+	int i = 250;
+	int j;
+	while (i)
+	{
+		j = 250;
+		while(j)
+		{
+			mlx_put_pixel(data->image, i, j, 0x0000FF00);
+			--j;
+		}
+		--i;
+	}
+}
+
 void		ft_event(void *dat)
 {
 	t_data *data= dat;
@@ -241,6 +267,7 @@ void		ft_event(void *dat)
 	// mlx_put_pixel(data->map , 25, 25, 0x00FF0000);
    	// ft_draw(data);
    	draw_player(data);
+	draw_mini_map(data);
    	// draw_rays(data);
 	mlx_image_to_window(data->mlx, data->image, 0, 0);
 	// mlx_image_to_window(data->mlx, data->map, 0, 0);
