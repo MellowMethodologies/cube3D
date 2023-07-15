@@ -125,5 +125,6 @@ int		check_player(int c);
 void	ft_get_image(t_data *data, t_vars *vars);
 unsigned int	*ft_get_dir(t_data *data);
 void	draw_wall(t_data *data, int i, double dist);
+void	draw_mini_map(t_data *data, int x, int y);
 
 #endif

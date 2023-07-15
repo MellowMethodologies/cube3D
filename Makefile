@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+         #
+#    By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 19:51:25 by idabligi          #+#    #+#              #
-#    Updated: 2023/07/13 18:14:18 by sbadr            ###   ########.fr        #
+#    Updated: 2023/07/15 10:11:59 by idabligi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS_LIBFT = ./Libft/ft_itoa.c ./Libft/ft_split.c ./Libft/ft_strmapi.c ./Libft/f
 			./Libft/ft_strdup.c ./Libft/ft_strlcat.c ./Libft/ft_strlcpy.c ./Libft/ft_strlen.c ./Libft/ft_strncmp.c ./Libft/ft_strnstr.c\
 			./Libft/ft_strrchr.c ./Libft/ft_tolower.c ./Libft/ft_toupper.c ./Libft/ft_substr.c
 
-SRCS_CUB = get_next_line_utils.c parsing_1.c main.c ft_textures.c cub3d_utils.c ft_get_image.c ft_draw_wall.c
+SRCS_CUB = get_next_line_utils.c parsing_1.c main.c ft_textures.c cub3d_utils.c ft_get_image.c ft_draw_wall.c ft_draw_minimap.c
 
 SRCS = $(SRCS_LIBFT) $(SRCS_CUB)
 
@@ -34,7 +34,7 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 	
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) libmlx42.a -Iinclude -lglfw -L"/Users/sbadr/.brew/opt/glfw/lib/" $^ -o $@
+	$(CC) $(CFLAGS) libmlx42.a -Iinclude -lglfw -L"/Users/idabligi/.brew/opt/glfw/lib/" $^ -o $@
 	./$(NAME) ./maps/map.cub
 
 		

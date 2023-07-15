@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/15 08:49:36 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/15 14:39:57 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,6 +213,8 @@ void		ft_hooks(t_data *data)
 	}
 }
 
+//----------------------------------------------------------------------------//
+
 void		ft_hooks_(t_data *data)
 {
 	mlx_get_mouse_pos(data->mlx, &data->mouse_x, &data->mouse_y);
@@ -238,21 +240,7 @@ void		ft_hooks_(t_data *data)
 		data->p_rad +=2 * M_PI;
 }
 
-void draw_mini_map(t_data *data)
-{
-	int i = 250;
-	int j;
-	while (i)
-	{
-		j = 250;
-		while(j)
-		{
-			mlx_put_pixel(data->image, i, j, 0x0000FF00);
-			--j;
-		}
-		--i;
-	}
-}
+//----------------------------------------------------------------------------//
 
 void		ft_event(void *dat)
 {
@@ -267,7 +255,7 @@ void		ft_event(void *dat)
 	// mlx_put_pixel(data->map , 25, 25, 0x00FF0000);
    	// ft_draw(data);
    	draw_player(data);
-	draw_mini_map(data);
+	draw_mini_map(data, 0, 0);
    	// draw_rays(data);
 	mlx_image_to_window(data->mlx, data->image, 0, 0);
 	// mlx_image_to_window(data->mlx, data->map, 0, 0);
