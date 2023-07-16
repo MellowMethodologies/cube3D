@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:08:25 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/15 17:43:13 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/16 13:08:05 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,12 @@ void	ft_draw_mm_background(t_data *data, int x, int y, size_t i)
 		y++;
 	}
 	x = (i * TILE_SIZE) / 6;
+	x = data->width / 6;
+	y = data->height / 6;
 	i = y;
 	while (x >= 0)
 	{ 
-		y = (i * TILE_SIZE) / 6;
+		y = i;
 		while (y >= 0)
 		{
 			mlx_put_pixel(data->image, x, y, 0x00000000);
@@ -88,6 +90,7 @@ void draw_mini_map(t_data *data, int x, int y)
 {
 
 	ft_draw_mm_background(data, 0, 0, 0);
+		
 	while (data->str[y])
 	{
 		x = 0;
