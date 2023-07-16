@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:19:21 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/15 17:38:19 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/15 22:58:57 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@
 # define WIDTH 1920
 # define TILE_SIZE 64
 # define ROTATION_SPEED 6
-# define ACC 7
-
+# define ACC 2
 
 typedef struct vars
 {
@@ -49,10 +48,10 @@ typedef struct vars
 
 typedef struct s_ray
 {
-	float angle;
-	float xwall;
-	float ywall;
-	float distance;
+	float	angle;
+	float	xwall;
+	float	ywall;
+	float	distance;
 }t_ray;
 
 typedef struct collections{
@@ -64,12 +63,12 @@ typedef struct collections{
 }	t_collectives;
 
 typedef struct coordinates{
-	int 		offsetx;
-	int 		offsety;
-	double 		wall_hight;
-	double	 	wall_top;
-	float 		wall_bottom;
-	size_t		y;
+	int				offsetx;
+	int				offsety;
+	double			wall_hight;
+	double			wall_top;
+	float			wall_bottom;
+	size_t			y;
 
 }	t_coordinates;
 
@@ -82,11 +81,11 @@ typedef struct s_data
 	float			dist;
 	float			ongle;
 	char			hit;
-	size_t 			count;
+	size_t			count;
 	mlx_texture_t	*texture;
 	mlx_image_t		*image;
 	mlx_image_t		*map;
-	mlx_texture_t*	png;
+	mlx_texture_t	png;
 	t_vars			*vars;
 	double			hit_x;
 	double			hit_y;
@@ -94,8 +93,8 @@ typedef struct s_data
 	int32_t			mouse_y;
 	int32_t			mouse_x_old;
 	int32_t			mouse_y_old;
-	size_t				height;
-	size_t				width;
+	size_t			height;
+	size_t			width;
 	int				num_rays;
 	double			p_x;
 	double			p_y;
@@ -105,11 +104,20 @@ typedef struct s_data
 	void			*mlx;
 	void			*window;
 	t_coordinates	cord;
-}   t_data;
+}	t_data;
 
-int is_there_a_wall(double x, double y, t_data *data);
-void	 error(void);
-int 	get_rgba(int r, int g, int b, int a);
+
+void	remplisage(char **str, t_collectives *col);
+void	all_in(char **str, t_collectives *col);
+int		check_help(int c);
+int		check_player(int c);
+void	check_path(t_vars *vars);
+double	ds_between_two_points(double x, double y, double x1, double y1);
+void	circled(float *x);
+float	find_hr(t_data *data, float a_x, float a_y, float rotation);
+float	find_vr(t_data *data, float a_x, float a_y, float rotation);
+void	error(void);
+int		get_rgba(int r, int g, int b, int a);
 int		is_there_a_wall_1(double x, double y, t_data *data);
 void	draw_player(t_data	*data);
 int		ft_isspace(int i);

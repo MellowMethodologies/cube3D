@@ -1,28 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_utils.c                                      :+:      :+:    :+:   */
+/*   interction.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/15 17:22:04 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/15 18:44:03 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/cube.h"
-
-
-void	ft_abort(int id)
-{
-	if (id == 1)
-		printf("\e[1;31mError in malloc!\n\e[0m");
-	else if (id == 2)
-		printf("\e[1;31mArgument please!\n\e[0m");
-	else if (id == 3)
-		printf("\e[1;31mError in texture!\n\e[0m");
-	exit(1);
-}
 
 double	ds_between_two_points(double x, double y, double x1, double y1)
 {
@@ -31,49 +19,31 @@ double	ds_between_two_points(double x, double y, double x1, double y1)
 
 float	ft_find_hr(t_data *data, float rotation)
 {
-	float	a_x = 0;
-	float	a_y = 0;
-	int		c = 0;
+	float	a_x;
+	float	a_y;
+	int		c;
 
+	c = 0;
+	a_x = 0;
+	a_y = 0;
 	if (rotation >= 0 && rotation <= M_PI)
-	{
 		a_y = floor(data->p_y / TILE_SIZE) * TILE_SIZE + TILE_SIZE ;
-		c = 1;
-	}
 	else
 		a_y = floor(data->p_y / TILE_SIZE) * TILE_SIZE - 0.01;
 	a_x = data->p_x + ((a_y - data->p_y) / tan(rotation));
-	while (1)
-	{
-		if (is_there_a_wall_1(a_x, a_y, data))
-		{
-			if (c)
-				a_y += 0.01;
-			break ;
-		}
-		if (c)
-		{
-			a_y += TILE_SIZE;
-			a_x += TILE_SIZE / tan(rotation);
-		}
-		else
-		{
-			a_y -= TILE_SIZE;
-			a_x -= TILE_SIZE / tan(rotation);
-		}
-	}
-	return (ds_between_two_points(data->p_x, data->p_y, a_x, a_y));
+	return (find_hr(data, a_x, a_y, rotation));
 }
-
-//----------------------------------------------------------------------------//
 
 float	ft_find_vr(t_data *data, float rotation)
 {
-	int c = 0;
-	float	a_x = 0;
-	float	a_y = 0;
+	int		c;
+	float	a_x;
+	float	a_y;
 
-	if (rotation >= 3*M_PI/2 || rotation <= M_PI/2)
+	c = 0;
+	a_x = 0;
+	a_y = 0;
+	if (rotation >= 3 * M_PI / 2 || rotation <= M_PI / 2)
 	{
 		a_x = floor(data->p_x / TILE_SIZE) * TILE_SIZE + TILE_SIZE ;
 		c = 1;
@@ -81,42 +51,19 @@ float	ft_find_vr(t_data *data, float rotation)
 	else
 		a_x = floor(data->p_x / TILE_SIZE) * TILE_SIZE - 0.01;
 	a_y = data->p_y + ((a_x - data->p_x) * tan(rotation));
-	while (1)
-	{
-		if (is_there_a_wall_1(a_x, a_y, data))
-		{
-			if (c)
-				a_x += 0.01;
-			break ;
-		}
-		if (c)
-		{
-			a_y +=	TILE_SIZE * tan(rotation);
-			a_x +=	TILE_SIZE;
-		}
-		else
-		{
-			a_y -=	TILE_SIZE * tan(rotation);
-			a_x -=	TILE_SIZE; 
-		}
-	}
-	return (ds_between_two_points(data->p_x, data->p_y , a_x, a_y));
+	return (find_vr(data, a_x, a_y, rotation));
 }
 
-//----------------------------------------------------------------------------//
-
-void draw_player(t_data	*data)
+void	draw_player(t_data	*data)
 {
-	float x;
+	float	x;
+	size_t	i;
 
+	i = 0;
 	x = data->p_rad - (FOV / 2);
-	size_t i = 0;
 	while (i < data->width)
 	{
-		if (x < 0)
-			x += M_PI * 2;
-		if (x > 2 * M_PI)
-			x -= M_PI * 2;
+		circled(&x);
 		if (ft_find_hr(data, x) < ft_find_vr(data, x))
 		{
 			data->dist = ft_find_hr(data, x);
@@ -135,5 +82,3 @@ void draw_player(t_data	*data)
 		i++;
 	}
 }
-
-//----------------------------------------------------------------------------//

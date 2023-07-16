@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw_minimap.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:08:25 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/15 17:43:13 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/15 18:55:04 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 //----------------------------------------------------------------------------//
 
-void    ft_draw_mm_walls(t_data *data, int x, int y)
+void	ft_draw_mm_walls(t_data *data, int x, int y)
 {
-	int i;
-	int j;
-	int s;
+	int	i;
+	int	j;
+	int	s;
 	int	l;
 
 	i = 0;
@@ -55,7 +55,7 @@ void	ft_draw_mm_background(t_data *data, int x, int y, size_t i)
 	x = (i * TILE_SIZE) / 6;
 	i = y;
 	while (x >= 0)
-	{ 
+	{
 		y = (i * TILE_SIZE) / 6;
 		while (y >= 0)
 		{
