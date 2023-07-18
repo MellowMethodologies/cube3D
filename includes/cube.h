@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:19:21 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/18 15:37:48 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/18 17:05:05 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ void	ft_hooks(t_data *data);
 void	ft_hooks_(t_data *data);
 void	norme_it(t_data *data);
 void	ft_event(void *dat);
+double	ds_between_two_points(double x, double y, double x1, double y1);
 
 
 #endif

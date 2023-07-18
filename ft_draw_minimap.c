@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:08:25 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/18 16:38:45 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/18 17:51:16 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,21 @@ void    ft_draw_mm_walls(t_data *data, int x, int y)
 	y = data->p_y - 75;
 	x1 = data->p_x - 75;
 	y1 = data->p_y - 75;
+	// printf("%.2f\n", ds_between_two_points(x , y, 75, 75));
+	// exit (0);
 	while (x < (x1 + 150))
 	{
 		y = data->p_y - 75;
 		j = 0;
 		while (y < (y1 +150))
 		{
-			if (is_there_a_wall_1(x, y, data))
-				mlx_put_pixel(data->image, i, j, 0x00CCFFFFFF);
+			if (ds_between_two_points(x , y, data->p_x, data->p_y) <= 70)
+			{
+				if (is_there_a_wall_1(x, y, data))
+					mlx_put_pixel(data->image, i, j, 0x00CCFFFFFF);
+				else
+					mlx_put_pixel(data->image, i, j, 0x00000000);
+			}
 			y++;
 			j++;
 		}
@@ -109,10 +116,8 @@ void	ft_draw_mm_background(t_data *data, int x, int y)
 void draw_mini_map(t_data *data, int x, int y)
 {
 
-	ft_draw_mm_background(data, 0, 0);
+	// ft_draw_mm_background(data, 0, 0);
 	x = 0;
 	y = 0;
 	ft_draw_mm_walls(data, 0, 0);
-	
-	
 }
