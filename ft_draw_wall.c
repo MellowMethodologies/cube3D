@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:40:19 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/15 22:24:04 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/16 16:48:44 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_get_cord(t_data *data, int i, double dist)
 	size_t	j;
 
 	j = 0;
-	data->cord.wall_hight = 124000 / dist;
+	data->cord.wall_hight = 160000 / dist;
 	data->cord.wall_top = data->height / 2 - data->cord.wall_hight / 2;
 	if (data->cord.wall_top < 0)
 		data->cord.wall_top = 0;

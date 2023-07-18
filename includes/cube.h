@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:19:21 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/15 22:58:57 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/16 16:31:54 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define WIDTH 1920
 # define TILE_SIZE 64
 # define ROTATION_SPEED 6
-# define ACC 2
+# define ACC 6
 
 typedef struct vars
 {

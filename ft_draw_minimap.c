@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:08:25 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/15 18:55:04 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/18 20:54:14 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,12 @@ void	ft_draw_mm_background(t_data *data, int x, int y, size_t i)
 		y++;
 	}
 	x = (i * TILE_SIZE) / 6;
+	x = data->width / 6;
+	y = data->height / 6;
 	i = y;
 	while (x >= 0)
 	{
-		y = (i * TILE_SIZE) / 6;
+		y = i;
 		while (y >= 0)
 		{
 			mlx_put_pixel(data->image, x, y, 0x00000000);
@@ -87,7 +89,8 @@ void	ft_draw_mm_line(t_data *data)
 void draw_mini_map(t_data *data, int x, int y)
 {
 
-	ft_draw_mm_background(data, 0, 0, 0);
+	// ft_draw_mm_background(data, 0, 0, 0);
+		
 	while (data->str[y])
 	{
 		x = 0;

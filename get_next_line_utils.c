@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:21:37 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/10 10:50:53 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/16 12:55:00 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,16 +79,15 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (!res)
 		res = ft_strdup_b("");
-	buff = calloc(3, 1);
+	buff = calloc(2, 1);
 	if (!buff)
 		return (NULL);
 	i = 1;
 	while (i)
 	{
-		i = read(fd, buff, 2);
+		i = read(fd, buff, 1);
 		if (i < 0)
 			return (free(res), free(buff), res = NULL, NULL);
-
 		res = ft_strjoin_b(res, buff);
 	}
 	free(buff);
