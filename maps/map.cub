@@ -4,7 +4,7 @@ WE ./textures/bba.png
 EA ./textures/bbb.png
 
 F 32,32,32
-C 160,160,160
+C 0,204,204
 
 
 1111111111111111111111111
