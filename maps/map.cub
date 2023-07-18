@@ -3,8 +3,8 @@ SO ./textures/bbb.png
 WE ./textures/bba.png
 EA ./textures/bbb.png
 
-F 32,32,32
-C 0,204,204
+F 0,0,0
+C 0,0,51
 
 
 1111111111111111111111111
