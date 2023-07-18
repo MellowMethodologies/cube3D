@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:08:25 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/18 17:51:16 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/18 18:02:04 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_draw_mm_player(t_data *data)
 	int		count;
 
 	ongle = 0;
-	incre = (5 * M_PI) / 180;
+	incre = (10 * M_PI) / 180;
 	while (ongle <= 2 * M_PI)
 	{
 		count = 4;
@@ -68,8 +68,6 @@ void    ft_draw_mm_walls(t_data *data, int x, int y)
 	y = data->p_y - 75;
 	x1 = data->p_x - 75;
 	y1 = data->p_y - 75;
-	// printf("%.2f\n", ds_between_two_points(x , y, 75, 75));
-	// exit (0);
 	while (x < (x1 + 150))
 	{
 		y = data->p_y - 75;
@@ -83,6 +81,8 @@ void    ft_draw_mm_walls(t_data *data, int x, int y)
 				else
 					mlx_put_pixel(data->image, i, j, 0x00000000);
 			}
+			else if (ds_between_two_points(x , y, data->p_x, data->p_y) > 70 && ds_between_two_points(x , y, data->p_x, data->p_y) < 75)
+					mlx_put_pixel(data->image, i, j, 0x0000FF00FF);
 			y++;
 			j++;
 		}
