@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:08:25 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/18 13:36:57 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/18 16:38:45 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,72 +14,93 @@
 
 //----------------------------------------------------------------------------//
 
-void    ft_draw_mm_walls(t_data *data, int x, int y)
+void	ft_draw_mm_player(t_data *data)
 {
-	int i;
-	int j;
-	int s;
-	int	l;
+	double	x;
+	double	y;
+	double	ongle;
+	double	incre;
+	int		count;
 
-	i = 0;
-	j = 0;
-	s = x;
-	l = TILE_SIZE / 6 ;
-	while (j <= l)
+	ongle = 0;
+	incre = (5 * M_PI) / 180;
+	while (ongle <= 2 * M_PI)
 	{
-		i = 0;
-		x = s;
-		while (i <= l)
+		count = 4;
+		while (count)
 		{
-			mlx_put_pixel(data->image, x, y, 0x00CCFFFFFF);
-			x++;
-			i++;
+			x = 75 + cos(ongle) * count;
+			y = 75 + sin(ongle) * count;
+			mlx_put_pixel(data->image, x, y, 0x0000FF00FF);
+			count--;
 		}
-		y++;
-		j++;
+		ongle = ongle + incre;
 	}
 }
 
 //----------------------------------------------------------------------------//
 
-void	ft_draw_mm_background(t_data *data, int x, int y, size_t i)
-{
-	if (data->str[y])
-		i = ft_strlen(data->str[y]);
-	while (data->str[y])
-	{
-		if (i < ft_strlen(data->str[y]))
-			i = ft_strlen(data->str[y]);
-		y++;
-	}
-	x = (i * TILE_SIZE) / 6;
-	i = y;
-	while (x >= 0)
-	{ 
-		y = (i * TILE_SIZE) / 6;
-		while (y >= 0)
-		{
-			mlx_put_pixel(data->image, x, y, 0x00000000);
-			y--;
-		}
-		x--;
-	}
-	
-}
-
-//----------------------------------------------------------------------------//
-
-void	ft_draw_mm_line(t_data *data)
+void	ft_draw_mm_line(t_data *data, double ongle)
 {
 	float	x;
 	float	y;
-	int		count = 50;
-	while (count > 2)
+	int		count = 15;
+
+	while (count > 0)
 	{
-		x = data->p_x + cos(data->p_rad) * count;
-		y = data->p_y + sin(data->p_rad) * count;
-		mlx_put_pixel(data->image, x / 6, y / 6, 0xFF3333FF);
+		x = 75 + cos(ongle) * count;
+		y = 75 + sin(ongle) * count;
+		mlx_put_pixel(data->image, x, y, 0x0000FF00FF);
 		count--;
+	}
+}
+
+//----------------------------------------------------------------------------//
+
+void    ft_draw_mm_walls(t_data *data, int x, int y)
+{
+	int i = 0;
+	int j = 0;
+	int x1;
+	int y1;
+
+	x = data->p_x - 75;
+	y = data->p_y - 75;
+	x1 = data->p_x - 75;
+	y1 = data->p_y - 75;
+	while (x < (x1 + 150))
+	{
+		y = data->p_y - 75;
+		j = 0;
+		while (y < (y1 +150))
+		{
+			if (is_there_a_wall_1(x, y, data))
+				mlx_put_pixel(data->image, i, j, 0x00CCFFFFFF);
+			y++;
+			j++;
+		}
+		i++;
+		x++;
+	}
+	ft_draw_mm_player(data);
+	ft_draw_mm_line(data, data->p_rad);
+	ft_draw_mm_line(data, (data->p_rad) + (M_PI / 180));
+	ft_draw_mm_line(data, (data->p_rad) - (M_PI / 180));
+}
+
+//----------------------------------------------------------------------------//
+
+void	ft_draw_mm_background(t_data *data, int x, int y)
+{
+	while (y < 150)
+	{
+		x = 0;
+		while (x < 150)
+		{
+			mlx_put_pixel(data->image, x, y, 0x00000000);
+			x++;
+		}
+		y++;
 	}
 }
 
@@ -88,22 +109,10 @@ void	ft_draw_mm_line(t_data *data)
 void draw_mini_map(t_data *data, int x, int y)
 {
 
-	ft_draw_mm_background(data, 0, 0, 0);
-	while (data->str[y])
-	{
-		x = 0;
-		while (data->str[y][x])
-		{
-			if (data->str[y][x] == '1')
-				ft_draw_mm_walls(data, (x * TILE_SIZE / 6), (y * TILE_SIZE / 6));
-			x++;
-		}
-		y++;
-	}
-	ft_draw_mm_line(data);
-	// mlx_put_pixel(data->image ,data->p_x/6, data->p_y/6, 0x00CCFFFFFF);
-	// mlx_put_pixel(data->image ,(data->p_x - 1)/6, data->p_y/6, 0x00CCFFFFFF);
-	// mlx_put_pixel(data->image , data->p_x/6 , (data->p_y - 1/6), 0x00CCFFFFFF);
-	// mlx_put_pixel(data->image , data->p_x/6, (data->p_y + 1)/6, 0x00CCFFFFFF);
-	// mlx_put_pixel(data->image , (data->p_x + 1)/6, data->p_y/6, 0x00CCFFFFFF);
+	ft_draw_mm_background(data, 0, 0);
+	x = 0;
+	y = 0;
+	ft_draw_mm_walls(data, 0, 0);
+	
+	
 }
