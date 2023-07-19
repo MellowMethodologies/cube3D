@@ -6,7 +6,7 @@
 #    By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 19:51:25 by idabligi          #+#    #+#              #
-#    Updated: 2023/07/19 10:32:38 by idabligi         ###   ########.fr        #
+#    Updated: 2023/07/19 11:18:38 by idabligi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ SRCS = get_next_line_utils.c parsing_1.c main.c ft_draw_minimap.c\
 	cub_utils.c intercection.c helper_functions.c ft_wall_color.c
 OBJS := $(SRCS:.c=.o)
 CC  = cc
-CFLAGS = -g -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS = -g -Wall -Wextra -Werror -fsanitize=address
 NAME = cube
 
 all: $(NAME)

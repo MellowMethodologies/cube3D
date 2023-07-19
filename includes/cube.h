@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:19:21 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/19 10:31:49 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/19 11:20:45 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ typedef struct coordinates{
 
 typedef struct s_data
 {
-	unsigned int 	no[100000];
-	unsigned int 	so[100000];
-	unsigned int 	we[100000];
-	unsigned int 	ea[100000];
+	unsigned int 	no[500000];
+	unsigned int 	so[500000];
+	unsigned int 	we[500000];
+	unsigned int 	ea[500000];
 	float			dist;
 	float			ongle;
 	char			hit;

@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 15:33:04 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/19 10:32:24 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/19 11:23:48 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	ft_get_pixels(unsigned int *dir, uint8_t *pxl, uint32_t count)
 	// 	ft_abort(1);
 	while (i < (int)count)
 	{
-		printf("%ld\n", i);
 		dir[i++] = get_rgba(*pxl, *(pxl + 1), *(pxl + 2), *(pxl + 3));
 		pxl += 4;
 	}
