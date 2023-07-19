@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:19:21 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/16 16:31:54 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/19 08:53:04 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,51 +106,42 @@ typedef struct s_data
 	t_coordinates	cord;
 }	t_data;
 
-
-void	remplisage(char **str, t_collectives *col);
-void	all_in(char **str, t_collectives *col);
-int		check_help(int c);
-int		check_player(int c);
-void	check_path(t_vars *vars);
-double	ds_between_two_points(double x, double y, double x1, double y1);
-void	circled(float *x);
-float	find_hr(t_data *data, float a_x, float a_y, float rotation);
-float	find_vr(t_data *data, float a_x, float a_y, float rotation);
-void	error(void);
-int		get_rgba(int r, int g, int b, int a);
-int		is_there_a_wall_1(double x, double y, t_data *data);
-void	draw_player(t_data	*data);
-int		ft_isspace(int i);
-void	ft_textures(t_data *data, t_vars *vars);
-int		ft_destroy(t_data *data);
-void	ft_event(void *dat);
-void	ft_end(int sig);
-void	ft_draw(t_data *data);
-void	ft_abort(int id);
-char	*ft_strdup(const char *src);
-char	*ft_itoa(int n);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-char	*get_next_line(int fd);
-size_t	ft_strlen_b(char *str);
-char	*ft_strdup_b(char *src);
-char	*ft_strjoin_b(char *s1, char *s2);
-void	ft_putchar_fd(char c, int fd);
-void	ft_putnbr_fd(int nb, int fd);
-char	*get_next_line(int fd);
-void	ft_putstr_fd(char *s, int fd);
-char	*ft_strdup(const char *s1);
-void	parser(char *par, t_vars *vars);
-int		is_there_a_wall(double x, double y, t_data *data);
-void	map_check(t_vars *vars);
-int		check_player(int c);
-void	ft_get_image(t_data *data, t_vars *vars);
+int				check_it(int c);
+void			remplisage(char **str, t_collectives *col);
+void			all_in(char **str, t_collectives *col);
+int				check_help(int c);
+int				check_player(int c);
+void			check_path(t_vars *vars);
+double			ds_between_two_points(double x, double y, double x1, double y1);
+void			circled(float *x);
+float			find_hr(t_data *data, float a_x, float a_y, float rotation);
+float			find_vr(t_data *data, float a_x, float a_y, float rotation);
+void			error(void);
+int				get_rgba(int r, int g, int b, int a);
+int				is_there_a_wall_1(double x, double y, t_data *data);
+void			draw_player(t_data	*data);
+void			ft_textures(t_data *data, t_vars *vars);
+void			ft_event(void *dat);
+void			ft_abort(int id);
+char			*get_next_line(int fd);
+size_t			ft_strlen_b(char *str);
+char			*ft_strdup_b(char *src);
+char			*ft_strjoin_b(char *s1, char *s2);
+void			ft_putchar_fd(char c, int fd);
+char			*get_next_line(int fd);
+void			ft_putstr_fd(char *s, int fd);
+void			parser(char *par, t_vars *vars);
+void			map_check(t_vars *vars);
+int				check_player(int c);
+void			ft_get_image(t_data *data, t_vars *vars);
 unsigned int	*ft_get_dir(t_data *data);
-void	draw_wall(t_data *data, int i, double dist);
-void	draw_mini_map(t_data *data, int x, int y);
-void	ft_hooks(t_data *data);
-void	ft_hooks_(t_data *data);
-void	norme_it(t_data *data);
-void	ft_event(void *dat);
+void			draw_wall(t_data *data, int i, double dist);
+void			draw_mini_map(t_data *data, int x, int y);
+void			ft_hooks(t_data *data);
+void			ft_hooks_(t_data *data);
+void			norme_it(t_data *data);
+void			ft_event(void *dat);
+double			ds_between_two_points(double x, double y, double x1, double y1);
 
 
 #endif

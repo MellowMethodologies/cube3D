@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 00:37:29 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/18 20:47:40 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/19 08:51:48 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	map_check(t_vars *vars)
 {
-	vars->i = 6;
 	while (vars->map[vars->i])
 	{
 		vars->j = 0;
@@ -44,18 +43,18 @@ void	map_check(t_vars *vars)
 
 void	map_check_1(t_vars *vars)
 {
-	vars->i = 6;
 	while (vars->map[vars->i])
 	{
 		vars->j = 0;
 		while (vars->map[vars->i][vars->j])
 		{
-			if (vars->map[vars->i][vars->j] == '0'
+			if ((vars->map[vars->i][vars->j] == '0'
 				&& (vars->i - 1 >= 0 && vars->j - 1 >= 0
-				&& (check_help(vars->map[vars->i + 1][vars->j])
-				&& check_help(vars->map[vars->i - 1][vars->j])
+					&& (check_help(vars->map[vars->i + 1][vars->j])
+					&& check_help(vars->map[vars->i - 1][vars->j])
 				&& check_help(vars->map[vars->i][vars->j + 1])
 				&& check_help(vars->map[vars->i][vars->j - 1]))))
+				|| check_it(vars->map[vars->i][vars->j]))
 			{
 				vars->j++;
 				continue ;
@@ -133,7 +132,9 @@ void	parser(char *par, t_vars *vars)
 	check_files(vars);
 	check_colors(vars);
 	check_path(vars);
+	vars->i = 6;
 	map_check(vars);
-	// map_check_1(vars);
+	vars->i = 6;
+	map_check_1(vars);
 	all_in(vars->map, &col);
 }
