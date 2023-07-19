@@ -1,7 +1,7 @@
 NO ./textures/bba.png
 SO ./textures/bbb.png
 WE ./textures/bba.png
-EA ./textures/bbbb.png
+EA ./textures/bbb.png
 
 F 0,0,210
 C 0,0,51

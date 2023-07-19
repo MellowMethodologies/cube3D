@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:40:19 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/19 09:33:32 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/19 10:25:37 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,50 +14,53 @@
 
 //----------------------------------------------------------------------------//
 
-unsigned int	*ft_get_dir2(t_data *data)
+char	ft_get_dir2(t_data *data)
 {
 	if (data->ongle >= M_PI && data->ongle < ((3 * M_PI) / 2))
 	{
 		if (data->hit == 'V')
-			return (data->we);
+			return ('W');
 		else
-			return (data->no);
+			return ('N');
 	}
 	else if (data->ongle >= ((3 * M_PI) / 2) && data->ongle < (2 * M_PI))
 	{
 		if (data->hit == 'V')
-			return (data->ea);
+			return ('E');
 		else
-			return (data->no);
+			return ('N');
 	}
 	return (0);
 }
 
 //----------------------------------------------------------------------------//
 
-unsigned int	*ft_get_dir(t_data *data)
+char	ft_get_dir(t_data *data)
 {
 	if (data->ongle >= 0 && data->ongle < (M_PI / 2))
 	{
 		if (data->hit == 'V')
-			return (data->ea);
+			return ('E');
 		else
-			return (data->so);
+			return ('S');
 	}
 	else if (data->ongle >= (M_PI / 2) && data->ongle < M_PI)
 	{
 		if (data->hit == 'V')
-			return (data->we);
+			return ('W');
 		else
-			return (data->so);
+			return ('S');
 	}
 	else
 		return (ft_get_dir2(data));
+
 }
+
+//----------------------------------------------------------------------------//
 
 void	ft_get_cord(t_data *data, int i, double dist)
 {
-	size_t	j;
+	int	j;
 
 	j = 0;
 	data->cord.wall_hight = 160000 / dist;
@@ -79,24 +82,24 @@ void	ft_get_cord(t_data *data, int i, double dist)
 		data->cord.offsetx = (int)data->hit_x % data->vars->NO->width;
 }
 
+//----------------------------------------------------------------------------//
+
 void	draw_wall(t_data *data, int x, double dist)
 {
 	size_t			j;
-	unsigned int	color;
-	unsigned int	*buffer;
+	char			c;
 
 	j = 0;
 	ft_get_cord(data, x, dist);
-	buffer = ft_get_dir(data);
-	while (data->cord.y < data->cord.wall_bottom)
-	{
-		j = (data->cord.y + (data->cord.wall_hight / 2) - (data->height / 2));
-		data->cord.offsety = j * ((double)(data->vars->NO->height
-					/ data->cord.wall_hight));
-		color = buffer[(data->vars->NO->height * data->cord.offsety)
-			+ (data->cord.offsetx)];
-		mlx_put_pixel(data->image, x, data->cord.y++, color);
-	}
+	c = ft_get_dir(data);
+	if (c == 'N')
+		ft_draw_wall_no(data, x, 0);
+	else if (c == 'S')
+		ft_draw_wall_so(data, x, 0);
+	else if (c == 'E')
+		ft_draw_wall_ea(data, x, 0);
+	else if (c == 'W')
+		ft_draw_wall_we(data, x, 0);
 	if (data->cord.wall_bottom < data->height)
 	{
 		while (data->cord.y < data->height)

@@ -6,16 +6,16 @@
 #    By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 19:51:25 by idabligi          #+#    #+#              #
-#    Updated: 2023/07/19 09:33:48 by idabligi         ###   ########.fr        #
+#    Updated: 2023/07/19 10:32:38 by idabligi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = get_next_line_utils.c parsing_1.c main.c ft_draw_minimap.c\
 	ft_textures.c ft_get_image.c ft_hooks.c ft_draw_wall.c\
-	cub_utils.c intercection.c helper_functions.c
+	cub_utils.c intercection.c helper_functions.c ft_wall_color.c
 OBJS := $(SRCS:.c=.o)
-CC  = cc -g
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CC  = cc
+CFLAGS = -g -Wall -Wextra -Werror #-fsanitize=address
 NAME = cube
 
 all: $(NAME)

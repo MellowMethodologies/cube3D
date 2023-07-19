@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:19:21 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/19 08:53:04 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/19 10:31:49 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ typedef struct coordinates{
 
 typedef struct s_data
 {
-	unsigned int	*no;
-	unsigned int	*so;
-	unsigned int	*ea;
-	unsigned int	*we;
+	unsigned int 	no[100000];
+	unsigned int 	so[100000];
+	unsigned int 	we[100000];
+	unsigned int 	ea[100000];
 	float			dist;
 	float			ongle;
 	char			hit;
@@ -134,7 +134,6 @@ void			parser(char *par, t_vars *vars);
 void			map_check(t_vars *vars);
 int				check_player(int c);
 void			ft_get_image(t_data *data, t_vars *vars);
-unsigned int	*ft_get_dir(t_data *data);
 void			draw_wall(t_data *data, int i, double dist);
 void			draw_mini_map(t_data *data, int x, int y);
 void			ft_hooks(t_data *data);
@@ -142,6 +141,10 @@ void			ft_hooks_(t_data *data);
 void			norme_it(t_data *data);
 void			ft_event(void *dat);
 double			ds_between_two_points(double x, double y, double x1, double y1);
+void			ft_draw_wall_no(t_data *data, int x, int j);
+void			ft_draw_wall_so(t_data *data, int x, int j);
+void			ft_draw_wall_we(t_data *data, int x, int j);
+void			ft_draw_wall_ea(t_data *data, int x, int j);
 
 
 #endif
