@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 15:45:29 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/18 15:00:36 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/19 07:55:15 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,32 @@ int	is_there_a_wall_1(double x, double y, t_data *data)
 		return (1);
 	map_grip_index_x = floor(x / TILE_SIZE);
 	map_grip_index_y = floor(y / TILE_SIZE);
-	if (map_grip_index_y >= data->count
+	if (map_grip_index_y > data->count
 		|| ft_strlen(data->str[map_grip_index_y]) <= map_grip_index_x)
 		return (1);
-	if (data->str[map_grip_index_y][map_grip_index_x] == '1')
+	if (data->str[map_grip_index_y][map_grip_index_x] == '1' 
+			|| data->str[map_grip_index_y][map_grip_index_x] == '1')
 		return (1);
 	return (0);
 }
+
+// int	is_there_a_wall(double x, double y, t_data *data)
+// {
+// 	size_t	map_grip_index_y;
+// 	size_t	map_grip_index_x;
+
+// 	if (x < 0 || y < 0)
+// 		return (1);
+// 	map_grip_index_x = floor(x / TILE_SIZE);
+// 	map_grip_index_y = floor(y / TILE_SIZE);
+// 	if (map_grip_index_y >= data->count
+// 		|| ft_strlen(data->str[map_grip_index_y]) <= map_grip_index_x)
+// 		return (1);
+// 	if (data->str[map_grip_index_y][(int)floor(data->p_y / TILE_SIZE)] == '1' 
+// 			&& data->str[(int)floor(data->p_y / TILE_SIZE)][map_grip_index_x] == '1')
+// 		return (1);
+// 	return (0);
+// }
 
 void	error(void)
 {

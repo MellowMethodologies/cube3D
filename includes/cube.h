@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:19:21 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/18 17:05:05 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/19 08:53:04 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@
 # define WIDTH 1920
 # define TILE_SIZE 64
 # define ROTATION_SPEED 6
-# define ACC 7
-
+# define ACC 6
 
 typedef struct vars
 {
@@ -49,10 +48,10 @@ typedef struct vars
 
 typedef struct s_ray
 {
-	float angle;
-	float xwall;
-	float ywall;
-	float distance;
+	float	angle;
+	float	xwall;
+	float	ywall;
+	float	distance;
 }t_ray;
 
 typedef struct collections{
@@ -64,12 +63,12 @@ typedef struct collections{
 }	t_collectives;
 
 typedef struct coordinates{
-	int 		offsetx;
-	int 		offsety;
-	double 		wall_hight;
-	double	 	wall_top;
-	float 		wall_bottom;
-	size_t		y;
+	int				offsetx;
+	int				offsety;
+	double			wall_hight;
+	double			wall_top;
+	float			wall_bottom;
+	size_t			y;
 
 }	t_coordinates;
 
@@ -82,11 +81,11 @@ typedef struct s_data
 	float			dist;
 	float			ongle;
 	char			hit;
-	size_t 			count;
+	size_t			count;
 	mlx_texture_t	*texture;
 	mlx_image_t		*image;
 	mlx_image_t		*map;
-	mlx_texture_t*	png;
+	mlx_texture_t	png;
 	t_vars			*vars;
 	double			hit_x;
 	double			hit_y;
@@ -94,8 +93,8 @@ typedef struct s_data
 	int32_t			mouse_y;
 	int32_t			mouse_x_old;
 	int32_t			mouse_y_old;
-	size_t				height;
-	size_t				width;
+	size_t			height;
+	size_t			width;
 	int				num_rays;
 	double			p_x;
 	double			p_y;
@@ -105,45 +104,44 @@ typedef struct s_data
 	void			*mlx;
 	void			*window;
 	t_coordinates	cord;
-}   t_data;
+}	t_data;
 
-int is_there_a_wall(double x, double y, t_data *data);
-void	 error(void);
-int 	get_rgba(int r, int g, int b, int a);
-int		is_there_a_wall_1(double x, double y, t_data *data);
-void	draw_player(t_data	*data);
-int		ft_isspace(int i);
-void	ft_textures(t_data *data, t_vars *vars);
-int		ft_destroy(t_data *data);
-void	ft_event(void *dat);
-void	ft_end(int sig);
-void	ft_draw(t_data *data);
-void	ft_abort(int id);
-char	*ft_strdup(const char *src);
-char	*ft_itoa(int n);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-char	*get_next_line(int fd);
-size_t	ft_strlen_b(char *str);
-char	*ft_strdup_b(char *src);
-char	*ft_strjoin_b(char *s1, char *s2);
-void	ft_putchar_fd(char c, int fd);
-void	ft_putnbr_fd(int nb, int fd);
-char	*get_next_line(int fd);
-void	ft_putstr_fd(char *s, int fd);
-char	*ft_strdup(const char *s1);
-void	parser(char *par, t_vars *vars);
-int		is_there_a_wall(double x, double y, t_data *data);
-void	map_check(t_vars *vars);
-int		check_player(int c);
-void	ft_get_image(t_data *data, t_vars *vars);
+int				check_it(int c);
+void			remplisage(char **str, t_collectives *col);
+void			all_in(char **str, t_collectives *col);
+int				check_help(int c);
+int				check_player(int c);
+void			check_path(t_vars *vars);
+double			ds_between_two_points(double x, double y, double x1, double y1);
+void			circled(float *x);
+float			find_hr(t_data *data, float a_x, float a_y, float rotation);
+float			find_vr(t_data *data, float a_x, float a_y, float rotation);
+void			error(void);
+int				get_rgba(int r, int g, int b, int a);
+int				is_there_a_wall_1(double x, double y, t_data *data);
+void			draw_player(t_data	*data);
+void			ft_textures(t_data *data, t_vars *vars);
+void			ft_event(void *dat);
+void			ft_abort(int id);
+char			*get_next_line(int fd);
+size_t			ft_strlen_b(char *str);
+char			*ft_strdup_b(char *src);
+char			*ft_strjoin_b(char *s1, char *s2);
+void			ft_putchar_fd(char c, int fd);
+char			*get_next_line(int fd);
+void			ft_putstr_fd(char *s, int fd);
+void			parser(char *par, t_vars *vars);
+void			map_check(t_vars *vars);
+int				check_player(int c);
+void			ft_get_image(t_data *data, t_vars *vars);
 unsigned int	*ft_get_dir(t_data *data);
-void	draw_wall(t_data *data, int i, double dist);
-void	draw_mini_map(t_data *data, int x, int y);
-void	ft_hooks(t_data *data);
-void	ft_hooks_(t_data *data);
-void	norme_it(t_data *data);
-void	ft_event(void *dat);
-double	ds_between_two_points(double x, double y, double x1, double y1);
+void			draw_wall(t_data *data, int i, double dist);
+void			draw_mini_map(t_data *data, int x, int y);
+void			ft_hooks(t_data *data);
+void			ft_hooks_(t_data *data);
+void			norme_it(t_data *data);
+void			ft_event(void *dat);
+double			ds_between_two_points(double x, double y, double x1, double y1);
 
 
 #endif

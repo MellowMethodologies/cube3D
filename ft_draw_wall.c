@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:40:19 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/19 09:30:29 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/19 09:33:32 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,12 @@ unsigned int	*ft_get_dir(t_data *data)
 		return (ft_get_dir2(data));
 }
 
-//----------------------------------------------------------------------------//
-
 void	ft_get_cord(t_data *data, int i, double dist)
 {
 	size_t	j;
 
 	j = 0;
-	data->cord.wall_hight = 50000 / dist;
+	data->cord.wall_hight = 160000 / dist;
 	data->cord.wall_top = data->height / 2 - data->cord.wall_hight / 2;
 	if (data->cord.wall_top < 0)
 		data->cord.wall_top = 0;

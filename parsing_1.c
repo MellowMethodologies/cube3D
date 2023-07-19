@@ -3,85 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 00:37:29 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/16 12:56:50 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/19 08:51:48 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/cube.h"
 
-void	remplisage(char **str, t_collectives *col)
-{
-	col->i = 6;
-	col->t = 0;
-	col->len = ft_strlen(str[0]);
-	col->p = 0;
-}
-
-void	all_in(char **str, t_collectives *col)
-{
-	remplisage(str, col);
-	while (str[col->i])
-	{
-		col->j = 0;
-		while (str[col->i][col->j])
-		{
-			if (str[col->i][col->j] == 'N' || str[col->i][col->j] == 'W' \
-			|| str[col->i][col->j] == 'E' || str[col->i][col->j] == 'S' )
-				col->p += 1;
-			col->j++;
-		}
-		col->i++;
-	}
-	if (col->p != 1)
-	{
-		ft_putstr_fd("Error!\nchars invalid remember : 1P\n", 2);
-		exit(1);
-	}
-}
-
-int		check_help(int c)
-{
-	if (c == '1' || c == '0' || c == 'W' || c == 'N' || c == 'E' || c == 'S')
-		return 1; 
-	return 0;
-}
-
-int		check_player(int c)
-{
-	if (c == 'W' || c == 'N' || c == 'E' || c == 'S')
-		return 1;
-	return 0;
-}
-
 void	map_check(t_vars *vars)
 {
-	vars->i = 6;
 	while (vars->map[vars->i])
 	{
 		vars->j = 0;
 		while (vars->map[vars->i][vars->j])
 		{
-			if (check_player(vars->map[vars->i][vars->j]) && (!check_help(vars->map[vars->i + 1][vars->j])
-			|| !check_help(vars->map[vars->i - 1][vars->j]) || !check_help(vars->map[vars->i][vars->j + 1])
-			|| !check_help(vars->map[vars->i][vars->j - 1])))
+			if (check_player(vars->map[vars->i][vars->j])
+			&& (!check_help(vars->map[vars->i + 1][vars->j])
+				|| !check_help(vars->map[vars->i - 1][vars->j])
+				|| !check_help(vars->map[vars->i][vars->j + 1])
+					|| !check_help(vars->map[vars->i][vars->j - 1])))
 			{
 				ft_putstr_fd("Player not in map !\n", 2);
 				exit (1);
 			}
-			else if (vars->map[vars->i][vars->j] == '1' || vars->map[vars->i][vars->j] == ' ' || check_player(vars->map[vars->i][vars->j]))
-			{	
-				vars->j++;
-				continue;
-			}
-			else if (vars->map[vars->i][vars->j] == '0' && (vars->i - 1 >= 0 && vars->j - 1 >= 0 && (check_help(vars->map[vars->i + 1][vars->j]) \
-			&& check_help(vars->map[vars->i - 1][vars->j]) && check_help(vars->map[vars->i][vars->j + 1])\
-			&& check_help(vars->map[vars->i][vars->j - 1]))))
+			else if (vars->map[vars->i][vars->j] == '1'
+				|| vars->map[vars->i][vars->j] == ' '
+				|| check_player(vars->map[vars->i][vars->j]))
 			{
 				vars->j++;
-				continue;
+				continue ;
+			}
+			vars->j++;
+		}
+		vars->i++;
+	}
+}
+
+void	map_check_1(t_vars *vars)
+{
+	while (vars->map[vars->i])
+	{
+		vars->j = 0;
+		while (vars->map[vars->i][vars->j])
+		{
+			if ((vars->map[vars->i][vars->j] == '0'
+				&& (vars->i - 1 >= 0 && vars->j - 1 >= 0
+					&& (check_help(vars->map[vars->i + 1][vars->j])
+					&& check_help(vars->map[vars->i - 1][vars->j])
+				&& check_help(vars->map[vars->i][vars->j + 1])
+				&& check_help(vars->map[vars->i][vars->j - 1]))))
+				|| check_it(vars->map[vars->i][vars->j]))
+			{
+				vars->j++;
+				continue ;
 			}
 			else
 			{
@@ -94,21 +70,11 @@ void	map_check(t_vars *vars)
 	}
 }
 
-void check_path(t_vars *vars)
+void	check_files(t_vars *vars)
 {
-	if (vars->EA == NULL || vars->NO == NULL || vars->SO == NULL || vars->WE == NULL)
-        error();
-	if (vars->EA < 0 || vars->NO < 0 || vars->SO < 0 || vars->WE < 0 || vars->F < 0 || vars->C < 0)
-	{
-		ft_putstr_fd("Error!\nimage path invalid\n", 2);
-		exit(1);
-	}
-}
+	int		i;
 
-void check_files(t_vars *vars)
-{
-	int i = 0;
-
+	i = 0;
 	while (vars->map[i])
 	{
 		if (!ft_strncmp(vars->map[i], "NO", 2))
@@ -123,23 +89,26 @@ void check_files(t_vars *vars)
 	}
 }
 
-void check_colors(t_vars *vars)
+void	check_colors(t_vars *vars)
 {
-	int i = 0;
-	char **tmp;
+	int		i;
+	char	**tmp;
 
+	i = 0;
 	while (vars->map[i])
 	{
 		if (!ft_strncmp(vars->map[i],  "F", 1))
 		{
 			tmp = ft_split(vars->map[i] + 2, ',');
-			vars->F = get_rgba(ft_atoi(tmp[0]+2), ft_atoi(tmp[1]), ft_atoi(tmp[2]), 255);
+			vars->F = get_rgba(ft_atoi(tmp[0] + 2), ft_atoi(tmp[1]),
+					ft_atoi(tmp[2]), 255);
 			ft_freeall(tmp, ft_count(vars->map[i], ','));
 		}
 		else if (!ft_strncmp(vars->map[i],  "C", 1))
 		{
 			tmp = ft_split(vars->map[i] + 2, ',');
-			vars->C = get_rgba(ft_atoi(tmp[0]+2), ft_atoi(tmp[1]), ft_atoi(tmp[2]), 255);
+			vars->C = get_rgba(ft_atoi(tmp[0] + 2), ft_atoi(tmp[1]),
+					ft_atoi(tmp[2]), 255);
 			ft_freeall(tmp, ft_count(vars->map[i], ','));
 		}
 		i++;
@@ -163,7 +132,9 @@ void	parser(char *par, t_vars *vars)
 	check_files(vars);
 	check_colors(vars);
 	check_path(vars);
+	vars->i = 6;
 	map_check(vars);
-	
+	vars->i = 6;
+	map_check_1(vars);
 	all_in(vars->map, &col);
 }
