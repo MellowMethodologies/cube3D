@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw_wall.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:40:19 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/19 13:27:30 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/19 13:47:10 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	ft_get_dir(t_data *data)
 
 //----------------------------------------------------------------------------//
 
-void	ft_get_cord(t_data *data, int i, double dist)
+void	ft_get_cord(t_data *data, int i, double dist, uint32_t	width)
 {
 	int	j;
 
@@ -77,29 +77,38 @@ void	ft_get_cord(t_data *data, int i, double dist)
 			mlx_put_pixel(data->image, i, j++, data->vars->C);
 	}
 	if (data->hit == 'V')
-		data->cord.offsetx = (int)(data->hit_y * (data->vars->NO->width / TILE_SIZE)) % data->vars->NO->width;
+		data->cord.offsetx = (int)(data->hit_y * (width / TILE_SIZE)) % width;
 	else if (data->hit == 'H')
-		data->cord.offsetx = (int)(data->hit_x * (data->vars->NO->width / TILE_SIZE)) % data->vars->NO->width;
+		data->cord.offsetx = (int)(data->hit_x * (width / TILE_SIZE)) % width;
 }
 
 //----------------------------------------------------------------------------//
 
 void	draw_wall(t_data *data, int x, double dist)
 {
-	size_t			j;
-	char			c;
+	char	c;
 
-	j = 0;
-	ft_get_cord(data, x, dist);
 	c = ft_get_dir(data);
 	if (c == 'N')
+	{
+		ft_get_cord(data, x, dist, data->vars->NO->width);
 		ft_draw_wall_no(data, x, 0);
+	}
 	else if (c == 'S')
+	{
+		ft_get_cord(data, x, dist, data->vars->SO->width);
 		ft_draw_wall_so(data, x, 0);
+	}
 	else if (c == 'E')
+	{
+		ft_get_cord(data, x, dist, data->vars->EA->width);
 		ft_draw_wall_ea(data, x, 0);
+	}
 	else if (c == 'W')
+	{
+		ft_get_cord(data, x, dist, data->vars->WE->width);
 		ft_draw_wall_we(data, x, 0);
+	}
 	if (data->cord.wall_bottom < data->height)
 	{
 		while (data->cord.y < data->height)
