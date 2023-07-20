@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 15:33:04 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/20 10:01:52 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:19:28 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	get_rgba(int r, int g, int b, int a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);
 }
-
 
 unsigned int	*ft_get_pixels(uint8_t *pxl, uint32_t count)
 {

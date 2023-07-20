@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw_minimap.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:08:25 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/18 20:57:22 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/20 11:25:30 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/cube.h"
+
+//----------------------------------------------------------------------------//
+
+void	ft_draw_mm_line(t_data *data, double ongle)
+{
+	float	x;
+	float	y;
+	int		count;
+
+	count = 15;
+	while (count > 0)
+	{
+		x = 75 + cos(ongle) * count;
+		y = 75 + sin(ongle) * count;
+		mlx_put_pixel(data->image, x, y, 0x0000FF00FF);
+		count--;
+	}
+}
 
 //----------------------------------------------------------------------------//
 
@@ -36,28 +54,14 @@ void	ft_draw_mm_player(t_data *data)
 		}
 		ongle = ongle + incre;
 	}
+	ft_draw_mm_line(data, data->p_rad);
+	ft_draw_mm_line(data, (data->p_rad) + (M_PI / 180));
+	ft_draw_mm_line(data, (data->p_rad) - (M_PI / 180));
 }
 
 //----------------------------------------------------------------------------//
 
-void	ft_draw_mm_line(t_data *data, double ongle)
-{
-	float	x;
-	float	y;
-	int		count = 15;
-
-	while (count > 0)
-	{
-		x = 75 + cos(ongle) * count;
-		y = 75 + sin(ongle) * count;
-		mlx_put_pixel(data->image, x, y, 0x0000FF00FF);
-		count--;
-	}
-}
-
-//----------------------------------------------------------------------------//
-
-void    ft_draw_mm_walls(t_data *data, int x, int y)
+void	ft_draw_mm_walls(t_data *data, int x, int y)
 {
 	int i = 0;
 	int j = 0;
@@ -90,34 +94,11 @@ void    ft_draw_mm_walls(t_data *data, int x, int y)
 		x++;
 	}
 	ft_draw_mm_player(data);
-	ft_draw_mm_line(data, data->p_rad);
-	ft_draw_mm_line(data, (data->p_rad) + (M_PI / 180));
-	ft_draw_mm_line(data, (data->p_rad) - (M_PI / 180));
 }
 
 //----------------------------------------------------------------------------//
 
-void	ft_draw_mm_background(t_data *data, int x, int y)
+void	draw_mini_map(t_data *data, int x, int y)
 {
-	while (y < 150)
-	{
-		x = 0;
-		while (x < 150)
-		{
-			mlx_put_pixel(data->image, x, y, 0x00000000);
-			x++;
-		}
-		y++;
-	}
-}
-
-//----------------------------------------------------------------------------//
-
-void draw_mini_map(t_data *data, int x, int y)
-{
-
-	// ft_draw_mm_background(data, 0, 0);
-	x = 0;
-	y = 0;
-	ft_draw_mm_walls(data, 0, 0);
+	ft_draw_mm_walls(data, x, y);
 }
