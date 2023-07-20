@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:40:19 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/20 10:36:29 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:18:01 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ char	ft_get_dir(t_data *data)
 	}
 	else
 		return (ft_get_dir2(data));
-
 }
 
 //----------------------------------------------------------------------------//
@@ -86,25 +85,22 @@ void	ft_get_cord(t_data *data, int i, double dist, uint32_t	width)
 
 void	draw_wall(t_data *data, int x, double dist)
 {
-	char	c;
-
-	c = ft_get_dir(data);
-	if (c == 'N')
+	if (ft_get_dir(data) == 'N')
 	{
 		ft_get_cord(data, x, dist, data->vars->NO->width);
 		ft_draw_wall_no(data, x, 0);
 	}
-	else if (c == 'S')
+	else if (ft_get_dir(data) == 'S')
 	{
 		ft_get_cord(data, x, dist, data->vars->SO->width);
 		ft_draw_wall_so(data, x, 0);
 	}
-	else if (c == 'E')
+	else if (ft_get_dir(data) == 'E')
 	{
 		ft_get_cord(data, x, dist, data->vars->EA->width);
 		ft_draw_wall_ea(data, x, 0);
 	}
-	else if (c == 'W')
+	else if (ft_get_dir(data) == 'W')
 	{
 		ft_get_cord(data, x, dist, data->vars->WE->width);
 		ft_draw_wall_we(data, x, 0);
