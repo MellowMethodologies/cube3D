@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:19:21 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/20 10:00:01 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:43:07 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ typedef struct coordinates{
 
 typedef struct s_data
 {
+	int				i;
+	int				j;
 	unsigned int 	*no;
 	unsigned int 	*so;
 	unsigned int 	*we;
@@ -135,7 +137,7 @@ void			map_check(t_vars *vars);
 int				check_player(int c);
 void			ft_get_image(t_data *data, t_vars *vars);
 void			draw_wall(t_data *data, int i, double dist);
-void			draw_mini_map(t_data *data, int x, int y);
+void			draw_mini_map(t_data *data);
 void			ft_hooks(t_data *data);
 void			ft_hooks_(t_data *data);
 void			norme_it(t_data *data);

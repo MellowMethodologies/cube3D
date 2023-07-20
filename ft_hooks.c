@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_hooks.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 15:27:17 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/18 21:09:01 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/20 11:30:13 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,6 @@ void	ft_event(void *dat)
 	mlx_set_mouse_pos(data->mlx, data->width / 2, data->height / 2);
 	mlx_set_cursor_mode(data->mlx, MLX_MOUSE_HIDDEN);
 	draw_player(data);
-	draw_mini_map(data, 0, 0);
+	draw_mini_map(data);
 	mlx_image_to_window(data->mlx, data->image, 0, 0);
 }

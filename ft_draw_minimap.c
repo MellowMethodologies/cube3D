@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:08:25 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/20 11:25:30 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:44:03 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,44 +61,41 @@ void	ft_draw_mm_player(t_data *data)
 
 //----------------------------------------------------------------------------//
 
-void	ft_draw_mm_walls(t_data *data, int x, int y)
+void	ft_draw_mm_walls(t_data *data, int x, int y, int x1)
 {
-	int i = 0;
-	int j = 0;
-	int x1;
-	int y1;
+	int	y1;
 
-	x = data->p_x - 75;
-	y = data->p_y - 75;
-	x1 = data->p_x - 75;
-	y1 = data->p_y - 75;
+	y1 = y;
 	while (x < (x1 + 150))
 	{
 		y = data->p_y - 75;
-		j = 0;
+		data->j = 0;
 		while (y < (y1 +150))
 		{
-			if (ds_between_two_points(x , y, data->p_x, data->p_y) <= 70)
+			if (ds_between_two_points(x, y, data->p_x, data->p_y) <= 70)
 			{
 				if (is_there_a_wall_1(x, y, data))
-					mlx_put_pixel(data->image, i, j, 0x00CCFFFFFF);
+					mlx_put_pixel(data->image, data->i, data->j, 0x00CCFFFFFF);
 				else
-					mlx_put_pixel(data->image, i, j, 0x00000000);
+					mlx_put_pixel(data->image, data->i, data->j, 0x00000000);
 			}
-			else if (ds_between_two_points(x , y, data->p_x, data->p_y) > 70 && ds_between_two_points(x , y, data->p_x, data->p_y) < 75)
-					mlx_put_pixel(data->image, i, j, 0x0000FF00FF);
+			else if (ds_between_two_points(x, y, data->p_x, data->p_y) > 70
+				&& ds_between_two_points(x, y, data->p_x, data->p_y) < 75)
+				mlx_put_pixel(data->image, data->i, data->j, 0x0000FF00FF);
 			y++;
-			j++;
+			data->j++;
 		}
-		i++;
+		data->i++;
 		x++;
 	}
-	ft_draw_mm_player(data);
 }
 
 //----------------------------------------------------------------------------//
 
-void	draw_mini_map(t_data *data, int x, int y)
+void	draw_mini_map(t_data *data)
 {
-	ft_draw_mm_walls(data, x, y);
+	data->i = 0;
+	data->j = 0;
+	ft_draw_mm_walls(data, data->p_x - 75, data->p_y - 75, data->p_x - 75);
+	ft_draw_mm_player(data);
 }
