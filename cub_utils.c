@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:40:31 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/19 08:52:01 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/21 15:37:25 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ float	find_hr(t_data *data, float a_x, float a_y, float rotation)
 		if (is_there_a_wall_1(a_x, a_y, data))
 		{
 			if (rotation >= 0 && rotation <= M_PI)
-				a_y += 0.001;
+				a_y += 0.00001;
 			break ;
 		}
-		if (rotation >= 0 && rotation <= M_PI)
+		if (rotation > 0 && rotation < M_PI)
 		{
 			a_y += TILE_SIZE;
 			a_x += TILE_SIZE / tan(rotation);
@@ -68,11 +68,11 @@ float	find_vr(t_data *data, float a_x, float a_y, float rotation)
 	{
 		if (is_there_a_wall_1(a_x, a_y, data))
 		{
-			if (rotation >= 3 * M_PI / 2 || rotation <= M_PI / 2)
-				a_x += 0.001;
+			if (rotation > 3 * M_PI / 2 || rotation < M_PI / 2)
+				a_x += 0.00005;
 			break ;
 		}
-		if (rotation >= 3 * M_PI / 2 || rotation <= M_PI / 2)
+		if (rotation > 3 * M_PI / 2 || rotation < M_PI / 2)
 		{
 			a_y += TILE_SIZE * tan(rotation);
 			a_x += TILE_SIZE;

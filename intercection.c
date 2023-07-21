@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/19 07:57:27 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/21 15:37:15 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,35 +21,28 @@ float	ft_find_hr(t_data *data, float rotation)
 {
 	float	a_x;
 	float	a_y;
-	int		c;
 
-	c = 0;
-	a_x = 0;
-	a_y = 0;
+	a_x = INT_MAX;
+	a_y = INT_MAX;
 	if (rotation >= 0 && rotation <= M_PI)
 		a_y = floor(data->p_y / TILE_SIZE) * TILE_SIZE + TILE_SIZE ;
 	else
-		a_y = floor(data->p_y / TILE_SIZE) * TILE_SIZE - 0.001;
+		a_y = floor(data->p_y / TILE_SIZE) * TILE_SIZE - 0.00005;
 	a_x = data->p_x + ((a_y - data->p_y) / tan(rotation));
 	return (find_hr(data, a_x, a_y, rotation));
 }
 
 float	ft_find_vr(t_data *data, float rotation)
 {
-	int		c;
 	float	a_x;
 	float	a_y;
 
-	c = 0;
-	a_x = 0;
-	a_y = 0;
+	a_x = INT_MAX;
+	a_y = INT_MAX;
 	if (rotation >= 3 * M_PI / 2 || rotation <= M_PI / 2)
-	{
 		a_x = floor(data->p_x / TILE_SIZE) * TILE_SIZE + TILE_SIZE ;
-		c = 1;
-	}
 	else
-		a_x = floor(data->p_x / TILE_SIZE) * TILE_SIZE - 0.001;
+		a_x = floor(data->p_x / TILE_SIZE) * TILE_SIZE - 0.00005;
 	a_y = data->p_y + ((a_x - data->p_x) * tan(rotation));
 	return (find_vr(data, a_x, a_y, rotation));
 }

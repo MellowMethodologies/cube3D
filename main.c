@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 15:45:29 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/19 07:55:15 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/21 14:27:55 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	main(int ac, char **av)
 		mlx_loop_hook(data.mlx, ft_event, &data);
 		mlx_loop(data.mlx);
 		return (0);
-	}
+	}   
 	else
 		ft_putstr_fd("This program only accept .cub file as an argument", 2);
 }
