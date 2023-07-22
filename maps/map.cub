@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 NO ./textures/bbb.png
+=======
+NO ./textures/88.png
+>>>>>>> 4e3ff2e237376de81d661b592d8cbce0fc982c33
 SO ./textures/bba.png
 WE ./textures/bba.png
 EA ./textures/bbb.png

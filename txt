@@ -1,0 +1,4 @@
+if (data->hit == 'V')
+		data->cord.offsetx = (data->hit_y / TILE_SIZE) - (int)(data->hit_y / TILE_SIZE) * width;
+	else if (data->hit == 'H')
+		data->cord.offsetx = (data->hit_x / TILE_SIZE) - (int)(data->hit_y / TILE_SIZE) * width;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw_wall.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:40:19 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/20 11:18:01 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/21 15:36:05 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void	ft_get_cord(t_data *data, int i, double dist, uint32_t	width)
 	int	j;
 
 	j = 0;
-	data->cord.wall_hight = 160000 / dist;
+	(void)dist;
+	data->cord.wall_hight = WIDTH * TILE_SIZE / dist;
 	data->cord.wall_top = data->height / 2 - data->cord.wall_hight / 2;
 	if (data->cord.wall_top < 0)
 		data->cord.wall_top = 0;
@@ -71,10 +72,8 @@ void	ft_get_cord(t_data *data, int i, double dist, uint32_t	width)
 		data->cord.wall_bottom = data->height;
 	data->cord.y = data->cord.wall_top;
 	if (data->cord.wall_top > 0)
-	{
 		while (j < data->cord.wall_top)
 			mlx_put_pixel(data->image, i, j++, data->vars->C);
-	}
 	if (data->hit == 'V')
 		data->cord.offsetx = (int)(data->hit_y * (width / TILE_SIZE)) % width;
 	else if (data->hit == 'H')

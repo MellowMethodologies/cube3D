@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:08:25 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/20 13:04:50 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/22 08:27:08 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_draw_mm_walls(t_data *data, int x, int y, int x1)
 	{
 		y = data->p_y - 75;
 		data->j = 0;
-		while (y < (y1 +150))
+		while (y < (y1 + 150))
 		{
 			if (ds_between_two_points(x, y, data->p_x, data->p_y) <= 70)
 			{
