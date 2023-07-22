@@ -6,7 +6,7 @@
 /*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:08:25 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/20 11:44:03 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/20 13:04:50 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_draw_mm_line(t_data *data, double ongle)
 	int		count;
 
 	count = 15;
-	while (count > 0)
+	while (count > 4)
 	{
 		x = 75 + cos(ongle) * count;
 		y = 75 + sin(ongle) * count;
