@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:19:21 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/21 12:59:53 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/24 23:35:21 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@
 # include "./libft.h"
 # include <limits.h>
 
-# define FOV 30 * (M_PI / 180)
+# define FOV 60 * (M_PI / 180)
 # define HEIGHT 1080
 # define WIDTH 1920
 # define TILE_SIZE 64
-# define ROTATION_SPEED 6
-# define ACC 6
+# define ROTATION_SPEED 1
+# define ACC 1
 
 typedef struct vars
 {
@@ -49,10 +49,10 @@ typedef struct vars
 
 typedef struct s_ray
 {
-	float	angle;
-	float	xwall;
-	float	ywall;
-	float	distance;
+	double	angle;
+	double	xwall;
+	double	ywall;
+	double	distance;
 }t_ray;
 
 typedef struct collections{
@@ -68,7 +68,7 @@ typedef struct coordinates{
 	int				offsety;
 	double			wall_hight;
 	double			wall_top;
-	float			wall_bottom;
+	double			wall_bottom;
 	size_t			y;
 
 }	t_coordinates;
@@ -81,8 +81,8 @@ typedef struct s_data
 	unsigned int 	*so;
 	unsigned int 	*we;
 	unsigned int 	*ea;
-	float			dist;
-	float			ongle;
+	double			dist;
+	double			ongle;
 	char			hit;
 	size_t			count;
 	mlx_texture_t	*texture;
@@ -116,9 +116,9 @@ int				check_help(int c);
 int				check_player(int c);
 void			check_path(t_vars *vars);
 double			ds_between_two_points(double x, double y, double x1, double y1);
-void			circled(float *x);
-float			find_hr(t_data *data, float a_x, float a_y, float rotation);
-float			find_vr(t_data *data, float a_x, float a_y, float rotation);
+void			circled(double *x);
+double			find_hr(t_data *data, double a_x, double a_y, double rotation);
+double			find_vr(t_data *data, double a_x, double a_y, double rotation);
 void			error(void);
 int				get_rgba(int r, int g, int b, int a);
 int				is_there_a_wall_1(double x, double y, t_data *data);

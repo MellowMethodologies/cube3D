@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:40:31 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/21 15:37:25 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/25 00:24:08 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_abort(int id)
 	exit(1);
 }
 
-void	circled(float *x)
+void	circled(double *x)
 {
 	if (*x < 0)
 		*x += M_PI * 2;
@@ -38,14 +38,14 @@ void	circled(float *x)
 		*x -= M_PI * 2;
 }
 
-float	find_hr(t_data *data, float a_x, float a_y, float rotation)
+double	find_hr(t_data *data, double a_x, double a_y, double rotation)
 {
 	while (1)
 	{
-		if (is_there_a_wall_1(a_x, a_y, data))
+		if (((rotation >= 0 && rotation <= M_PI)
+				&& is_there_a_wall_1(a_x, a_y + 0.0001, data))
+			|| is_there_a_wall_1(a_x, a_y, data))
 		{
-			if (rotation >= 0 && rotation <= M_PI)
-				a_y += 0.00001;
 			break ;
 		}
 		if (rotation > 0 && rotation < M_PI)
@@ -62,14 +62,14 @@ float	find_hr(t_data *data, float a_x, float a_y, float rotation)
 	return (ds_between_two_points(data->p_x, data->p_y, a_x, a_y));
 }
 
-float	find_vr(t_data *data, float a_x, float a_y, float rotation)
+double	find_vr(t_data *data, double a_x, double a_y, double rotation)
 {
 	while (1)
 	{
-		if (is_there_a_wall_1(a_x, a_y, data))
+		if (((rotation > 3 * M_PI / 2 || rotation < M_PI / 2)
+				&& is_there_a_wall_1(a_x + 0.0001, a_y, data))
+			|| is_there_a_wall_1(a_x, a_y, data))
 		{
-			if (rotation > 3 * M_PI / 2 || rotation < M_PI / 2)
-				a_x += 0.00005;
 			break ;
 		}
 		if (rotation > 3 * M_PI / 2 || rotation < M_PI / 2)

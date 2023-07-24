@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_textures.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:01:49 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/16 12:57:45 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/24 23:26:40 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ void	ft_textures(t_data *data, t_vars *vars)
 	pl = malloc(sizeof(int) * 3);
 	if (!pl)
 		return ;
-	data->width = WIDTH;
-	data->height = HEIGHT;
 	data->str = vars->map + 6;
 	pl = find_player(data->str);
 	counter(data);
@@ -84,6 +82,6 @@ void	ft_textures(t_data *data, t_vars *vars)
 	data->p_x = pl[1] * TILE_SIZE + TILE_SIZE / 2;
 	data->p_y = pl[0] * TILE_SIZE + TILE_SIZE / 2;
 	data->dist = 1;
-	data->mouse_x_old = data->width / 2;
+	data->mouse_x_old = WIDTH / 2;
 	ft_get_image(data, vars);
 }

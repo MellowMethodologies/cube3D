@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:40:19 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/21 15:36:05 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/24 23:59:02 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,20 +64,20 @@ void	ft_get_cord(t_data *data, int i, double dist, uint32_t	width)
 	j = 0;
 	(void)dist;
 	data->cord.wall_hight = WIDTH * TILE_SIZE / dist;
-	data->cord.wall_top = data->height / 2 - data->cord.wall_hight / 2;
+	data->cord.wall_top = HEIGHT / 2 - data->cord.wall_hight / 2;
 	if (data->cord.wall_top < 0)
 		data->cord.wall_top = 0;
-	data->cord.wall_bottom = data->height / 2 + data->cord.wall_hight / 2;
-	if (data->cord.wall_bottom > data->height)
-		data->cord.wall_bottom = data->height;
+	data->cord.wall_bottom = HEIGHT / 2 + data->cord.wall_hight / 2;
+	if (data->cord.wall_bottom > HEIGHT)
+		data->cord.wall_bottom = HEIGHT;
 	data->cord.y = data->cord.wall_top;
 	if (data->cord.wall_top > 0)
 		while (j < data->cord.wall_top)
 			mlx_put_pixel(data->image, i, j++, data->vars->C);
-	if (data->hit == 'V')
-		data->cord.offsetx = (int)(data->hit_y * (width / TILE_SIZE)) % width;
-	else if (data->hit == 'H')
+	if (data->hit == 'H')
 		data->cord.offsetx = (int)(data->hit_x * (width / TILE_SIZE)) % width;
+	else if (data->hit == 'V')
+		data->cord.offsetx = (int)((data->hit_y / TILE_SIZE) * width) % width;
 }
 
 //----------------------------------------------------------------------------//
@@ -104,9 +104,9 @@ void	draw_wall(t_data *data, int x, double dist)
 		ft_get_cord(data, x, dist, data->vars->WE->width);
 		ft_draw_wall_we(data, x, 0);
 	}
-	if (data->cord.wall_bottom < data->height)
+	if (data->cord.wall_bottom < HEIGHT)
 	{
-		while (data->cord.y < data->height)
+		while (data->cord.y < HEIGHT)
 			mlx_put_pixel(data->image, x, data->cord.y++, data->vars->F);
 	}
 }

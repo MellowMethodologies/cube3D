@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 00:37:29 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/19 08:51:48 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/24 21:13:22 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,17 +97,17 @@ void	check_colors(t_vars *vars)
 	i = 0;
 	while (vars->map[i])
 	{
-		if (!ft_strncmp(vars->map[i],  "F", 1))
+		if (!ft_strncmp(ft_substr(vars->map[i], 0, 2), "F ", 2))
 		{
 			tmp = ft_split(vars->map[i] + 2, ',');
-			vars->F = get_rgba(ft_atoi(tmp[0] + 2), ft_atoi(tmp[1]),
+			vars->F = get_rgba(ft_atoi(tmp[0]), ft_atoi(tmp[1]),
 					ft_atoi(tmp[2]), 255);
 			ft_freeall(tmp, ft_count(vars->map[i], ','));
 		}
-		else if (!ft_strncmp(vars->map[i],  "C", 1))
+		else if (!ft_strncmp(ft_substr(vars->map[i], 0, 2), "C ", 2))
 		{
 			tmp = ft_split(vars->map[i] + 2, ',');
-			vars->C = get_rgba(ft_atoi(tmp[0] + 2), ft_atoi(tmp[1]),
+			vars->C = get_rgba(ft_atoi(tmp[0]), ft_atoi(tmp[1]),
 					ft_atoi(tmp[2]), 255);
 			ft_freeall(tmp, ft_count(vars->map[i], ','));
 		}

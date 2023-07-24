@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_hooks.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 15:27:17 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/20 11:30:13 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/24 23:26:30 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ void	ft_event(void *dat)
 	mlx_delete_image(data->mlx, data->image);
 	ft_hooks(data);
 	ft_hooks_(data);
-	data->image = mlx_new_image(data->mlx, data->width, data->height);
-	mlx_set_mouse_pos(data->mlx, data->width / 2, data->height / 2);
+	data->image = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	mlx_set_mouse_pos(data->mlx, WIDTH / 2, HEIGHT / 2);
 	mlx_set_cursor_mode(data->mlx, MLX_MOUSE_HIDDEN);
 	draw_player(data);
 	draw_mini_map(data);
