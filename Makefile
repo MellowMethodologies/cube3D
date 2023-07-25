@@ -6,7 +6,7 @@
 #    By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 19:51:25 by idabligi          #+#    #+#              #
-#    Updated: 2023/07/25 16:13:20 by sbadr            ###   ########.fr        #
+#    Updated: 2023/07/25 17:17:48 by sbadr            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@ SRCS = get_next_line_utils.c parsing_1.c main.c ft_draw_minimap.c\
 	cub_utils.c intercection.c helper_functions.c ft_wall_color.c
 OBJS := $(SRCS:.c=.o)
 CC  = cc
-CFLAGS = -g -Ofast #-Wall -Wextra -Werror# -fsanitize=address 
-NAME = cube
+CFLAGS = -Wall -Wextra -Werror
+NAME = cube3d
 HEADER = ./includes/cube.h
 
 all: $(NAME)

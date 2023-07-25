@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 00:37:29 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/25 16:18:50 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/25 17:13:44 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,13 @@ void	check_files(t_vars *vars)
 	while (vars->map[i])
 	{
 		if (!ft_strncmp(vars->map[i], "NO", 2))
-			vars->NO = mlx_load_png(vars->map[i] + 3);
+			vars->no = mlx_load_png(vars->map[i] + 3);
 		else if (!ft_strncmp(vars->map[i],  "SO", 2))
-			vars->SO = mlx_load_png(vars->map[i] + 3);
+			vars->so = mlx_load_png(vars->map[i] + 3);
 		else if (!ft_strncmp(vars->map[i],  "WE", 2))
-			vars->WE = mlx_load_png(vars->map[i] + 3);
+			vars->we = mlx_load_png(vars->map[i] + 3);
 		else if (!ft_strncmp(vars->map[i],  "EA", 2))
-			vars->EA = mlx_load_png(vars->map[i] + 3);
+			vars->ea = mlx_load_png(vars->map[i] + 3);
 		i++;
 	}
 }
@@ -102,14 +102,14 @@ void	check_colors(t_vars *vars)
 		if (!ft_strncmp(tmp1, "F ", 2))
 		{
 			tmp = ft_split(vars->map[i] + 2, ',');
-			vars->F = get_rgba(ft_atoi(tmp[0]), ft_atoi(tmp[1]),
+			vars->f = get_rgba(ft_atoi(tmp[0]), ft_atoi(tmp[1]),
 					ft_atoi(tmp[2]), 255);
 			ft_freeall(tmp, ft_count(vars->map[i], ','));
 		}
 		else if (!ft_strncmp(tmp1, "C ", 2))
 		{
 			tmp = ft_split(vars->map[i] + 2, ',');
-			vars->C = get_rgba(ft_atoi(tmp[0]), ft_atoi(tmp[1]),
+			vars->c = get_rgba(ft_atoi(tmp[0]), ft_atoi(tmp[1]),
 					ft_atoi(tmp[2]), 255);
 			ft_freeall(tmp, ft_count(vars->map[i], ','));
 		}
@@ -128,8 +128,8 @@ void	parser(char *par, t_vars *vars)
 		ft_putstr_fd("Error!\ncan't open file", 2);
 		exit(1);
 	}
-	vars->F = -1;
-	vars->C = -1;
+	vars->f = -1;
+	vars->c = -1;
 	vars->s = get_next_line(vars->fd);
 	vars->map = ft_split(vars->s, '\n');
 	check_files(vars);

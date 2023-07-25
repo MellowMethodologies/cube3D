@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:40:19 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/24 23:59:02 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/25 17:13:44 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ft_get_cord(t_data *data, int i, double dist, uint32_t	width)
 	data->cord.y = data->cord.wall_top;
 	if (data->cord.wall_top > 0)
 		while (j < data->cord.wall_top)
-			mlx_put_pixel(data->image, i, j++, data->vars->C);
+			mlx_put_pixel(data->image, i, j++, data->vars->c);
 	if (data->hit == 'H')
 		data->cord.offsetx = (int)(data->hit_x * (width / TILE_SIZE)) % width;
 	else if (data->hit == 'V')
@@ -86,27 +86,27 @@ void	draw_wall(t_data *data, int x, double dist)
 {
 	if (ft_get_dir(data) == 'N')
 	{
-		ft_get_cord(data, x, dist, data->vars->NO->width);
+		ft_get_cord(data, x, dist, data->vars->no->width);
 		ft_draw_wall_no(data, x, 0);
 	}
 	else if (ft_get_dir(data) == 'S')
 	{
-		ft_get_cord(data, x, dist, data->vars->SO->width);
+		ft_get_cord(data, x, dist, data->vars->so->width);
 		ft_draw_wall_so(data, x, 0);
 	}
 	else if (ft_get_dir(data) == 'E')
 	{
-		ft_get_cord(data, x, dist, data->vars->EA->width);
+		ft_get_cord(data, x, dist, data->vars->ea->width);
 		ft_draw_wall_ea(data, x, 0);
 	}
 	else if (ft_get_dir(data) == 'W')
 	{
-		ft_get_cord(data, x, dist, data->vars->WE->width);
+		ft_get_cord(data, x, dist, data->vars->we->width);
 		ft_draw_wall_we(data, x, 0);
 	}
 	if (data->cord.wall_bottom < HEIGHT)
 	{
 		while (data->cord.y < HEIGHT)
-			mlx_put_pixel(data->image, x, data->cord.y++, data->vars->F);
+			mlx_put_pixel(data->image, x, data->cord.y++, data->vars->f);
 	}
 }

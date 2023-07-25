@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:19:21 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/25 16:16:07 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/25 17:16:51 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include "./libft.h"
 # include <limits.h>
 
-# define FOV 60 * (M_PI / 180)
+# define FOV 1.0471975512
 # define HEIGHT 1080
 # define WIDTH 1920
 # define TILE_SIZE 64
@@ -33,18 +33,18 @@
 
 typedef struct vars
 {
-	int		i;
-	int		j;
-	mlx_texture_t 	*NO;
-	mlx_texture_t	*SO;
-	mlx_texture_t 	*WE;
-	mlx_texture_t	*EA;
-	int 	F;
-	int		C;
-	int		len;	
-	int		fd;
-	char	*s;
-	char	**map;
+	int				i;
+	int				j;
+	mlx_texture_t	*no;
+	mlx_texture_t	*so;
+	mlx_texture_t	*we;
+	mlx_texture_t	*ea;
+	int				f;
+	int				c;
+	int				len;	
+	int				fd;
+	char			*s;
+	char			**map;
 }	t_vars;
 
 typedef struct s_ray
