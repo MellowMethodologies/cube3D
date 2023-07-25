@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw_minimap.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:08:25 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/25 10:35:00 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/24 23:35:21 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	ft_draw_mm_player(t_data *data)
 		ongle = ongle + incre;
 	}
 	ft_draw_mm_line(data, data->p_rad);
+	ft_draw_mm_line(data, (data->p_rad) + (M_PI / 180));
+	ft_draw_mm_line(data, (data->p_rad) - (M_PI / 180));
 }
 
 //----------------------------------------------------------------------------//
@@ -66,8 +68,8 @@ void	ft_draw_mm_walls(t_data *data, int x, int y, int x1)
 	y1 = y;
 	while (x < (x1 + 150))
 	{
-		data->j = 0;
 		y = data->p_y - 75;
+		data->j = 0;
 		while (y < (y1 + 150))
 		{
 			if (ds_between_two_points(x, y, data->p_x, data->p_y) <= 70)
@@ -93,6 +95,7 @@ void	ft_draw_mm_walls(t_data *data, int x, int y, int x1)
 void	draw_mini_map(t_data *data)
 {
 	data->i = 0;
+	data->j = 0;
 	ft_draw_mm_walls(data, data->p_x - 75, data->p_y - 75, data->p_x - 75);
 	ft_draw_mm_player(data);
 }

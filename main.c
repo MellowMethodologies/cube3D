@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 15:45:29 by sbadr             #+#    #+#             */
-<<<<<<< HEAD
 /*   Updated: 2023/07/25 16:05:08 by sbadr            ###   ########.fr       */
-=======
-/*   Updated: 2023/07/25 12:06:35 by idabligi         ###   ########.fr       */
->>>>>>> 52dda7b753de3327a909f938ccb9921e75196206
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +14,8 @@
 
 int	is_there_a_wall_1(double x, double y, t_data *data)
 {
-	size_t map_grip_index_y;
-	size_t map_grip_index_x;
-
-	if (x < 0 || y < 0)
-		return (1);
-	map_grip_index_x = floor(x / TILE_SIZE);
-	map_grip_index_y = floor(y / TILE_SIZE);
-	if (map_grip_index_y > data->count
-		|| ft_strlen(data->str[map_grip_index_y]) <= map_grip_index_x)
-		return (1);
-	if (data->str[map_grip_index_y][map_grip_index_x] == '1'
-			|| data->str[map_grip_index_y][map_grip_index_x] == '1')
-		return (1);
-	return (0);
-}
-
-int	is_there_a_wall(double x, double y, t_data *data)
-{
-	size_t map_grip_index_y;
-	size_t map_grip_index_x;
+	long long int	map_grip_index_y;
+	long long int	map_grip_index_x;
 
 	if (x < 0 || y < 0)
 		return (1);

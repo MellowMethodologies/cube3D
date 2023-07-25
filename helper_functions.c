@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper_functions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:20:51 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/25 11:44:55 by idabligi         ###   ########.fr       */
+/*   Updated: 2023/07/15 19:02:56 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ int	check_player(int c)
 
 void	check_path(t_vars *vars)
 {
-	if (!vars->ea || !vars->no || !vars->so || !vars->we)
+	if (!vars->EA || !vars->NO || !vars->SO || !vars->WE)
 		error();
-	if (vars->ea < 0 || vars->no < 0 || vars->so < 0
-		|| vars->we < 0 || vars->F < 0 || vars->C < 0)
+	if (vars->EA < 0 || vars->NO < 0 || vars->SO < 0
+		|| vars->WE < 0 || vars->F < 0 || vars->C < 0)
 	{
 		ft_putstr_fd("Error!\nimage path invalid\n", 2);
 		exit(1);
