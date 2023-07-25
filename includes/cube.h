@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:19:21 by sbadr             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/07/25 16:16:07 by sbadr            ###   ########.fr       */
+=======
+/*   Updated: 2023/07/25 12:08:46 by idabligi         ###   ########.fr       */
+>>>>>>> 52dda7b753de3327a909f938ccb9921e75196206
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +28,22 @@
 # include "./libft.h"
 # include <limits.h>
 
-# define FOV 60 * (M_PI / 180)
+# define FOV 30 * (M_PI / 180)
 # define HEIGHT 1080
 # define WIDTH 1920
 # define TILE_SIZE 64
-# define ROTATION_SPEED 1
+# define ROTATION_SPEED 2
 # define ACC 1
 
 typedef struct vars
 {
 	int		i;
 	int		j;
-	mlx_texture_t 	*NO;
-	mlx_texture_t	*SO;
-	mlx_texture_t 	*WE;
-	mlx_texture_t	*EA;
+	mlx_texture_t 	*no;
+	mlx_texture_t	*so;
+	mlx_texture_t 	*we;
+	mlx_texture_t	*ea;
+	int		pl[3];
 	int 	F;
 	int		C;
 	int		len;	
@@ -88,8 +93,6 @@ typedef struct s_data
 	size_t			count;
 	mlx_texture_t	*texture;
 	mlx_image_t		*image;
-	mlx_image_t		*map;
-	mlx_texture_t	png;
 	t_vars			*vars;
 	double			hit_x;
 	double			hit_y;
@@ -97,8 +100,6 @@ typedef struct s_data
 	int32_t			mouse_y;
 	int32_t			mouse_x_old;
 	int32_t			mouse_y_old;
-	size_t			height;
-	size_t			width;
 	int				num_rays;
 	double			p_x;
 	double			p_y;
@@ -110,6 +111,7 @@ typedef struct s_data
 	t_coordinates	cord;
 }	t_data;
 
+int				ft_strcmp_m(char *s1, char *s2);
 int				check_it(int c);
 void			remplisage(char **str, t_collectives *col);
 void			all_in(char **str, t_collectives *col);

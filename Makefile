@@ -3,26 +3,35 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+         #
+#    By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 19:51:25 by idabligi          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2023/07/25 16:13:20 by sbadr            ###   ########.fr        #
+=======
+#    Updated: 2023/07/25 12:01:53 by idabligi         ###   ########.fr        #
+>>>>>>> 52dda7b753de3327a909f938ccb9921e75196206
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = get_next_line_utils.c parsing_1.c main.c ft_draw_minimap.c\
+<<<<<<< HEAD
 	initializer.c ft_get_image.c ft_hooks.c ft_draw_wall.c\
 	cub_utils.c intercection.c helper_functions.c ft_wall_color.c
+=======
+	ft_textures.c ft_get_image.c ft_hooks.c ft_draw_wall.c\
+	cub_utils.c intercection.c helper_functions.c ft_wall_color.c ft_strcmp_m.c
+>>>>>>> 52dda7b753de3327a909f938ccb9921e75196206
 OBJS := $(SRCS:.c=.o)
 CC  = cc
-CFLAGS = -g -Ofast #-Wall -Wextra -Werror# -fsanitize=address 
+CFLAGS = -g  -Wall -Wextra -Werror# -fsanitize=address 
 NAME = cube
 HEADER = ./includes/cube.h
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) ./lib/libmlx42.a ./lib/libft.a -Iinclude -lglfw -L"/Users/sbadr/.brew/opt/glfw/lib/" $^ -o $@
+	$(CC) $(CFLAGS) ./lib/libmlx42.a ./lib/libft.a -Iinclude -lglfw -L"/Users/idabligi/.brew/opt/glfw/lib/" $^ -o $@
 
 %.o: %.c  $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
