@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 15:45:29 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/25 17:12:58 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/25 17:27:06 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	is_there_a_wall_1(double x, double y, t_data *data)
 {
-	long long int	map_grip_index_y;
-	long long int	map_grip_index_x;
+	size_t	map_grip_index_y;
+	size_t	map_grip_index_x;
 
 	if (x < 0 || y < 0)
 		return (1);

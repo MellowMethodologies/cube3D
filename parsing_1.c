@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 00:37:29 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/25 17:13:44 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/25 17:50:06 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,13 @@ void	check_files(t_vars *vars)
 	i = 0;
 	while (vars->map[i])
 	{
-		if (!ft_strncmp(vars->map[i], "NO", 2))
+		if (!ft_strncmp(vars->map[i], "NO ", 3))
 			vars->no = mlx_load_png(vars->map[i] + 3);
-		else if (!ft_strncmp(vars->map[i],  "SO", 2))
+		else if (!ft_strncmp(vars->map[i], "SO ", 3))
 			vars->so = mlx_load_png(vars->map[i] + 3);
-		else if (!ft_strncmp(vars->map[i],  "WE", 2))
+		else if (!ft_strncmp(vars->map[i], "WE ", 3))
 			vars->we = mlx_load_png(vars->map[i] + 3);
-		else if (!ft_strncmp(vars->map[i],  "EA", 2))
+		else if (!ft_strncmp(vars->map[i], "EA ", 3))
 			vars->ea = mlx_load_png(vars->map[i] + 3);
 		i++;
 	}

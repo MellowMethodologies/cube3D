@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:19:21 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/25 17:16:51 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/25 17:51:41 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct coordinates{
 
 typedef struct s_data
 {
+	int				*a;
 	int				i;
 	int				j;
 	int				pl[3];
@@ -121,7 +122,7 @@ void			circled(double *x);
 double			find_hr(t_data *data, double a_x, double a_y, double rotation);
 double			find_vr(t_data *data, double a_x, double a_y, double rotation);
 void			error(void);
-int				get_rgba(int r, int g, int b, int a);
+uint8_t			get_rgba(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 int				is_there_a_wall_1(double x, double y, t_data *data);
 void			draw_player(t_data	*data);
 void			ft_textures(t_data *data, t_vars *vars);
@@ -149,6 +150,5 @@ void			ft_draw_wall_no(t_data *data, int x, int j);
 void			ft_draw_wall_so(t_data *data, int x, int j);
 void			ft_draw_wall_we(t_data *data, int x, int j);
 void			ft_draw_wall_ea(t_data *data, int x, int j);
-
 
 #endif
