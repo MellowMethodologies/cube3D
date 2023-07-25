@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 00:37:29 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/24 21:13:22 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/25 12:03:19 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,13 @@ void	check_files(t_vars *vars)
 	while (vars->map[i])
 	{
 		if (!ft_strncmp(vars->map[i], "NO", 2))
-			vars->NO = mlx_load_png(vars->map[i] + 3);
+			vars->no = mlx_load_png(vars->map[i] + 3);
 		else if (!ft_strncmp(vars->map[i],  "SO", 2))
-			vars->SO = mlx_load_png(vars->map[i] + 3);
+			vars->so = mlx_load_png(vars->map[i] + 3);
 		else if (!ft_strncmp(vars->map[i],  "WE", 2))
-			vars->WE = mlx_load_png(vars->map[i] + 3);
+			vars->we = mlx_load_png(vars->map[i] + 3);
 		else if (!ft_strncmp(vars->map[i],  "EA", 2))
-			vars->EA = mlx_load_png(vars->map[i] + 3);
+			vars->ea = mlx_load_png(vars->map[i] + 3);
 		i++;
 	}
 }
@@ -93,24 +93,27 @@ void	check_colors(t_vars *vars)
 {
 	int		i;
 	char	**tmp;
+	char	*tmp1;
 
 	i = 0;
 	while (vars->map[i])
 	{
-		if (!ft_strncmp(ft_substr(vars->map[i], 0, 2), "F ", 2))
+		tmp1 = ft_substr(vars->map[i], 0, 2);
+		if (!ft_strcmp_m(tmp1, "F "))
 		{
 			tmp = ft_split(vars->map[i] + 2, ',');
 			vars->F = get_rgba(ft_atoi(tmp[0]), ft_atoi(tmp[1]),
 					ft_atoi(tmp[2]), 255);
 			ft_freeall(tmp, ft_count(vars->map[i], ','));
 		}
-		else if (!ft_strncmp(ft_substr(vars->map[i], 0, 2), "C ", 2))
+		else if (!ft_strcmp_m(tmp1, "C "))
 		{
 			tmp = ft_split(vars->map[i] + 2, ',');
 			vars->C = get_rgba(ft_atoi(tmp[0]), ft_atoi(tmp[1]),
 					ft_atoi(tmp[2]), 255);
 			ft_freeall(tmp, ft_count(vars->map[i], ','));
 		}
+		free(tmp1);
 		i++;
 	}
 }

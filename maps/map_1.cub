@@ -1,8 +1,0 @@
-NO ./textures/bb.png
-SO ./textures/bba.png
-WE ./textures/bb.png
-EA ./textures/bbbb.png
-
-F 220,100,0
-C 225,30,0
-
