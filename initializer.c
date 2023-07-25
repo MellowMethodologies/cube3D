@@ -1,43 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_textures.c                                      :+:      :+:    :+:   */
+/*   initializer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:01:49 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/24 23:26:40 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/25 16:16:32 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/cube.h"
 
-int	*find_player(char **map)
+void	find_player(t_data *vars)
 {
 	int	i;
 	int	j;
-	int	*pl;
 
 	i = 0;
-	pl = malloc(sizeof(int) * 3);
-	if (!pl)
-		return (NULL);
-	while (map[i])
+	while (vars->str[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (vars->str[i][j])
 		{
-			if (check_player(map[i][j]))
+			if (check_player(vars->str[i][j]))
 			{
-				pl[0] = i;
-				pl[1] = j;
-				pl[2] = map[i][j];
+				vars->pl[0] = i;
+				vars->pl[1] = j;
+				vars->pl[2] = vars->str[i][j];
 			}
 			j++;
 		}
 		i++;
 	}
-	return (pl);
 }
 
 double	check_rotation(int c)
@@ -70,17 +65,12 @@ void	counter(t_data *data)
 
 void	ft_textures(t_data *data, t_vars *vars)
 {
-	int	*pl;
-
-	pl = malloc(sizeof(int) * 3);
-	if (!pl)
-		return ;
 	data->str = vars->map + 6;
-	pl = find_player(data->str);
+	find_player(data);
 	counter(data);
-	data->p_rad = check_rotation(pl[2]);
-	data->p_x = pl[1] * TILE_SIZE + TILE_SIZE / 2;
-	data->p_y = pl[0] * TILE_SIZE + TILE_SIZE / 2;
+	data->p_rad = check_rotation(data->pl[2]);
+	data->p_x = data->pl[1] * TILE_SIZE + TILE_SIZE / 2;
+	data->p_y = data->pl[0] * TILE_SIZE + TILE_SIZE / 2;
 	data->dist = 1;
 	data->mouse_x_old = WIDTH / 2;
 	ft_get_image(data, vars);

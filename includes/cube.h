@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:19:21 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/24 23:35:21 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/25 16:16:07 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,11 @@ typedef struct s_data
 {
 	int				i;
 	int				j;
-	unsigned int 	*no;
-	unsigned int 	*so;
-	unsigned int 	*we;
-	unsigned int 	*ea;
+	int				pl[3];
+	unsigned int	*no;
+	unsigned int	*so;
+	unsigned int	*we;
+	unsigned int	*ea;
 	double			dist;
 	double			ongle;
 	char			hit;

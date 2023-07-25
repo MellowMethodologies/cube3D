@@ -6,12 +6,12 @@
 #    By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 19:51:25 by idabligi          #+#    #+#              #
-#    Updated: 2023/07/24 23:24:57 by sbadr            ###   ########.fr        #
+#    Updated: 2023/07/25 16:13:20 by sbadr            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = get_next_line_utils.c parsing_1.c main.c ft_draw_minimap.c\
-	ft_textures.c ft_get_image.c ft_hooks.c ft_draw_wall.c\
+	initializer.c ft_get_image.c ft_hooks.c ft_draw_wall.c\
 	cub_utils.c intercection.c helper_functions.c ft_wall_color.c
 OBJS := $(SRCS:.c=.o)
 CC  = cc

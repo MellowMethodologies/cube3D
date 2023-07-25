@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 15:45:29 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/24 23:28:07 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/25 16:05:08 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(int ac, char **av)
 	data.vars = &vars;
 	if (ac == 2)
 	{
-		if (ft_strncmp(".cub", av[1] + (ft_strlen(av[1]) - 4), 4) != 0)
+		if (ft_strncmp(".cub", av[1] + (ft_strlen(av[1]) - 4), 4))
 		{
 			ft_putstr_fd("Error!\ncheck the extension of your map", 2);
 			exit(1);
