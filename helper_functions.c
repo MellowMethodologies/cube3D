@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:20:51 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/25 17:50:51 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/26 16:16:06 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,4 @@ void	check_path(t_vars *vars)
 {
 	if (!vars->ea || !vars->no || !vars->so || !vars->we)
 		error();
-	if (vars->ea < 0 || vars->no < 0 || vars->so < 0
-		|| vars->we < 0 || vars->f < 0 || vars->c < 0)
-	{
-		ft_putstr_fd("Error!\nimage path invalid\n", 2);
-		exit(1);
-	}
 }

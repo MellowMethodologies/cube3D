@@ -6,7 +6,7 @@
 /*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:22:05 by idabligi          #+#    #+#             */
-/*   Updated: 2023/07/25 17:28:19 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/25 00:24:03 by sbadr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	draw_player(t_data	*data)
 	while (i < WIDTH)
 	{
 		circled(&x);
-		if (ft_find_hr(data, x) <= ft_find_vr(data, x))
+		if (ft_find_hr(data, x) < ft_find_vr(data, x))
 		{
 			data->dist = ft_find_hr(data, x);
 			data->hit = 'H';

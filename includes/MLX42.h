@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   MLX42.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/28 02:29:06 by W2Wizard          #+#    #+#             */
-/*   Updated: 2023/07/08 20:36:37 by idabligi         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 /**
  * A cross-platform OpenGL graphics library based on the idea that MiniLibX
  * provides. Just quite a bit better, in terms of code quality & performance.

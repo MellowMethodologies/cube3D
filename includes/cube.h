@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbadr <sbadr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: idabligi <idabligi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:19:21 by sbadr             #+#    #+#             */
-/*   Updated: 2023/07/25 17:51:41 by sbadr            ###   ########.fr       */
+/*   Updated: 2023/07/28 10:52:13 by idabligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBE_H
 # define CUBE_H
 
-// # include <mlx.h>
 # include "MLX42.h"
 # include <stdio.h>
 # include <unistd.h>
@@ -24,7 +23,7 @@
 # include "./libft.h"
 # include <limits.h>
 
-# define FOV 1.0471975512
+# define FOV 0.5235987756
 # define HEIGHT 1080
 # define WIDTH 1920
 # define TILE_SIZE 64
@@ -75,9 +74,9 @@ typedef struct coordinates{
 
 typedef struct s_data
 {
-	int				*a;
 	int				i;
 	int				j;
+	int				*a;
 	int				pl[3];
 	unsigned int	*no;
 	unsigned int	*so;
@@ -111,6 +110,7 @@ typedef struct s_data
 	t_coordinates	cord;
 }	t_data;
 
+int				is_there_a_wall(double x, double y, t_data *data);
 int				check_it(int c);
 void			remplisage(char **str, t_collectives *col);
 void			all_in(char **str, t_collectives *col);
@@ -122,7 +122,7 @@ void			circled(double *x);
 double			find_hr(t_data *data, double a_x, double a_y, double rotation);
 double			find_vr(t_data *data, double a_x, double a_y, double rotation);
 void			error(void);
-uint8_t			get_rgba(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
+int				get_rgba(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 int				is_there_a_wall_1(double x, double y, t_data *data);
 void			draw_player(t_data	*data);
 void			ft_textures(t_data *data, t_vars *vars);
